@@ -1,18 +1,16 @@
-import 'package:petani_app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../controllers/login_controller.dart';
-
-class LoginView extends GetView<LoginController> {
+class EditTandurView extends GetView {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
+        leading: BackButton(color: Colors.black),
         title: Text(
-          'Masuk',
+          'Ubah Tandur',
           style: TextStyle(color: Colors.black, fontSize: 16),
         ),
         elevation: 0.5,
@@ -26,7 +24,7 @@ class LoginView extends GetView<LoginController> {
             children: [
               const SizedBox(height: 50),
               Text(
-                "Email atau Nomor Ponsel",
+                "Label",
                 style: TextStyle(
                   color: Color(0xff919A92),
                 ),
@@ -34,7 +32,7 @@ class LoginView extends GetView<LoginController> {
               TextFormField(
                 cursorColor: Color(0xff16A085),
                 decoration: InputDecoration(
-                  helperText: 'Contoh: 08123456789',
+                  helperText: 'Contoh: Label',
                   // fillColor: Color(0xff919A92),
                   enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(
@@ -50,7 +48,7 @@ class LoginView extends GetView<LoginController> {
               ),
               const SizedBox(height: 30),
               Text(
-                "Kata Sandi",
+                "Label",
                 style: TextStyle(
                   color: Color(0xff919A92),
                 ),
@@ -71,19 +69,6 @@ class LoginView extends GetView<LoginController> {
                 ),
               ),
               const SizedBox(height: 30),
-              Container(
-                margin: EdgeInsets.only(bottom: 15),
-                alignment: Alignment.topRight,
-                child: TextButton(
-                  onPressed: () {},
-                  child: Text(
-                    "Lupa Kata Sandi?",
-                    style: TextStyle(
-                      color: Color(0xff16A085),
-                    ),
-                  ),
-                ),
-              ),
               Center(
                 child: SizedBox(
                   height: 46, //height of button
@@ -92,8 +77,8 @@ class LoginView extends GetView<LoginController> {
                     style: ElevatedButton.styleFrom(
                       primary: Color(0xff16A085), // background
                     ),
-                    onPressed: () => Get.toNamed(Routes.HOME),
-                    child: Text('Masuk'),
+                    onPressed: () {},
+                    child: Text('Ubah'),
                   ),
                 ),
               )
