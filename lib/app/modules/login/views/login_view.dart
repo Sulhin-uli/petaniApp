@@ -1,16 +1,19 @@
-import 'package:petani_app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:petani_app/app/modules/login/controllers/authcontroller_controller.dart';
 
 import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
+  final authC = Get.put(AuthcontrollerController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
+        // leading: BackButton(color: Colors.black),
         title: Text(
           'Masuk',
           style: TextStyle(color: Colors.black, fontSize: 16),
@@ -25,16 +28,17 @@ class LoginView extends GetView<LoginController> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 50),
-              Text(
-                "Email atau Nomor Ponsel",
+              const Text(
+                "Email",
                 style: TextStyle(
                   color: Color(0xff919A92),
                 ),
               ),
               TextFormField(
+                controller: controller.email,
                 cursorColor: Color(0xff16A085),
-                decoration: InputDecoration(
-                  helperText: 'Contoh: 08123456789',
+                decoration: const InputDecoration(
+                  helperText: 'Contoh: pedri16@gmail.com',
                   // fillColor: Color(0xff919A92),
                   enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(
@@ -49,23 +53,40 @@ class LoginView extends GetView<LoginController> {
                 ),
               ),
               const SizedBox(height: 30),
-              Text(
-                "Kata Sandi",
+              const Text(
+                "Password",
                 style: TextStyle(
                   color: Color(0xff919A92),
                 ),
               ),
-              TextFormField(
-                cursorColor: Colors.black,
-                decoration: InputDecoration(
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(0xff919A92),
+              Obx(
+                () => TextFormField(
+                  controller: controller.password,
+                  cursorColor: Color(0xff16A085),
+                  obscureText: controller.hiddenTextPassword.value,
+                  decoration: InputDecoration(
+                    // fillColor: Color(0xff919A92),
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color(0xff919A92),
+                      ),
                     ),
-                  ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(0xff16A085),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color(0xff16A085),
+                      ),
+                    ),
+                    suffixIcon: IconButton(
+                      onPressed: () => controller.hiddenTextPassword.toggle(),
+                      icon: controller.hiddenTextPassword.isTrue
+                          ? Icon(
+                              Icons.remove_red_eye,
+                              color: Color(0xff16A085),
+                            )
+                          : Icon(
+                              Icons.remove_red_eye_outlined,
+                              color: Color(0xff16A085),
+                            ),
                     ),
                   ),
                 ),
@@ -92,7 +113,8 @@ class LoginView extends GetView<LoginController> {
                     style: ElevatedButton.styleFrom(
                       primary: Color(0xff16A085), // background
                     ),
-                    onPressed: () => Get.toNamed(Routes.HOME),
+                    onPressed: () => authC.login(
+                        controller.email.text, controller.password.text),
                     child: Text('Masuk'),
                   ),
                 ),

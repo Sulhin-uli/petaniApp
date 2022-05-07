@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:petani_app/app/routes/app_pages.dart';
 
 import '../controllers/saya_controller.dart';
 
 class IndexSayaView extends GetView<SayaController> {
+  final box = GetStorage();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,6 +86,16 @@ class IndexSayaView extends GetView<SayaController> {
               ListTile(
                 leading: Icon(Icons.vpn_key),
                 title: const Text('Ubah Password'),
+              ),
+              GestureDetector(
+                onTap: () {
+                  box.erase();
+                  Get.toNamed(Routes.LOGIN);
+                },
+                child: ListTile(
+                  leading: Icon(Icons.vpn_key),
+                  title: const Text('Logout'),
+                ),
               ),
             ],
           ),
