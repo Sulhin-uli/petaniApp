@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:petani_app/app/modules/edukasi/views/index_edukasi_view.dart';
-import 'package:petani_app/app/modules/home/views/widget/item_menu_view.dart';
+import 'package:petani_app/app/modules/home/views/widget/item_menu_view_old.dart';
 import 'package:petani_app/app/modules/kegiatan/views/index_kegiatan_view.dart';
 import 'package:petani_app/app/modules/saya/views/index_saya_view.dart';
 import 'package:petani_app/app/routes/app_pages.dart';

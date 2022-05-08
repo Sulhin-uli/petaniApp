@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:petani_app/app/modules/edukasi/bindings/edukasi_binding.dart';
 import 'package:petani_app/app/modules/edukasi/views/detail_edukasi_view.dart';
 import 'package:petani_app/app/modules/edukasi/views/index_edukasi_view.dart';
+import 'package:petani_app/app/modules/home/views/index_home_view.dart';
 import 'package:petani_app/app/modules/kegiatan/bindings/kegiatan_binding.dart';
 import 'package:petani_app/app/modules/kegiatan/views/detail_kegiatan_view.dart';
 import 'package:petani_app/app/modules/kegiatan/views/index_kegiatan_view.dart';
@@ -21,7 +22,6 @@ import 'package:petani_app/app/modules/tandur/views/edit_tandur_view.dart';
 import 'package:petani_app/app/modules/tandur/views/index_tandur_view.dart';
 
 import '../modules/home/bindings/home_binding.dart';
-import '../modules/home/views/home_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 
@@ -35,7 +35,7 @@ class AppPages {
   static final routes = [
     GetPage(
       name: _Paths.HOME,
-      page: () => HomeView(),
+      page: () => IndexHomeView(),
       binding: HomeBinding(),
     ),
     GetPage(
