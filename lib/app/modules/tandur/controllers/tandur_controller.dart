@@ -118,20 +118,18 @@ class TandurController extends GetxController {
   }
 
   void updateData(
-    int id,
-    String plant_tanaman,
-    String surface_area,
-    String plating_date,
-  ) {
+      int id, String plant_tanaman, String surface_area, String plating_date,
+      [var harvest_date = null]) {
     final data = box.read("userData") as Map<String, dynamic>;
     final item = findByid(id);
     PlantProvider()
-        .updateData(
-            id, plant_tanaman, surface_area, plating_date, data["token"])
+        .updateData(id, plant_tanaman, surface_area, plating_date, harvest_date,
+            data["token"])
         .then((e) {
       item.plantTanaman = plant_tanaman;
       item.surfaceArea = surface_area;
       item.platingDate = plating_date;
+      item.harvestDate = harvest_date;
       plant.refresh();
       Get.back();
       dialog("Berhasil !", "data berhasil diubah!");
@@ -167,5 +165,19 @@ class TandurController extends GetxController {
         ],
       ),
     );
+  }
+
+  void addHarvestDate(
+    int id,
+    String harvets_date,
+  ) {
+    final data = box.read("userData") as Map<String, dynamic>;
+    final item = findByid(id);
+    PlantProvider().addHarvestDate(id, harvets_date, data["token"]).then((e) {
+      item.harvestDate = harvets_date;
+      plant.refresh();
+      Get.back();
+      dialog("Berhasil !", "data berhasil ditambahkan!");
+    });
   }
 }

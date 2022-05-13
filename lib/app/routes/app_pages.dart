@@ -16,6 +16,7 @@ import 'package:petani_app/app/modules/panen/views/index_panen_view.dart';
 import 'package:petani_app/app/modules/saya/bindings/saya_binding.dart';
 import 'package:petani_app/app/modules/saya/views/index_saya_view.dart';
 import 'package:petani_app/app/modules/tandur/bindings/tandur_binding.dart';
+import 'package:petani_app/app/modules/tandur/views/add_harvest_date_view.dart';
 import 'package:petani_app/app/modules/tandur/views/add_tandur_view.dart';
 import 'package:petani_app/app/modules/tandur/views/detail_tandur_view.dart';
 import 'package:petani_app/app/modules/tandur/views/edit_tandur_view.dart';
@@ -89,17 +90,22 @@ class AppPages {
       page: () => EditTandurView(),
       binding: TandurBinding(),
     ),
+    GetPage(
+      name: _Paths.ADD_HARVEST_DATE,
+      page: () => AddHarvestDateView(),
+      binding: TandurBinding(),
+    ),
 
     // Panen
     GetPage(
       name: _Paths.INDEX_PANEN,
       page: () => IndexPanenView(),
-      binding: PanenBinding(),
+      binding: TandurBinding(),
     ),
     GetPage(
       name: _Paths.DETAIL_PANEN,
       page: () => DetailPanenView(),
-      // binding: ProdukBinding(),
+      binding: TandurBinding(),
     ),
     GetPage(
       name: _Paths.ADD_PANEN,
@@ -109,7 +115,7 @@ class AppPages {
     GetPage(
       name: _Paths.EDIT_PANEN,
       page: () => EditPanenView(),
-      // binding: EdukasiBinding(),
+      binding: TandurBinding(),
     ),
 
     // Saya

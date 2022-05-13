@@ -19,6 +19,7 @@ abstract class Routes {
   static const DETAIL_TANDUR = _Paths.DETAIL_TANDUR;
   static const ADD_TANDUR = _Paths.ADD_TANDUR;
   static const EDIT_TANDUR = _Paths.EDIT_TANDUR;
+  static const ADD_HARVEST_DATE = _Paths.ADD_HARVEST_DATE;
 
   // Panen
   static const INDEX_PANEN = _Paths.INDEX_PANEN;
@@ -49,6 +50,7 @@ abstract class _Paths {
   static const DETAIL_TANDUR = '/detail-tandur';
   static const ADD_TANDUR = '/add-tandur';
   static const EDIT_TANDUR = '/edit-tandur';
+  static const ADD_HARVEST_DATE = '/add-harvest-date';
 
   // Panen
   static const INDEX_PANEN = '/index-panen';

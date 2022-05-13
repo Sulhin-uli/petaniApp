@@ -47,12 +47,14 @@ class PlantProvider extends GetConnect {
     String plant_tanaman,
     String surface_area,
     String plating_date,
+    String harvest_date,
     String token,
   ) async {
     final response = await put('$url' + '/$id', {
       "plant_tanaman": plant_tanaman,
       "surface_area": surface_area,
       "plating_date": plating_date,
+      "harvest_date": harvest_date,
     }, headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -73,4 +75,19 @@ class PlantProvider extends GetConnect {
           'Authorization': 'Bearer $token',
         },
       );
+
+  Future<void> addHarvestDate(
+    int id,
+    String harvest_date,
+    String token,
+  ) async {
+    final response = await put('$url/harvest-date' + '/$id', {
+      "harvest_date": harvest_date,
+    }, headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $token',
+    });
+    return response.body;
+  }
 }

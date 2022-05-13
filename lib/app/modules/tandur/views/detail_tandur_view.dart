@@ -148,9 +148,24 @@ class DetailTandurView extends GetView<TandurController> {
                     Divider(
                       color: Color(0xff919A92),
                     ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    SizedBox(
+                      height: 46, //height of button
+                      width: 300,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: Color(0xff16A085), // background
+                        ),
+                        onPressed: () => Get.toNamed(Routes.ADD_HARVEST_DATE,
+                            arguments: data.id),
+                        child: Text('Tambah Tanggal Panen'),
+                      ),
+                    ),
                     Container(
                       height: 200,
-                    )
+                    ),
                   ],
                 ),
               )
