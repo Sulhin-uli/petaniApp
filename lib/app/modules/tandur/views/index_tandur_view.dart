@@ -19,23 +19,29 @@ class IndexTandurView extends GetView<TandurController> {
         ),
         elevation: 0.5,
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(2),
-          child: Column(
-            children: [
-              ListView.builder(
-                itemCount: 11,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (context, index) {
-                  // final product = productList[index];
-                  return ItemView();
-                },
+      body: Obx(
+        () => controller.plant.isEmpty
+            ? const Center(
+                child: CircularProgressIndicator(),
               )
-            ],
-          ),
-        ),
+            : SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.all(2),
+                  child: Column(
+                    children: [
+                      ListView.builder(
+                        itemCount: controller.plant.length,
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (context, index) {
+                          final data = controller.plant[index];
+                          return ItemView(data);
+                        },
+                      )
+                    ],
+                  ),
+                ),
+              ),
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: const Color(0xff16A085),

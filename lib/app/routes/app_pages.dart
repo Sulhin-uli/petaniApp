@@ -77,17 +77,17 @@ class AppPages {
     GetPage(
       name: _Paths.DETAIL_TANDUR,
       page: () => DetailTandurView(),
-      // binding: ProdukBinding(),
+      binding: TandurBinding(),
     ),
     GetPage(
       name: _Paths.ADD_TANDUR,
       page: () => AddTandurView(),
-      // binding: PRODUKBinding(),
+      binding: TandurBinding(),
     ),
     GetPage(
       name: _Paths.EDIT_TANDUR,
       page: () => EditTandurView(),
-      // binding: EdukasiBinding(),
+      binding: TandurBinding(),
     ),
 
     // Panen
