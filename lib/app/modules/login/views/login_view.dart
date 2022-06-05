@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:petani_app/app/modules/login/controllers/authcontroller_controller.dart';
 
 import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
-  final authC = Get.put(AuthcontrollerController());
+  LoginController loginController = Get.put(LoginController());
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +13,7 @@ class LoginView extends GetView<LoginController> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         // leading: BackButton(color: Colors.black),
-        title: Text(
+        title: const Text(
           'Masuk',
           style: TextStyle(color: Colors.black, fontSize: 16),
         ),
@@ -23,7 +22,7 @@ class LoginView extends GetView<LoginController> {
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -35,8 +34,8 @@ class LoginView extends GetView<LoginController> {
                 ),
               ),
               TextFormField(
-                controller: controller.email,
-                cursorColor: Color(0xff16A085),
+                controller: loginController.email,
+                cursorColor: const Color(0xff16A085),
                 decoration: const InputDecoration(
                   helperText: 'Contoh: pedri16@gmail.com',
                   // fillColor: Color(0xff919A92),
@@ -61,29 +60,30 @@ class LoginView extends GetView<LoginController> {
               ),
               Obx(
                 () => TextFormField(
-                  controller: controller.password,
-                  cursorColor: Color(0xff16A085),
-                  obscureText: controller.hiddenTextPassword.value,
+                  controller: loginController.password,
+                  cursorColor: const Color(0xff16A085),
+                  obscureText: loginController.hiddenTextPassword.value,
                   decoration: InputDecoration(
                     // fillColor: Color(0xff919A92),
-                    enabledBorder: UnderlineInputBorder(
+                    enabledBorder: const UnderlineInputBorder(
                       borderSide: BorderSide(
                         color: Color(0xff919A92),
                       ),
                     ),
-                    focusedBorder: UnderlineInputBorder(
+                    focusedBorder: const UnderlineInputBorder(
                       borderSide: BorderSide(
                         color: Color(0xff16A085),
                       ),
                     ),
                     suffixIcon: IconButton(
-                      onPressed: () => controller.hiddenTextPassword.toggle(),
-                      icon: controller.hiddenTextPassword.isTrue
-                          ? Icon(
+                      onPressed: () =>
+                          loginController.hiddenTextPassword.toggle(),
+                      icon: loginController.hiddenTextPassword.isTrue
+                          ? const Icon(
                               Icons.remove_red_eye,
                               color: Color(0xff16A085),
                             )
-                          : Icon(
+                          : const Icon(
                               Icons.remove_red_eye_outlined,
                               color: Color(0xff16A085),
                             ),
@@ -93,11 +93,11 @@ class LoginView extends GetView<LoginController> {
               ),
               const SizedBox(height: 30),
               Container(
-                margin: EdgeInsets.only(bottom: 15),
+                margin: const EdgeInsets.only(bottom: 15),
                 alignment: Alignment.topRight,
                 child: TextButton(
                   onPressed: () {},
-                  child: Text(
+                  child: const Text(
                     "Lupa Kata Sandi?",
                     style: TextStyle(
                       color: Color(0xff16A085),
@@ -111,11 +111,12 @@ class LoginView extends GetView<LoginController> {
                   width: 300,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: Color(0xff16A085), // background
+                      primary: const Color(0xff16A085), // background
                     ),
-                    onPressed: () => authC.login(
-                        controller.email.text, controller.password.text),
-                    child: Text('Masuk'),
+                    onPressed: () => loginController.login(
+                        loginController.email.text,
+                        loginController.password.text),
+                    child: const Text('Masuk'),
                   ),
                 ),
               )

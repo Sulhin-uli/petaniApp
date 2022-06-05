@@ -21,10 +21,12 @@ class ItemMenu extends GetView<HomeController> {
               child: FlatButton(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(14),
-                    side: BorderSide(color: Colors.black12)),
-                padding: EdgeInsets.all(8),
+                    side: const BorderSide(color: Colors.black12)),
+                padding: const EdgeInsets.all(8),
                 color: Colors.white,
-                onPressed: () => Get.toNamed(data.route!),
+                onPressed: () => data.route! != 'saya'
+                    ? Get.toNamed(data.route!)
+                    : controller.changeTabIndex(1),
                 child: Image.network(
                   data.image!,
                   color: data.color!,

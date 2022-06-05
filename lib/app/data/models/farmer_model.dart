@@ -6,8 +6,19 @@ class Farmer {
   User? userId;
   Poktan? poktanId;
   String? city;
+  String? address;
+  String? telp;
+  String? image;
 
-  Farmer({this.id, this.userId, this.poktanId, this.city});
+  Farmer({
+    this.id,
+    this.userId,
+    this.poktanId,
+    this.city,
+    this.address,
+    this.telp,
+    this.image,
+  });
 
   Farmer.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -15,18 +26,21 @@ class Farmer {
     poktanId =
         json['poktan_id'] != null ? Poktan?.fromJson(json['poktan_id']) : null;
     city = json['city'];
-}
-
-  Map<String, dynamic> toJson() {
-    final data = <String, dynamic>{};
-    data['id'] = id;
-    if (userId != null) {
-      data['user_id'] = userId?.toJson();
-    }
-    if (poktanId != null) {
-      data['poktan_id'] = poktanId?.toJson();
-    }
-    data['city'] = city;
-    return data;
+    address = json['address'];
+    telp = json['telp'];
+    image = json['image'];
   }
+
+  // Map<String, dynamic> toJson() {
+  //   final data = <String, dynamic>{};
+  //   data['id'] = id;
+  //   if (userId != null) {
+  //     data['user_id'] = userId?.toJson();
+  //   }
+  //   if (poktanId != null) {
+  //     data['poktan_id'] = poktanId?.toJson();
+  //   }
+  //   data['city'] = city;
+  //   return data;
+  // }
 }

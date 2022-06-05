@@ -1,11 +1,14 @@
 import 'package:get/get.dart';
-import 'package:petani_app/app/modules/edukasi/bindings/edukasi_binding.dart';
-import 'package:petani_app/app/modules/edukasi/views/detail_edukasi_view.dart';
-import 'package:petani_app/app/modules/edukasi/views/index_edukasi_view.dart';
+import 'package:petani_app/app/modules/activity/bindings/activity_binding.dart';
+import 'package:petani_app/app/modules/activity/views/detail_activity_view.dart';
+import 'package:petani_app/app/modules/activity/views/index_activity_view.dart';
+import 'package:petani_app/app/modules/education/bindings/education_binding.dart';
+import 'package:petani_app/app/modules/education/views/detail_education_view.dart';
+import 'package:petani_app/app/modules/education/views/index_education_view.dart';
+import 'package:petani_app/app/modules/history_plant/views/detail_history_plant_view.dart';
+import 'package:petani_app/app/modules/history_plant/views/history_plant_view.dart';
 import 'package:petani_app/app/modules/home/views/index_home_view.dart';
-import 'package:petani_app/app/modules/kegiatan/bindings/kegiatan_binding.dart';
-import 'package:petani_app/app/modules/kegiatan/views/detail_kegiatan_view.dart';
-import 'package:petani_app/app/modules/kegiatan/views/index_kegiatan_view.dart';
+import 'package:petani_app/app/modules/login/views/check_auth_view.dart';
 import 'package:petani_app/app/modules/notifikasi/bindings/notifikasi_binding.dart';
 import 'package:petani_app/app/modules/notifikasi/views/index_notifikasi_view.dart';
 import 'package:petani_app/app/modules/panen/bindings/panen_binding.dart';
@@ -14,6 +17,8 @@ import 'package:petani_app/app/modules/panen/views/detail_panen_view.dart';
 import 'package:petani_app/app/modules/panen/views/edit_panen_view.dart';
 import 'package:petani_app/app/modules/panen/views/index_panen_view.dart';
 import 'package:petani_app/app/modules/saya/bindings/saya_binding.dart';
+import 'package:petani_app/app/modules/saya/views/edit_password_view.dart';
+import 'package:petani_app/app/modules/saya/views/edit_profile_view.dart';
 import 'package:petani_app/app/modules/saya/views/index_saya_view.dart';
 import 'package:petani_app/app/modules/tandur/bindings/tandur_binding.dart';
 import 'package:petani_app/app/modules/tandur/views/add_harvest_date_view.dart';
@@ -30,8 +35,7 @@ part 'app_routes.dart';
 
 class AppPages {
   AppPages._();
-
-  static const INITIAL = Routes.LOGIN;
+  static const INITIAL = Routes.CHECK_AUTH;
 
   static final routes = [
     GetPage(
@@ -44,30 +48,49 @@ class AppPages {
       page: () => LoginView(),
       binding: LoginBinding(),
     ),
+    GetPage(
+      name: _Paths.CHECK_AUTH,
+      page: () => CheckAuthView(),
+      binding: LoginBinding(),
+    ),
 
     // Edukasi
     GetPage(
-      name: _Paths.INDEX_EDUKASI,
-      page: () => IndexEdukasiView(),
-      binding: EdukasiBinding(),
+      name: _Paths.INDEX_EDUCATION,
+      page: () => IndexEducationView(),
+      binding: EducationBinding(),
     ),
     GetPage(
-      name: _Paths.DETAIL_EDUKASI,
-      page: () => DetailEdukasiView(),
-      binding: EdukasiBinding(),
+      name: _Paths.DETAIL_EDUCATION,
+      page: () => DetailEducationView(),
+      binding: EducationBinding(),
     ),
 
     // Kegiatan
     GetPage(
-      name: _Paths.INDEX_KEGIATAN,
-      page: () => IndexKegiatanView(),
-      // binding: ProdukBinding(),
+      name: _Paths.INDEX_ACTIVITY,
+      page: () => IndexActivityView(),
+      binding: ActivityBinding(),
     ),
     GetPage(
-      name: _Paths.DETAIL_KEGIATAN,
-      page: () => DetailKegiatanView(),
-      binding: KegiatanBinding(),
+      name: _Paths.DETAIL_ACTIVITY,
+      page: () => DetailActivityView(),
+      binding: ActivityBinding(),
     ),
+
+    // History PLant
+    GetPage(
+      name: _Paths.HISTORY_PLANT,
+      page: () => HistoryPlantView(),
+      binding: TandurBinding(),
+    ),
+    GetPage(
+      name: _Paths.DETAIL_HISTORY_PLANT,
+      page: () => DetailHistoryPlantView(),
+      binding: TandurBinding(),
+    ),
+
+    /////////////////////
 
     // Tandur
     GetPage(
@@ -122,6 +145,23 @@ class AppPages {
     GetPage(
       name: _Paths.INDEX_SAYA,
       page: () => IndexSayaView(),
+      binding: SayaBinding(),
+    ),
+
+    // SAYA
+    GetPage(
+      name: _Paths.INDEX_SAYA,
+      page: () => IndexSayaView(),
+      binding: SayaBinding(),
+    ),
+    GetPage(
+      name: _Paths.EDIT_PROFILE,
+      page: () => EditProfileView(),
+      binding: SayaBinding(),
+    ),
+    GetPage(
+      name: _Paths.EDIT_PASSWORD,
+      page: () => EditPasswordView(),
       binding: SayaBinding(),
     ),
 

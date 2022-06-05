@@ -5,14 +5,23 @@ abstract class Routes {
   Routes._();
   static const HOME = _Paths.HOME;
   static const LOGIN = _Paths.LOGIN;
+  static const CHECK_AUTH = _Paths.CHECK_AUTH;
 
   // Edukasi
-  static const INDEX_EDUKASI = _Paths.INDEX_EDUKASI;
-  static const DETAIL_EDUKASI = _Paths.DETAIL_EDUKASI;
+  static const INDEX_EDUCATION = _Paths.INDEX_EDUCATION;
+  static const DETAIL_EDUCATION = _Paths.DETAIL_EDUCATION;
+  static const ADD_EDUCATION = _Paths.ADD_EDUCATION;
+  static const EDIT_EDUCATION = _Paths.EDIT_EDUCATION;
 
-  // Kegiatan
-  static const INDEX_KEGIATAN = _Paths.INDEX_KEGIATAN;
-  static const DETAIL_KEGIATAN = _Paths.DETAIL_KEGIATAN;
+  // kegiatan
+  static const INDEX_ACTIVITY = _Paths.INDEX_ACTIVITY;
+  static const DETAIL_ACTIVITY = _Paths.DETAIL_ACTIVITY;
+  static const ADD_ACTIVITY = _Paths.ADD_ACTIVITY;
+  static const EDIT_ACTIVITY = _Paths.EDIT_ACTIVITY;
+
+  // History plant
+  static const DETAIL_HISTORY_PLANT = _Paths.DETAIL_HISTORY_PLANT;
+  static const HISTORY_PLANT = _Paths.HISTORY_PLANT;
 
   // Tandur
   static const INDEX_TANDUR = _Paths.INDEX_TANDUR;
@@ -29,21 +38,31 @@ abstract class Routes {
 
   // Saya
   static const INDEX_SAYA = _Paths.INDEX_SAYA;
-  static const INDEX_NOTIFIKASI = _Paths.INDEX_NOTIFIKASI;
+  static const EDIT_PROFILE = _Paths.EDIT_PROFILE;
+  static const EDIT_PASSWORD = _Paths.EDIT_PASSWORD;
 }
 
 abstract class _Paths {
   _Paths._();
   static const HOME = '/home';
   static const LOGIN = '/login';
+  static const CHECK_AUTH = '/check_auth';
 
   // edukasi
-  static const INDEX_EDUKASI = '/index-edukasi';
-  static const DETAIL_EDUKASI = '/detail-edukasi';
+  static const INDEX_EDUCATION = '/index-education';
+  static const DETAIL_EDUCATION = '/detail-education';
+  static const ADD_EDUCATION = '/add-education';
+  static const EDIT_EDUCATION = '/edit-education';
 
   // Kegiatan
-  static const INDEX_KEGIATAN = '/index-kegiatan';
-  static const DETAIL_KEGIATAN = '/detail-kegiatan';
+  static const INDEX_ACTIVITY = '/index-activity';
+  static const DETAIL_ACTIVITY = '/detail-activity';
+  static const ADD_ACTIVITY = '/add-activity';
+  static const EDIT_ACTIVITY = '/edit-activity';
+
+  // History tanam tandur
+  static const HISTORY_PLANT = '/history-plant';
+  static const DETAIL_HISTORY_PLANT = '/detail-history-plant';
 
   // Tandur
   static const INDEX_TANDUR = '/index-tandur';
@@ -60,6 +79,8 @@ abstract class _Paths {
 
   // Saya
   static const INDEX_SAYA = '/index-saya';
+  static const EDIT_PROFILE = '/edit-profile';
+  static const EDIT_PASSWORD = '/edit-password';
 
   // Notifikasi
   static const INDEX_NOTIFIKASI = '/index-notifikasi';

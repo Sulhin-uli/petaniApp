@@ -1,37 +1,105 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:petani_app/app/modules/home/controllers/home_controller.dart';
+import 'package:petani_app/app/modules/login/controllers/login_controller.dart';
+import 'package:petani_app/app/routes/app_pages.dart';
+import 'package:petani_app/app/utils/base_url.dart';
 
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:petani_app/app/routes/app_pages.dart';
 
 import '../controllers/saya_controller.dart';
 
 class IndexSayaView extends GetView<SayaController> {
+  final loginC = Get.find<LoginController>();
+  final homeC = Get.find<HomeController>();
   final box = GetStorage();
+  SayaController sayaController = Get.put(SayaController());
 
   @override
   Widget build(BuildContext context) {
+    final user = box.read("userData") as Map<String, dynamic>;
+    final data = loginC.findPoktan(3);
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Container(
-          margin: EdgeInsets.all(16),
+          margin: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ListTile(
-                leading: Icon(
-                  Icons.account_circle_rounded,
-                  size: 60,
-                  color: Colors.blue,
-                ),
-                title: const Text(
-                  "Name Account",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
+              Column(
+                children: [
+                  Center(
+                    child: Stack(
+                      children: <Widget>[
+                        Obx(
+                          () => Container(
+                            margin: EdgeInsets.all(15),
+                            width: 175,
+                            height: 175,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(200),
+                              child: sayaController
+                                      .selectedImagePath.value.isImageFileName
+                                  ? Image.file(
+                                      File(sayaController
+                                          .selectedImagePath.value),
+                                      height: 150,
+                                      width: 150,
+                                      fit: BoxFit.cover,
+                                    )
+                                  : data.image == null
+                                      ? Image.asset(
+                                          'assets/images/noimage.png',
+                                          height: 150,
+                                          width: 150,
+                                          fit: BoxFit.cover,
+                                        )
+                                      : Image.network(
+                                          baseUrlFile +
+                                              "storage/profile/" +
+                                              data.image!,
+                                          height: 150,
+                                          width: 150,
+                                          fit: BoxFit.cover,
+                                        ),
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                            bottom: 1,
+                            right: 1,
+                            child: InkWell(
+                              onTap: () => sayaController.getImage(),
+                              child: Container(
+                                height: 40,
+                                width: 40,
+                                child: Icon(
+                                  Icons.add_a_photo,
+                                  color: Colors.white,
+                                ),
+                                decoration: BoxDecoration(
+                                    color: Colors.green,
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(20))),
+                              ),
+                            ))
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 13,
+                  ),
+                  Text(
+                    data.userId!.name!,
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                ],
               ),
               const SizedBox(
-                height: 30,
+                height: 15,
               ),
               Container(
                 child: Column(
@@ -41,7 +109,10 @@ class IndexSayaView extends GetView<SayaController> {
                     ),
                     ListTile(
                       leading: Icon(Icons.home),
-                      title: const Text('Kembali Ke Home'),
+                      title: Text('Kembali Ke Home'),
+                      onTap: () {
+                        homeC.changeTabIndex(0);
+                      },
                     ),
                     Divider(
                       color: Color(0xff919A92),
@@ -59,16 +130,14 @@ class IndexSayaView extends GetView<SayaController> {
                 ),
               ),
               ListTile(
+                onTap: () => Get.toNamed(Routes.INDEX_EDUCATION),
                 leading: Icon(Icons.circle),
-                title: const Text('Title Menu'),
+                title: Text('Edukasi'),
               ),
               ListTile(
+                onTap: () => Get.toNamed(Routes.INDEX_ACTIVITY),
                 leading: Icon(Icons.circle),
-                title: const Text('Title Menu'),
-              ),
-              ListTile(
-                leading: Icon(Icons.circle),
-                title: const Text('Title Menu'),
+                title: Text('Kegiatan'),
               ),
               Container(
                 margin: EdgeInsets.only(
@@ -80,21 +149,23 @@ class IndexSayaView extends GetView<SayaController> {
                 ),
               ),
               ListTile(
+                onTap: () => Get.toNamed(Routes.EDIT_PROFILE),
                 leading: Icon(Icons.person),
-                title: const Text('Ubah Akun'),
+                title: Text('Ubah Akun'),
               ),
               ListTile(
+                onTap: () => Get.toNamed(Routes.EDIT_PASSWORD),
                 leading: Icon(Icons.vpn_key),
-                title: const Text('Ubah Password'),
+                title: Text('Ubah Password'),
               ),
               GestureDetector(
                 onTap: () {
                   box.erase();
-                  Get.toNamed(Routes.LOGIN);
+                  Get.offAndToNamed(Routes.LOGIN);
                 },
                 child: ListTile(
-                  leading: Icon(Icons.vpn_key),
-                  title: const Text('Logout'),
+                  leading: Icon(Icons.logout),
+                  title: Text('Logout'),
                 ),
               ),
             ],

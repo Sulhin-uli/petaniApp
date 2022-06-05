@@ -1,6 +1,5 @@
 import 'package:petani_app/app/data/models/farmer_model.dart';
 import 'package:petani_app/app/data/models/poktan_model.dart';
-import 'package:petani_app/app/data/models/user_model.dart';
 
 class Plant {
   int? id;
@@ -38,21 +37,21 @@ class Plant {
     updatedAt = json['updated_at'];
   }
 
-  Map<String, dynamic> toJson() {
-    final data = <String, dynamic>{};
-    data['id'] = id;
-    if (farmerId != null) {
-      data['farmer_id'] = farmerId?.toJson();
-    }
-    if (poktanId != null) {
-      data['poktan_id'] = poktanId?.toJson();
-    }
-    data['plant_tanaman'] = plantTanaman;
-    data['surface_area'] = surfaceArea;
-    data['plating_date'] = platingDate;
-    data['harvest_date'] = harvestDate;
-    data['created_at'] = createdAt;
-    data['updated_at'] = updatedAt;
-    return data;
-  }
+  // Map<String, dynamic> toJson() {
+  //   final data = <String, dynamic>{};
+  //   data['id'] = id;
+  //   if (farmerId != null) {
+  //     data['farmer_id'] = farmerId!.toJson();
+  //   }
+  //   if (poktanId != null) {
+  //     data['poktan_id'] = poktanId?.toJson();
+  //   }
+  //   data['plant_tanaman'] = plantTanaman;
+  //   data['surface_area'] = surfaceArea;
+  //   data['plating_date'] = platingDate;
+  //   data['harvest_date'] = harvestDate;
+  //   data['created_at'] = createdAt;
+  //   data['updated_at'] = updatedAt;
+  //   return data;
+  // }
 }

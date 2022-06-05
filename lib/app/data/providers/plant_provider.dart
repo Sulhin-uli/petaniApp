@@ -6,6 +6,17 @@ import '../models/plant_model.dart';
 class PlantProvider extends GetConnect {
   String url = baseUrl + "plant";
 
+  Future<dynamic> getData(
+    String token,
+  ) async {
+    final response = await get(url, headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $token',
+    });
+    return response.body;
+  }
+
   Future<dynamic> postData(
     int farmer_id,
     int poktan_id,

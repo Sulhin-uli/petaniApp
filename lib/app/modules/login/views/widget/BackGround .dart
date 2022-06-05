@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class BackGround extends StatelessWidget {
   final Widget child;
-  BackGround({
+  const BackGround({
     required this.child,
   });
 
@@ -10,7 +10,7 @@ class BackGround extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    return Container(
+    return SizedBox(
       height: size.height,
       width: size.width,
       child: Stack(
