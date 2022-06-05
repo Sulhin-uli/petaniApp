@@ -76,10 +76,10 @@ class SayaController extends GetxController {
     String telp,
   ) {
     final data = box.read("userData") as Map<String, dynamic>;
-    var item = loginController.findPoktan(data["id"]);
+    var item = loginController.findPetani(data["id"]);
     AkunPetaniProvider()
         .updateData(
-            data["poktan_id"], chairman, city, address, telp, data["token"])
+            data["petani_id"], chairman, city, address, telp, data["token"])
         .then((_) {
       item.city = city;
       item.address = address;
@@ -111,7 +111,7 @@ class SayaController extends GetxController {
               "token": data["token"],
               "email": data["email"],
               "password": passwordNew,
-              "poktan_id": data["poktan_id"],
+              "petani_id": data["petani_id"],
             });
             Get.back();
             dialog("Berhasil !", "data berhasil diubah");

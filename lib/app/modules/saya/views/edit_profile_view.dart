@@ -12,7 +12,7 @@ class EditProfileView extends GetView<SayaController> {
   @override
   Widget build(BuildContext context) {
     final user = box.read("userData") as Map<String, dynamic>;
-    final data = loginC.findPoktan(user["id"]);
+    final data = loginC.findPetani(user["id"]);
     controller.city.text = data.city!;
     controller.address.text = data.address!;
     controller.telp.text = data.telp!.toString();

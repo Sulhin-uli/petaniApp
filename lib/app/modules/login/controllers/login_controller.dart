@@ -78,7 +78,7 @@ class LoginController extends GetxController {
           "token": data["token"],
           "email": data["email"],
           "password": data["password"],
-          "poktan_id": findPoktan(data["id"]).id,
+          "petani_id": findPetani(data["id"]).id,
         });
       } catch (e) {
         print("Error is : " + e.toString());
@@ -86,7 +86,7 @@ class LoginController extends GetxController {
     });
   }
 
-  Farmer findPoktan(int id) {
+  Farmer findPetani(int id) {
     return petani.firstWhere((e) => e.userId!.id! == id);
   }
 }

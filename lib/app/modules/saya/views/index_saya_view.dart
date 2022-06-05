@@ -20,7 +20,7 @@ class IndexSayaView extends GetView<SayaController> {
   @override
   Widget build(BuildContext context) {
     final user = box.read("userData") as Map<String, dynamic>;
-    final data = loginC.findPoktan(3);
+    final data = loginC.findPetani(3);
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
