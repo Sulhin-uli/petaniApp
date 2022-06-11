@@ -7,8 +7,10 @@ class Plant {
   Poktan? poktanId;
   String? plantTanaman;
   String? surfaceArea;
+  String? address;
   String? platingDate;
   String? harvestDate;
+  bool? isMark;
   String? createdAt;
   String? updatedAt;
 
@@ -18,8 +20,10 @@ class Plant {
       this.poktanId,
       this.plantTanaman,
       this.surfaceArea,
+      this.address,
       this.platingDate,
       this.harvestDate,
+      this.isMark,
       this.createdAt,
       this.updatedAt});
 
@@ -31,6 +35,7 @@ class Plant {
         json['poktan_id'] != null ? Poktan?.fromJson(json['poktan_id']) : null;
     plantTanaman = json['plant_tanaman'];
     surfaceArea = json['surface_area'];
+    address = json['address'];
     platingDate = json['plating_date'];
     harvestDate = json['harvest_date'];
     createdAt = json['created_at'];

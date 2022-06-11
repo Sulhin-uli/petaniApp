@@ -1,8 +1,6 @@
 import 'package:get/get.dart';
 import 'package:petani_app/app/utils/base_url.dart';
 
-import '../models/plant_model.dart';
-
 class PlantProvider extends GetConnect {
   String url = baseUrl + "plant";
 
@@ -18,21 +16,23 @@ class PlantProvider extends GetConnect {
   }
 
   Future<dynamic> postData(
-    int farmer_id,
-    int poktan_id,
-    String plant_tanaman,
-    String surface_area,
-    String plating_date,
-    dynamic harvest_date,
+    int farmerId,
+    int poktanId,
+    String plantTanaman,
+    String surfaceArea,
+    String address,
+    String platingDate,
+    dynamic harvestDate,
     String token,
   ) async {
-    final response = await post('$url', {
-      "farmer_id": farmer_id,
-      "poktan_id": poktan_id,
-      "plant_tanaman": plant_tanaman,
-      "surface_area": surface_area,
-      "plating_date": plating_date,
-      "harvest_date": harvest_date,
+    final response = await post(url, {
+      "farmer_id": farmerId,
+      "poktan_id": poktanId,
+      "plant_tanaman": plantTanaman,
+      "surface_area": surfaceArea,
+      "address": address,
+      "plating_date": platingDate,
+      "harvest_date": harvestDate,
     }, headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -53,19 +53,21 @@ class PlantProvider extends GetConnect {
     return response.body;
   }
 
-  Future<void> updateData(
+  Future<dynamic> updateData(
     int id,
-    String plant_tanaman,
-    String surface_area,
-    String plating_date,
-    String harvest_date,
+    String plantTanaman,
+    String surfaceArea,
+    String platingDate,
+    String address,
+    String harvestDate,
     String token,
   ) async {
-    final response = await put('$url' + '/$id', {
-      "plant_tanaman": plant_tanaman,
-      "surface_area": surface_area,
-      "plating_date": plating_date,
-      "harvest_date": harvest_date,
+    final response = await put(url + '/$id', {
+      "plant_tanaman": plantTanaman,
+      "surface_area": surfaceArea,
+      "address": address,
+      "plating_date": platingDate,
+      "harvest_date": harvestDate,
     }, headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -79,7 +81,7 @@ class PlantProvider extends GetConnect {
     String token,
   ) async =>
       await delete(
-        '$url' + '/$id',
+        url + '/$id',
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
@@ -89,12 +91,24 @@ class PlantProvider extends GetConnect {
 
   Future<void> addHarvestDate(
     int id,
-    String harvest_date,
+    String harvestDate,
     String token,
   ) async {
-    final response = await put('$url/harvest-date' + '/$id', {
-      "harvest_date": harvest_date,
+    final response = await put('$url/harvest-date' '/$id', {
+      "harvest_date": harvestDate,
     }, headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $token',
+    });
+    return response.body;
+  }
+
+  Future<void> updateStatus(
+    int id,
+    String token,
+  ) async {
+    final response = await put('$url/status' '/$id', {}, headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'Authorization': 'Bearer $token',

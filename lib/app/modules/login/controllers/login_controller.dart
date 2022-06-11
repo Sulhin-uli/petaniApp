@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:petani_app/app/data/models/farmer_model.dart';
-import 'package:petani_app/app/data/models/gapoktan_model.dart';
 import 'package:petani_app/app/data/models/poktan_model.dart';
 import 'package:petani_app/app/data/models/user_model.dart';
 import 'package:petani_app/app/data/providers/farmer_provider.dart';
 import 'package:petani_app/app/data/providers/login_provider.dart';
-import 'package:petani_app/app/data/providers/poktan_provider.dart';
 import 'package:petani_app/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -65,6 +63,13 @@ class LoginController extends GetxController {
               id: e["user_id"]["id"],
               name: e["user_id"]["name"],
             ),
+            poktanId: Poktan(
+              id: e["poktan_id"]["id"],
+              userId: User(
+                id: e["poktan_id"]["user_id"]["id"],
+                name: e["poktan_id"]["user_id"]["name"],
+              ),
+            ),
             city: e["city"],
             address: e["address"],
             telp: e["telp"].toString(),
@@ -79,9 +84,10 @@ class LoginController extends GetxController {
           "email": data["email"],
           "password": data["password"],
           "petani_id": findPetani(data["id"]).id,
+          "poktan_id": findPetani(data["id"]).poktanId!.id,
         });
       } catch (e) {
-        print("Error is : " + e.toString());
+        print("Error is a : " + e.toString());
       }
     });
   }

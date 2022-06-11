@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:petani_app/app/modules/home/controllers/home_controller.dart';
 
 class ItemMenu extends GetView<HomeController> {
-  ItemMenu(this.data);
+  const ItemMenu(this.data);
   final data;
 
   @override
@@ -14,7 +14,7 @@ class ItemMenu extends GetView<HomeController> {
       child: Container(
         child: Column(
           children: [
-            Container(
+            SizedBox(
               // color: index % 2 == 0 ? Colors.amber : Colors.red,
               width: 37,
               height: 37,
@@ -33,7 +33,7 @@ class ItemMenu extends GetView<HomeController> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 11,
             ),
             Text(

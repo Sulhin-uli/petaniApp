@@ -4,41 +4,50 @@ import 'package:petani_app/app/modules/tandur/controllers/tandur_controller.dart
 import 'package:petani_app/app/routes/app_pages.dart';
 
 import 'package:get/get.dart';
+import 'package:petani_app/app/utils/base_url.dart';
 
 class DetailTandurView extends GetView<TandurController> {
   @override
   Widget build(BuildContext context) {
-    final data = controller.findByid(Get.arguments);
+    final data = controller.findByTandur(Get.arguments);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: Text(
+        title: const Text(
           'Detail Tandur',
           style: TextStyle(color: Colors.black, fontSize: 16),
         ),
-        leading: BackButton(color: Colors.black),
+        leading: const BackButton(color: Colors.black),
         elevation: 0.5,
       ),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Container(
-          margin: EdgeInsets.all(16),
+          margin: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ListTile(
-                leading: CircleAvatar(
-                  backgroundImage: NetworkImage(
-                      'https://www.startupdonut.co.uk/sites/default/files/styles/landing_pages_lists/public/Guy_watson_249x167.png?itok=e_ct04Rx'),
-                ),
+                leading: (data.farmerId!.image == null)
+                    ? CircleAvatar(
+                        backgroundImage:
+                            AssetImage("assets/images/noimage.png"),
+                      )
+                    : CircleAvatar(
+                        backgroundImage: NetworkImage(
+                          baseUrlFile +
+                              "storage/profile/" +
+                              data.farmerId!.image!,
+                        ),
+                      ),
                 title: Text(data.farmerId!.userId!.name!),
               ),
               Divider(
                 color: Colors.black.withOpacity(0.5),
               ),
               Container(
-                margin: EdgeInsets.fromLTRB(16, 16, 16, 16),
-                child: Text(
+                margin: const EdgeInsets.fromLTRB(16, 16, 16, 16),
+                child: const Text(
                   "Detail",
                   style: TextStyle(
                       color: Colors.black,
@@ -47,13 +56,13 @@ class DetailTandurView extends GetView<TandurController> {
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(left: 16, right: 16),
+                margin: const EdgeInsets.only(left: 16, right: 16),
                 child: Column(
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Container(
+                        const SizedBox(
                           width: 80,
                           child: Text(
                             "Tanaman",
@@ -68,11 +77,11 @@ class DetailTandurView extends GetView<TandurController> {
                             width: 50,
                           ),
                         ),
-                        Container(
+                        SizedBox(
                           width: 150,
                           child: Text(
                             data.plantTanaman!,
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Color(0xff919A92),
                               fontSize: 14,
                             ),
@@ -80,12 +89,12 @@ class DetailTandurView extends GetView<TandurController> {
                         ),
                       ],
                     ),
-                    Divider(
+                    const Divider(
                       color: Color(0xff919A92),
                     ),
                     Row(
                       children: [
-                        Container(
+                        const SizedBox(
                           width: 80,
                           child: Text(
                             "Luas Tanah",
@@ -100,11 +109,11 @@ class DetailTandurView extends GetView<TandurController> {
                             width: 50,
                           ),
                         ),
-                        Container(
+                        SizedBox(
                           width: 150,
                           child: Text(
                             data.surfaceArea!,
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Color(0xff919A92),
                               fontSize: 14,
                             ),
@@ -112,12 +121,46 @@ class DetailTandurView extends GetView<TandurController> {
                         ),
                       ],
                     ),
-                    Divider(
+                    const Divider(
+                      color: Color(0xff919A92),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        const SizedBox(
+                          width: 80,
+                          child: Text(
+                            "Alamat",
+                            style: TextStyle(
+                              color: Color(0xff919A92),
+                              fontSize: 14,
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Container(
+                            width: 50,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 150,
+                          child: Text(
+                            data.address!,
+                            style: TextStyle(
+                              color: Color(0xff919A92),
+                              fontSize: 14,
+                            ),
+                            textAlign: TextAlign.justify,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const Divider(
                       color: Color(0xff919A92),
                     ),
                     Row(
                       children: [
-                        Container(
+                        const SizedBox(
                           width: 80,
                           child: Text(
                             "Tgl Tandur",
@@ -132,12 +175,12 @@ class DetailTandurView extends GetView<TandurController> {
                             width: 50,
                           ),
                         ),
-                        Container(
+                        SizedBox(
                           width: 150,
                           child: Text(
                             DateFormat("EEEE, d MMMM yyyy", "id_ID")
                                 .format(DateTime.tryParse(data.platingDate!)!),
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Color(0xff919A92),
                               fontSize: 14,
                             ),
@@ -145,10 +188,10 @@ class DetailTandurView extends GetView<TandurController> {
                         ),
                       ],
                     ),
-                    Divider(
+                    const Divider(
                       color: Color(0xff919A92),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 5,
                     ),
                     SizedBox(
@@ -156,11 +199,11 @@ class DetailTandurView extends GetView<TandurController> {
                       width: 300,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          primary: Color(0xff16A085), // background
+                          primary: const Color(0xff16A085), // background
                         ),
                         onPressed: () => Get.toNamed(Routes.ADD_HARVEST_DATE,
                             arguments: data.id),
-                        child: Text('Tambah Tanggal Panen'),
+                        child: const Text('Tambah Tanggal Panen'),
                       ),
                     ),
                     Container(

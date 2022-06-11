@@ -1,13 +1,10 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:petani_app/app/data/providers/akun_petani_provider.dart';
-import 'package:petani_app/app/data/providers/gapoktan_provider.dart';
-import 'package:petani_app/app/data/providers/poktan_provider.dart';
 import 'package:petani_app/app/data/providers/user_provider.dart';
 import 'package:petani_app/app/modules/login/controllers/login_controller.dart';
+import 'package:petani_app/app/routes/app_pages.dart';
 import 'package:petani_app/app/utils/base_url.dart';
-import 'package:petani_app/app/utils/constant.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -61,7 +58,7 @@ class SayaController extends GetxController {
     String image,
   ) {
     final data = box.read("userData") as Map<String, dynamic>;
-    Map<String, String> body = {"id": data["poktan_id"].toString()};
+    Map<String, String> body = {"id": data["petani_id"].toString()};
     AkunPetaniProvider()
         .updateImage(body, image, data["token"])
         .then((response) {
@@ -70,7 +67,6 @@ class SayaController extends GetxController {
   }
 
   void editData(
-    String chairman,
     String city,
     String address,
     String telp,
@@ -78,15 +74,14 @@ class SayaController extends GetxController {
     final data = box.read("userData") as Map<String, dynamic>;
     var item = loginController.findPetani(data["id"]);
     AkunPetaniProvider()
-        .updateData(
-            data["petani_id"], chairman, city, address, telp, data["token"])
+        .updateData(data["petani_id"], city, address, telp, data["token"])
         .then((_) {
       item.city = city;
       item.address = address;
       item.telp = telp;
       loginController.petani.refresh();
-      dialog("Berhasil !", "data berhasil diubah");
       Get.back();
+      dialog("Berhasil !", "data berhasil diubah");
     });
   }
 
@@ -123,5 +118,28 @@ class SayaController extends GetxController {
     } else {
       dialogNoBack("Terjadi Kesalahan", "Semua Input Harus Diisi");
     }
+  }
+
+  void dialogLogout(BuildContext context) {
+    showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: const Text("Logout?"),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.pop(context, 'Batal'),
+            child: const Text('Batal'),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context, 'Ya');
+              box.erase();
+              Get.offAndToNamed(Routes.LOGIN);
+            },
+            child: const Text('Ya'),
+          ),
+        ],
+      ),
+    );
   }
 }

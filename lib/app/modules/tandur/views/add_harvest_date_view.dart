@@ -7,23 +7,23 @@ import 'package:petani_app/app/modules/tandur/controllers/tandur_controller.dart
 class AddHarvestDateView extends GetView<TandurController> {
   @override
   Widget build(BuildContext context) {
-    final data = controller.findByid(Get.arguments);
+    final data = controller.findByTandur(Get.arguments);
 
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: BackButton(color: Colors.black),
+        leading: const BackButton(color: Colors.black),
         elevation: 0.5,
       ),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 30),
-              Text(
+              const Text(
                 "Tanggal Panen",
                 style: TextStyle(
                   color: Color(0xff919A92),
@@ -32,7 +32,7 @@ class AddHarvestDateView extends GetView<TandurController> {
               TextFormField(
                 controller: controller.harvest_date,
                 readOnly: true,
-                cursorColor: Color(0xff16A085),
+                cursorColor: const Color(0xff16A085),
                 onTap: () async {
                   DateTime? pickedDate = await showDatePicker(
                       context: context,
@@ -48,7 +48,7 @@ class AddHarvestDateView extends GetView<TandurController> {
                     print("Date is not selected");
                   }
                 },
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   // helperText: 'Contoh: Label',
                   // fillColor: Color(0xff919A92),
                   enabledBorder: UnderlineInputBorder(
@@ -74,13 +74,13 @@ class AddHarvestDateView extends GetView<TandurController> {
                   width: 300,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: Color(0xff16A085), // background
+                      primary: const Color(0xff16A085), // background
                     ),
                     onPressed: () => controller.addHarvestDate(
                       Get.arguments,
                       controller.harvest_date.text,
                     ),
-                    child: Text('Tambah'),
+                    child: const Text('Tambah'),
                   ),
                 ),
               )

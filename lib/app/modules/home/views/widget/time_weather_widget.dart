@@ -13,7 +13,7 @@ class TimeWeather extends StatelessWidget {
       margin: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
-        color: Color(0xffe7e7e7),
+        color: const Color(0xffe7e7e7),
       ),
       // color: Colors.white
       // child: const Card(

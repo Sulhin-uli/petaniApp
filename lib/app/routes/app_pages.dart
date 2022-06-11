@@ -11,7 +11,6 @@ import 'package:petani_app/app/modules/home/views/index_home_view.dart';
 import 'package:petani_app/app/modules/login/views/check_auth_view.dart';
 import 'package:petani_app/app/modules/notifikasi/bindings/notifikasi_binding.dart';
 import 'package:petani_app/app/modules/notifikasi/views/index_notifikasi_view.dart';
-import 'package:petani_app/app/modules/panen/bindings/panen_binding.dart';
 import 'package:petani_app/app/modules/panen/views/add_panen_view.dart';
 import 'package:petani_app/app/modules/panen/views/detail_panen_view.dart';
 import 'package:petani_app/app/modules/panen/views/edit_panen_view.dart';

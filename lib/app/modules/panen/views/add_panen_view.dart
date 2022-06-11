@@ -8,8 +8,8 @@ class AddPanenView extends GetView {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: BackButton(color: Colors.black),
-        title: Text(
+        leading: const BackButton(color: Colors.black),
+        title: const Text(
           'Tambah Panen',
           style: TextStyle(color: Colors.black, fontSize: 16),
         ),
@@ -18,20 +18,20 @@ class AddPanenView extends GetView {
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 50),
-              Text(
+              const Text(
                 "Label",
                 style: TextStyle(
                   color: Color(0xff919A92),
                 ),
               ),
               TextFormField(
-                cursorColor: Color(0xff16A085),
-                decoration: InputDecoration(
+                cursorColor: const Color(0xff16A085),
+                decoration: const InputDecoration(
                   helperText: 'Contoh: Label',
                   // fillColor: Color(0xff919A92),
                   enabledBorder: UnderlineInputBorder(
@@ -47,7 +47,7 @@ class AddPanenView extends GetView {
                 ),
               ),
               const SizedBox(height: 30),
-              Text(
+              const Text(
                 "Label",
                 style: TextStyle(
                   color: Color(0xff919A92),
@@ -55,7 +55,7 @@ class AddPanenView extends GetView {
               ),
               TextFormField(
                 cursorColor: Colors.black,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(
                       color: Color(0xff919A92),
@@ -75,10 +75,10 @@ class AddPanenView extends GetView {
                   width: 300,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: Color(0xff16A085), // background
+                      primary: const Color(0xff16A085), // background
                     ),
                     onPressed: () {},
-                    child: Text('Tambah'),
+                    child: const Text('Tambah'),
                   ),
                 ),
               )

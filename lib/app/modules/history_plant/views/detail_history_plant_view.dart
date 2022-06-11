@@ -3,6 +3,7 @@ import 'package:format_indonesia/format_indonesia.dart';
 
 import 'package:get/get.dart';
 import 'package:petani_app/app/modules/tandur/controllers/tandur_controller.dart';
+import 'package:petani_app/app/utils/base_url.dart';
 
 class DetailHistoryPlantView extends GetView<TandurController> {
   @override
@@ -29,10 +30,18 @@ class DetailHistoryPlantView extends GetView<TandurController> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ListTile(
-                leading: const CircleAvatar(
-                  backgroundImage: NetworkImage(
-                      'https://www.startupdonut.co.uk/sites/default/files/styles/landing_pages_lists/public/Guy_watson_249x167.png?itok=e_ct04Rx'),
-                ),
+                leading: (data.farmerId!.image == null)
+                    ? CircleAvatar(
+                        backgroundImage:
+                            AssetImage("assets/images/noimage.png"),
+                      )
+                    : CircleAvatar(
+                        backgroundImage: NetworkImage(
+                          baseUrlFile +
+                              "storage/profile/" +
+                              data.farmerId!.image!,
+                        ),
+                      ),
                 title: Text(data.farmerId!.userId!.name!),
               ),
               Divider(
@@ -110,6 +119,40 @@ class DetailHistoryPlantView extends GetView<TandurController> {
                               color: Color(0xff919A92),
                               fontSize: 14,
                             ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const Divider(
+                      color: Color(0xff919A92),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        const SizedBox(
+                          width: 80,
+                          child: Text(
+                            "Alamat",
+                            style: TextStyle(
+                              color: Color(0xff919A92),
+                              fontSize: 14,
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Container(
+                            width: 50,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 150,
+                          child: Text(
+                            data.address!,
+                            style: TextStyle(
+                              color: Color(0xff919A92),
+                              fontSize: 14,
+                            ),
+                            textAlign: TextAlign.justify,
                           ),
                         ),
                       ],

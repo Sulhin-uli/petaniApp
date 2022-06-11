@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:petani_app/app/modules/home/Models/menu_home_model.dart';
 import 'package:petani_app/app/modules/login/controllers/login_controller.dart';
-import 'package:petani_app/app/modules/tandur/views/index_tandur_view.dart';
 import 'package:petani_app/app/routes/app_pages.dart';
 
 class HomeController extends GetxController {

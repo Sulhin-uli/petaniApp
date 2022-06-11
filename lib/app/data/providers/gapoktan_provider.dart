@@ -43,7 +43,7 @@ class GapoktanProvider extends GetConnect {
     String telp,
     String token,
   ) async {
-    final response = await put('$url' + '/$id', {
+    final response = await put(url + '/$id', {
       "id": id,
       "chairman": chairman,
       "city": city,

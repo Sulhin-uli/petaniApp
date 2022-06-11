@@ -37,15 +37,13 @@ class AkunPetaniProvider extends GetConnect {
 
   Future<void> updateData(
     int id,
-    String chairman,
     String city,
     String address,
     String telp,
     String token,
   ) async {
-    final response = await put('$url' + '/$id', {
+    final response = await put(url + '/$id', {
       "id": id,
-      "chairman": chairman,
       "city": city,
       "address": address,
       "telp": telp,

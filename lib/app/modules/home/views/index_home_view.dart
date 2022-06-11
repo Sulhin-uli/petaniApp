@@ -39,8 +39,8 @@ class IndexHomeView extends GetView<HomeController> {
     fontWeight: FontWeight.w500,
     fontSize: 12,
   );
-  final TextStyle selectedLabelStyle =
-      TextStyle(color: Colors.white, fontWeight: FontWeight.w500, fontSize: 12);
+  final TextStyle selectedLabelStyle = const TextStyle(
+      color: Colors.white, fontWeight: FontWeight.w500, fontSize: 12);
 
   buildBottomNavigationMenu(context, landingPageController) {
     return Obx(
@@ -55,16 +55,17 @@ class IndexHomeView extends GetView<HomeController> {
             currentIndex: landingPageController.tabIndex.value,
             backgroundColor: Colors.white,
             unselectedItemColor: Colors.grey,
-            selectedItemColor: Color(0xff16A085),
+            selectedItemColor: const Color(0xff16A085),
             unselectedLabelStyle: unselectedLabelStyle,
             selectedLabelStyle: selectedLabelStyle,
             items: [
               BottomNavigationBarItem(
                 icon: Container(
-                  margin: EdgeInsets.only(bottom: 7),
-                  child: Icon(
-                    Icons.home,
-                    size: 20.0,
+                  margin: const EdgeInsets.only(bottom: 7),
+                  child: Image.asset(
+                    "assets/icons/home.png",
+                    width: 20,
+                    height: 20,
                   ),
                 ),
                 label: 'Home',
@@ -72,10 +73,11 @@ class IndexHomeView extends GetView<HomeController> {
               ),
               BottomNavigationBarItem(
                 icon: Container(
-                  margin: EdgeInsets.only(bottom: 7),
-                  child: Icon(
-                    Icons.person,
-                    size: 20.0,
+                  margin: const EdgeInsets.only(bottom: 7),
+                  child: Image.asset(
+                    "assets/icons/saya.png",
+                    width: 20,
+                    height: 20,
                   ),
                 ),
                 label: 'Saya',

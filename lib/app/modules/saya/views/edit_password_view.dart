@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:petani_app/app/modules/login/controllers/login_controller.dart';
 import 'package:petani_app/app/modules/saya/controllers/saya_controller.dart';
 
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 
 class EditPasswordView extends GetView<SayaController> {
   @override

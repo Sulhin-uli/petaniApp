@@ -16,19 +16,19 @@ class Body extends GetView<HomeController> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Header(size: size),
-          Container(
-            height: 220,
-            child: GridView.builder(
-                padding: EdgeInsets.symmetric(horizontal: 12),
-                scrollDirection: Axis.horizontal,
-                itemCount: controller.menu_home.length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2, childAspectRatio: 1.25),
-                itemBuilder: (context, index) {
-                  final data = controller.menu_home[index];
-                  return ItemMenu(data);
-                }),
-          ),
+          // SizedBox(
+          //   height: 220,
+          //   child: GridView.builder(
+          //       padding: const EdgeInsets.symmetric(horizontal: 12),
+          //       scrollDirection: Axis.horizontal,
+          //       itemCount: controller.menu_home.length,
+          //       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          //           crossAxisCount: 1, childAspectRatio: 3.3),
+          //       itemBuilder: (context, index) {
+          //         final data = controller.menu_home[index];
+          //         return ItemMenu(data);
+          //       }),
+          // ),
           // SizedBox(
           //   height: 120,
           //   child: ListView.builder(
@@ -65,9 +65,40 @@ class Body extends GetView<HomeController> {
           //     },
           //   ),
           // ),
+          const Padding(
+            padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
+            child: Text(
+              "Menu",
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 120,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: [
+                const SizedBox(
+                  width: 20,
+                ),
+                InkWell(
+                  onTap: () => Get.toNamed(Routes.INDEX_EDUCATION),
+                  child: menuVertical(
+                      "Edukasi", const Color(0xff16A085), "edukasi.png"),
+                ),
+                InkWell(
+                  onTap: () => Get.toNamed(Routes.INDEX_ACTIVITY),
+                  child: menuVertical(
+                      "Kegiatan", const Color(0xff16A085), "kegiatan.png"),
+                ),
+              ],
+            ),
+          ),
 
           const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.0),
+            padding: EdgeInsets.all(20),
             child: Text(
               "Tanaman",
               style: TextStyle(
@@ -75,9 +106,6 @@ class Body extends GetView<HomeController> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-          ),
-          const SizedBox(
-            height: 20,
           ),
           SizedBox(
             height: 120,
@@ -90,17 +118,31 @@ class Body extends GetView<HomeController> {
                 InkWell(
                   onTap: () => Get.toNamed(Routes.INDEX_TANDUR),
                   child: menuVertical(
-                      "Jadwal Tandur", const Color(0xff16A085), "👨‍💻"),
+                      "Jadwal Tandur", const Color(0xff16A085), "tandur.png"),
                 ),
                 InkWell(
                   onTap: () => Get.toNamed(Routes.INDEX_PANEN),
                   child: menuVertical(
-                      "Jadwal Panen", const Color(0xff16A085), "👨‍🎨"),
+                      "Jadwal Panen", const Color(0xff16A085), "panen.png"),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          SizedBox(
+            height: 120,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: [
+                const SizedBox(
+                  width: 20,
                 ),
                 InkWell(
                   onTap: () => Get.toNamed(Routes.HISTORY_PLANT),
-                  child: menuVertical(
-                      "Riwayat Penanaman", const Color(0xff16A085), "👨‍🎨"),
+                  child: menuVertical("Riwayat Penanaman",
+                      const Color(0xff16A085), "history-penanaman.png"),
                 ),
               ],
             ),
@@ -257,7 +299,7 @@ class Body extends GetView<HomeController> {
     );
   }
 
-  Widget menuVertical(String name, Color color, String emoji) {
+  Widget menuVertical(String name, Color color, String image) {
     return Padding(
       padding: const EdgeInsets.only(right: 20),
       child: Container(
@@ -280,10 +322,12 @@ class Body extends GetView<HomeController> {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Center(
-                    child: Text(
-                  emoji,
-                  style: const TextStyle(fontSize: 18),
-                )),
+                  child: Image.asset(
+                    "assets/icons/" + image,
+                    width: 20,
+                    height: 20,
+                  ),
+                ),
               ),
               const SizedBox(
                 height: 10,

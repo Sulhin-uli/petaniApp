@@ -1,5 +1,5 @@
-import 'package:poktan_app/app/data/models/product_category_model.dart';
-import 'package:poktan_app/app/data/models/user_model.dart';
+import 'package:petani_app/app/data/models/product_category_model.dart';
+import 'package:petani_app/app/data/models/user_model.dart';
 
 class Product {
   int? id;

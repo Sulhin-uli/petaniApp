@@ -20,7 +20,7 @@ class IndexSayaView extends GetView<SayaController> {
   @override
   Widget build(BuildContext context) {
     final user = box.read("userData") as Map<String, dynamic>;
-    final data = loginC.findPetani(3);
+    final data = loginC.findPetani(user["id"]);
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -36,7 +36,7 @@ class IndexSayaView extends GetView<SayaController> {
                       children: <Widget>[
                         Obx(
                           () => Container(
-                            margin: EdgeInsets.all(15),
+                            margin: const EdgeInsets.all(15),
                             width: 175,
                             height: 175,
                             child: ClipRRect(
@@ -76,11 +76,11 @@ class IndexSayaView extends GetView<SayaController> {
                               child: Container(
                                 height: 40,
                                 width: 40,
-                                child: Icon(
+                                child: const Icon(
                                   Icons.add_a_photo,
                                   color: Colors.white,
                                 ),
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                     color: Colors.green,
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(20))),
@@ -94,7 +94,8 @@ class IndexSayaView extends GetView<SayaController> {
                   ),
                   Text(
                     data.userId!.name!,
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                        fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
@@ -104,67 +105,90 @@ class IndexSayaView extends GetView<SayaController> {
               Container(
                 child: Column(
                   children: [
-                    Divider(
+                    const Divider(
                       color: Color(0xff919A92),
                     ),
                     ListTile(
-                      leading: Icon(Icons.home),
-                      title: Text('Kembali Ke Home'),
+                      leading: Image.asset(
+                        "assets/icons/home.png",
+                        width: 20,
+                        height: 20,
+                      ),
+                      title: const Text('Kembali Ke Home'),
                       onTap: () {
                         homeC.changeTabIndex(0);
                       },
                     ),
-                    Divider(
+                    const Divider(
                       color: Color(0xff919A92),
                     ),
                   ],
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(
+                margin: const EdgeInsets.only(
                   top: 16,
                 ),
-                child: Text(
+                child: const Text(
                   "Aktivitas Saya",
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
               ListTile(
                 onTap: () => Get.toNamed(Routes.INDEX_EDUCATION),
-                leading: Icon(Icons.circle),
-                title: Text('Edukasi'),
+                leading: Image.asset(
+                  "assets/icons/kegiatan.png",
+                  width: 20,
+                  height: 20,
+                ),
+                title: const Text('Edukasi'),
               ),
               ListTile(
                 onTap: () => Get.toNamed(Routes.INDEX_ACTIVITY),
-                leading: Icon(Icons.circle),
-                title: Text('Kegiatan'),
+                leading: Image.asset(
+                  "assets/icons/edukasi.png",
+                  width: 20,
+                  height: 20,
+                ),
+                title: const Text('Kegiatan'),
               ),
               Container(
-                margin: EdgeInsets.only(
+                margin: const EdgeInsets.only(
                   top: 16,
                 ),
-                child: Text(
+                child: const Text(
                   "Pengaturan Akun",
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
               ListTile(
                 onTap: () => Get.toNamed(Routes.EDIT_PROFILE),
-                leading: Icon(Icons.person),
-                title: Text('Ubah Akun'),
+                leading: Image.asset(
+                  "assets/icons/edit-akun.png",
+                  width: 20,
+                  height: 20,
+                ),
+                title: const Text('Ubah Akun'),
               ),
               ListTile(
                 onTap: () => Get.toNamed(Routes.EDIT_PASSWORD),
-                leading: Icon(Icons.vpn_key),
-                title: Text('Ubah Password'),
+                leading: Image.asset(
+                  "assets/icons/edit-password.png",
+                  width: 20,
+                  height: 20,
+                ),
+                title: const Text('Ubah Password'),
               ),
               GestureDetector(
                 onTap: () {
-                  box.erase();
-                  Get.offAndToNamed(Routes.LOGIN);
+                  controller.dialogLogout(context);
                 },
                 child: ListTile(
-                  leading: Icon(Icons.logout),
+                  leading: Image.asset(
+                    "assets/icons/logout.png",
+                    width: 20,
+                    height: 20,
+                  ),
                   title: Text('Logout'),
                 ),
               ),

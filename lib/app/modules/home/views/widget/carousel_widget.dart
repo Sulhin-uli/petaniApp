@@ -12,10 +12,10 @@ class Carousel extends StatelessWidget {
         Container(
           height: 250,
           width: double.infinity,
-          color: Color(0xff16A085),
+          color: const Color(0xff16A085),
         ),
         ConstrainedBox(
-          constraints: BoxConstraints(
+          constraints: const BoxConstraints(
             maxHeight: 220,
           ),
           child: ListView.builder(
@@ -25,8 +25,8 @@ class Carousel extends StatelessWidget {
               return GestureDetector(
                 onTap: () => {},
                 child: Container(
-                  margin: EdgeInsets.fromLTRB(15, 16, 5, 5),
-                  decoration: BoxDecoration(
+                  margin: const EdgeInsets.fromLTRB(15, 16, 5, 5),
+                  decoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(
                       Radius.circular(8),
                     ),
@@ -37,27 +37,27 @@ class Carousel extends StatelessWidget {
                         child: Container(
                           width: 130,
                           height: 200,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(8),
                               topRight: Radius.circular(8),
                             ),
                           ),
-                          child: Icon(Icons.image, size: 100),
+                          child: const Icon(Icons.image, size: 100),
                         ),
                         flex: 75,
                       ),
                       Expanded(
                         flex: 25,
                         child: Container(
-                          padding: EdgeInsets.only(left: 10, right: 10),
+                          padding: const EdgeInsets.only(left: 10, right: 10),
                           width: 130,
                           height: 220,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
+                            children: const <Widget>[
                               SizedBox(
                                 height: 8,
                               ),
@@ -79,7 +79,7 @@ class Carousel extends StatelessWidget {
                               )
                             ],
                           ),
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.only(
                               bottomLeft: Radius.circular(8),

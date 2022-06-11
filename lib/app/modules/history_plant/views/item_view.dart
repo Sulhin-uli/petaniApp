@@ -4,6 +4,7 @@ import 'package:petani_app/app/modules/tandur/controllers/tandur_controller.dart
 import 'package:petani_app/app/routes/app_pages.dart';
 
 import 'package:get/get.dart';
+import 'package:petani_app/app/utils/base_url.dart';
 
 class ItemView extends GetView<TandurController> {
   const ItemView(this.data);
@@ -20,10 +21,15 @@ class ItemView extends GetView<TandurController> {
         child: Column(
           children: [
             ListTile(
-              leading: const CircleAvatar(
-                backgroundImage: NetworkImage(
-                    'https://www.startupdonut.co.uk/sites/default/files/styles/landing_pages_lists/public/Guy_watson_249x167.png?itok=e_ct04Rx'),
-              ),
+              leading: (data.farmerId!.image == null)
+                  ? CircleAvatar(
+                      backgroundImage: AssetImage("assets/images/noimage.png"),
+                    )
+                  : CircleAvatar(
+                      backgroundImage: NetworkImage(
+                        baseUrlFile + "storage/profile/" + data.farmerId!.image,
+                      ),
+                    ),
               title: Text(data.farmerId.userId.name),
               subtitle: Text(
                 Waktu(datetime).yMMMMEEEEd(),

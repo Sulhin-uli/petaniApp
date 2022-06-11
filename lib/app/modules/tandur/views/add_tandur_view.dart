@@ -10,8 +10,8 @@ class AddTandurView extends GetView<TandurController> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: BackButton(color: Colors.black),
-        title: Text(
+        leading: const BackButton(color: Colors.black),
+        title: const Text(
           'Tambah Tandur',
           style: TextStyle(color: Colors.black, fontSize: 16),
         ),
@@ -20,12 +20,11 @@ class AddTandurView extends GetView<TandurController> {
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 50),
-              Text(
+              const Text(
                 "Nama Tanaman",
                 style: TextStyle(
                   color: Color(0xff919A92),
@@ -33,33 +32,8 @@ class AddTandurView extends GetView<TandurController> {
               ),
               TextFormField(
                 controller: controller.plant_tanaman,
-                cursorColor: Color(0xff16A085),
-                decoration: InputDecoration(
-                  // helperText: 'Contoh: Label',
-                  // fillColor: Color(0xff919A92),
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(0xff919A92),
-                    ),
-                  ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(0xff16A085),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 50),
-              Text(
-                "Luas Tanah",
-                style: TextStyle(
-                  color: Color(0xff919A92),
-                ),
-              ),
-              TextFormField(
-                controller: controller.surface_area,
-                cursorColor: Color(0xff16A085),
-                decoration: InputDecoration(
+                cursorColor: const Color(0xff16A085),
+                decoration: const InputDecoration(
                   // helperText: 'Contoh: Label',
                   // fillColor: Color(0xff919A92),
                   enabledBorder: UnderlineInputBorder(
@@ -75,7 +49,63 @@ class AddTandurView extends GetView<TandurController> {
                 ),
               ),
               const SizedBox(height: 30),
-              Text(
+              const Text(
+                "Luas Tanah",
+                style: TextStyle(
+                  color: Color(0xff919A92),
+                ),
+              ),
+              TextFormField(
+                controller: controller.surface_area,
+                cursorColor: const Color(0xff16A085),
+                decoration: const InputDecoration(
+                  // helperText: 'Contoh: Label',
+                  // fillColor: Color(0xff919A92),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Color(0xff919A92),
+                    ),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Color(0xff16A085),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 30),
+              const Text(
+                "Alamat",
+                style: TextStyle(
+                  color: Color(0xff919A92),
+                ),
+              ),
+              const SizedBox(
+                height: 9,
+              ),
+              TextFormField(
+                maxLines: 5,
+                controller: controller.address,
+                cursorColor: const Color(0xff16A085),
+                decoration: InputDecoration(
+                  // helperText: 'Contoh: Label',
+                  // fillColor: Color(0xff919A92),
+                  enabledBorder: const UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Color(0xff919A92),
+                    ),
+                  ),
+                  focusedBorder: const UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Color(0xff16A085),
+                    ),
+                  ),
+                  fillColor: Colors.grey[100],
+                  filled: true,
+                ),
+              ),
+              const SizedBox(height: 30),
+              const Text(
                 "Tanggal Tandur",
                 style: TextStyle(
                   color: Color(0xff919A92),
@@ -84,7 +114,7 @@ class AddTandurView extends GetView<TandurController> {
               TextFormField(
                 controller: controller.plating_date,
                 readOnly: true,
-                cursorColor: Color(0xff16A085),
+                cursorColor: const Color(0xff16A085),
                 onTap: () async {
                   DateTime? pickedDate = await showDatePicker(
                       context: context,
@@ -100,7 +130,7 @@ class AddTandurView extends GetView<TandurController> {
                     print("Date is not selected");
                   }
                 },
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   // helperText: 'Contoh: Label',
                   // fillColor: Color(0xff919A92),
                   enabledBorder: UnderlineInputBorder(
@@ -126,13 +156,14 @@ class AddTandurView extends GetView<TandurController> {
                   width: 300,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: Color(0xff16A085), // background
+                      primary: const Color(0xff16A085), // background
                     ),
                     onPressed: () => controller.postData(
                         controller.plant_tanaman.text,
                         controller.surface_area.text,
+                        controller.address.text,
                         controller.plating_date.text),
-                    child: Text('Tambah'),
+                    child: const Text('Tambah'),
                   ),
                 ),
               )

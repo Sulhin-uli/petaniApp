@@ -10,8 +10,8 @@ class IndexNotifikasiView extends GetView<NotifikasiController> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: BackButton(color: Colors.black),
-        title: Text(
+        leading: const BackButton(color: Colors.black),
+        title: const Text(
           'Notifikasi',
           style: TextStyle(color: Colors.black, fontSize: 16),
         ),
@@ -24,8 +24,8 @@ class IndexNotifikasiView extends GetView<NotifikasiController> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                margin: EdgeInsets.all(16),
-                child: Text(
+                margin: const EdgeInsets.all(16),
+                child: const Text(
                   "Terbaru",
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
@@ -33,18 +33,18 @@ class IndexNotifikasiView extends GetView<NotifikasiController> {
               Container(
                 width: double.infinity,
                 height: 150,
-                color: Color(0xffEAFFEE),
+                color: const Color(0xffEAFFEE),
                 child: Column(
                   children: [
                     Container(
-                      margin: EdgeInsets.only(
+                      margin: const EdgeInsets.only(
                           right: 16, left: 16, top: 10, bottom: 0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
                             children: [
-                              Icon(
+                              const Icon(
                                 Icons.info,
                                 color: Colors.blue,
                               ),
@@ -58,11 +58,11 @@ class IndexNotifikasiView extends GetView<NotifikasiController> {
                             ],
                           ),
                           Container(
-                            margin: EdgeInsets.fromLTRB(16, 0, 16, 0),
+                            margin: const EdgeInsets.fromLTRB(16, 0, 16, 0),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
+                                const Text(
                                   "Title Notification",
                                   style: TextStyle(fontWeight: FontWeight.bold),
                                 ),

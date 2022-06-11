@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 import 'package:petani_app/app/utils/base_url.dart';
 
-import '../models/plant_model.dart';
 
 class FarmerProvider extends GetConnect {
   String url = baseUrl + "farmer";
@@ -9,7 +8,7 @@ class FarmerProvider extends GetConnect {
   Future<dynamic> getData(
     String token,
   ) async {
-    final response = await get('$url', headers: {
+    final response = await get(url, headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'Authorization': 'Bearer $token',

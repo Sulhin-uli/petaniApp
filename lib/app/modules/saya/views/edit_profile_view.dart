@@ -148,7 +148,6 @@ class EditProfileView extends GetView<SayaController> {
                       primary: const Color(0xff16A085), // background
                     ),
                     onPressed: () => controller.editData(
-                      controller.chairman.text,
                       controller.city.text,
                       controller.address.text,
                       controller.telp.text,
