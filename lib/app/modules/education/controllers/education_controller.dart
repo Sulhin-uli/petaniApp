@@ -9,11 +9,11 @@ import 'package:petani_app/app/data/providers/education_provider.dart';
 class EducationController extends GetxController {
   final box = GetStorage();
   var education = List<Education>.empty().obs;
-  late TextEditingController category_education_id;
-  late TextEditingController title;
-  late TextEditingController desc;
   String? thumbnail;
   var isLoadingButton = true.obs;
+  var searchEducation = List<Education>.empty().obs;
+  var isSearch = false.obs;
+  late TextEditingController seacrh;
 
   // upload image
   var selectedImagePath = ''.obs;
@@ -25,11 +25,35 @@ class EducationController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    category_education_id = TextEditingController();
-    title = TextEditingController();
-    desc = TextEditingController();
+    seacrh = TextEditingController();
     getData();
     // getTumbnail();
+  }
+
+  runSearch(String enteredKeyword) {
+    if (enteredKeyword.isNotEmpty) {
+      var result = education.where((item) =>
+          item.title!.toLowerCase().contains(enteredKeyword.toLowerCase()));
+      result.map((e) {
+        final data = Education(
+          id: e.id,
+          userId: User(
+            id: e.userId!.id,
+            name: e.userId!.name,
+          ),
+          categoryEducationId: EducationCategory(
+            id: e.categoryEducationId!.id,
+            name: e.categoryEducationId!.name,
+          ),
+          title: e.title,
+          slug: e.slug,
+          date: e.date,
+          file: e.file,
+          desc: e.desc,
+        );
+        searchEducation.add(data);
+      }).toList();
+    }
   }
 
   // get data

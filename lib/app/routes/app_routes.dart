@@ -12,12 +12,14 @@ abstract class Routes {
   static const DETAIL_EDUCATION = _Paths.DETAIL_EDUCATION;
   static const ADD_EDUCATION = _Paths.ADD_EDUCATION;
   static const EDIT_EDUCATION = _Paths.EDIT_EDUCATION;
+  static const SEARCH_EDUCATION = _Paths.SEARCH_EDUCATION;
 
   // kegiatan
   static const INDEX_ACTIVITY = _Paths.INDEX_ACTIVITY;
   static const DETAIL_ACTIVITY = _Paths.DETAIL_ACTIVITY;
   static const ADD_ACTIVITY = _Paths.ADD_ACTIVITY;
   static const EDIT_ACTIVITY = _Paths.EDIT_ACTIVITY;
+  static const SEARCH_ACTIVITY = _Paths.SEARCH_ACTIVITY;
 
   // History plant
   static const DETAIL_HISTORY_PLANT = _Paths.DETAIL_HISTORY_PLANT;
@@ -53,12 +55,14 @@ abstract class _Paths {
   static const DETAIL_EDUCATION = '/detail-education';
   static const ADD_EDUCATION = '/add-education';
   static const EDIT_EDUCATION = '/edit-education';
+  static const SEARCH_EDUCATION = '/search-education';
 
   // Kegiatan
   static const INDEX_ACTIVITY = '/index-activity';
   static const DETAIL_ACTIVITY = '/detail-activity';
   static const ADD_ACTIVITY = '/add-activity';
   static const EDIT_ACTIVITY = '/edit-activity';
+  static const SEARCH_ACTIVITY = '/search-activity';
 
   // History tanam tandur
   static const HISTORY_PLANT = '/history-plant';

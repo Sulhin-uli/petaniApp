@@ -11,10 +11,60 @@ class IndexEducationView extends GetView<EducationController> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         leading: const BackButton(color: Colors.black),
-        title: const Text(
-          'Edukasi',
-          style: TextStyle(color: Colors.black, fontSize: 16),
-        ),
+        title: Obx(() => controller.isSearch.isFalse
+            ? Text(
+                'Edukasi',
+                style: TextStyle(color: Colors.black, fontSize: 16),
+              )
+            : TextField(
+                controller: controller.seacrh,
+                autofocus: true,
+                cursorColor: const Color(0xff16A085),
+                decoration: InputDecoration(
+                  hintText: " Search...",
+                  focusColor: Colors.grey,
+                  border: InputBorder.none,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide:
+                        const BorderSide(color: Colors.white, width: 2.0),
+                    borderRadius: BorderRadius.circular(25.0),
+                  ),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      Icons.search,
+                      color: Colors.grey,
+                    ),
+                    onPressed: () {
+                      controller.searchEducation.clear();
+                      controller.runSearch(controller.seacrh.text);
+                      Get.toNamed(Routes.SEARCH_EDUCATION);
+                    },
+                  ),
+                ),
+                style: TextStyle(color: Colors.black, fontSize: 14.0),
+              )),
+        actions: [
+          Obx(
+            () => controller.isSearch.isFalse
+                ? IconButton(
+                    onPressed: () {
+                      controller.isSearch(true);
+                    },
+                    icon: Icon(
+                      Icons.search,
+                      color: Colors.grey,
+                    ))
+                : IconButton(
+                    onPressed: () {
+                      controller.isSearch(false);
+                    },
+                    icon: Icon(
+                      Icons.cancel,
+                      color: Colors.grey,
+                    ),
+                  ),
+          )
+        ],
         elevation: 0.5,
       ),
       backgroundColor: Colors.white,
@@ -45,14 +95,6 @@ class IndexEducationView extends GetView<EducationController> {
                   ),
                 ),
               ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: const Color(0xff16A085),
-        foregroundColor: Colors.white,
-        heroTag: 'add',
-        // mini: true,
-        onPressed: () => Get.toNamed(Routes.ADD_EDUCATION),
-        child: const Icon(Icons.add),
       ),
     );
   }

@@ -11,23 +11,42 @@ class ActivityController extends GetxController {
   // list education
   var activity = List<Activity>.empty().obs;
   String selectedDate = "";
-
-  // form
-  late TextEditingController categoryActivityId;
-  late TextEditingController title;
-  late TextEditingController date;
-  late TextEditingController desc;
+  var searchActivity = List<Activity>.empty().obs;
+  var isSearch = false.obs;
+  late TextEditingController seacrh;
 
   @override
   void onInit() {
     getData();
-
-    // form
-    categoryActivityId = TextEditingController();
-    title = TextEditingController();
-    date = TextEditingController();
-    desc = TextEditingController();
+    seacrh = TextEditingController();
     super.onInit();
+  }
+
+  runSearch(String enteredKeyword) {
+    if (enteredKeyword.isNotEmpty) {
+      var result = activity.where((item) =>
+          item.title!.toLowerCase().contains(enteredKeyword.toLowerCase()));
+      result.map((e) {
+        final data = Activity(
+          id: e.id,
+          userId: User(
+            id: e.userId!.id,
+            name: e.userId!.name,
+          ),
+          categoryActivityId: ActivityCategory(
+            id: e.categoryActivityId!.id,
+            name: e.categoryActivityId!.name,
+          ),
+          title: e.title,
+          slug: e.slug,
+          date: e.date,
+          desc: e.desc,
+          createdAt: e.createdAt,
+          updatedAt: e.updatedAt,
+        );
+        searchActivity.add(data);
+      }).toList();
+    }
   }
 
   // get data
