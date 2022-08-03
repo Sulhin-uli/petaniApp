@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:format_indonesia/format_indonesia.dart';
+import 'package:intl/intl.dart';
 import 'package:petani_app/app/modules/activity/controllers/activity_controller.dart';
 import 'package:get/get.dart';
 
@@ -7,7 +7,7 @@ class DetailActivityView extends GetView<ActivityController> {
   @override
   Widget build(BuildContext context) {
     final data = controller.findByid(Get.arguments);
-    DateTime datetime = DateTime.parse(data.date!);
+    DateTime datetime = DateTime.parse(data.date!.toString());
 
     return Scaffold(
       appBar: AppBar(
@@ -44,7 +44,8 @@ class DetailActivityView extends GetView<ActivityController> {
                 height: 5,
               ),
               Text(
-                "Kegiatan dilaksanakan pada " + Waktu(datetime).yMMMMEEEEd(),
+                "Kegiatan dilaksanakan pada " +
+                    DateFormat("EEEE, d MMMM yyyy", "id_ID").format(datetime),
                 style: TextStyle(color: Colors.black.withOpacity(0.6)),
               ),
               const SizedBox(

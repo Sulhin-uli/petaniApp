@@ -15,7 +15,8 @@ class IndexHomeView extends GetView<HomeController> {
             index: controller.tabIndex.value,
             children: [
               Body(),
-              IndexSayaView(),
+              // IndexSayaView(),
+              Container(),
             ],
           )),
       bottomNavigationBar: buildBottomNavigationMenu(context, controller),

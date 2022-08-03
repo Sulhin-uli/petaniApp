@@ -170,13 +170,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "9.2.0"
-  format_indonesia:
-    dependency: "direct main"
-    description:
-      name: format_indonesia
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.0"
   fwfh_text_style:
     dependency: transitive
     description:
@@ -262,12 +255,12 @@ packages:
     source: hosted
     version: "2.5.0"
   intl:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: intl
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.16.1"
+    version: "0.17.0"
   js:
     dependency: transitive
     description:

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:petani_app/app/modules/activity/controllers/activity_controller.dart';
 import 'package:petani_app/app/routes/app_pages.dart';
-import 'package:format_indonesia/format_indonesia.dart';
 
 import 'package:get/get.dart';
 
@@ -11,7 +11,7 @@ class ItemActivityView extends GetView<ActivityController> {
 
   @override
   Widget build(BuildContext context) {
-    DateTime datetime = DateTime.parse(data.date!);
+    // DateTime datetime = DateTime.parse(data.date!);
     return GestureDetector(
       onTap: () => Get.toNamed(Routes.DETAIL_ACTIVITY, arguments: data.id),
       child: Card(
@@ -37,7 +37,8 @@ class ItemActivityView extends GetView<ActivityController> {
                       height: 6,
                     ),
                     Text(
-                      Waktu(datetime).yMMMMEEEEd(),
+                      DateFormat("EEEE, d MMMM yyyy", "id_ID")
+                          .format(data.date!),
                       style: TextStyle(color: Colors.black.withOpacity(0.6)),
                     ),
                   ],

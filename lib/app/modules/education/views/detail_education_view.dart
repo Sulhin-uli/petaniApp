@@ -1,6 +1,6 @@
 import 'package:better_player/better_player.dart';
 import 'package:flutter/material.dart';
-import 'package:format_indonesia/format_indonesia.dart';
+import 'package:intl/intl.dart';
 import 'package:petani_app/app/modules/education/controllers/education_controller.dart';
 import 'package:petani_app/app/utils/base_url.dart';
 import 'package:path/path.dart' as p;
@@ -49,7 +49,7 @@ class DetailEducationView extends GetView<EducationController> {
                               tag: data.slug!,
                               child: Center(
                                 child: Image.network(
-                                  "http://192.168.43.38:8001/storage/edukasi/" +
+                                  "http://192.168.43.123:8000/storage/edukasi/" +
                                       data.file!,
                                   fit: BoxFit.cover,
                                 ),
@@ -69,7 +69,8 @@ class DetailEducationView extends GetView<EducationController> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(17, 1, 17, 2),
                         child: Text(
-                          Waktu(datetime).yMMMMEEEEd(),
+                          DateFormat("EEEE, d MMMM yyyy", "id_ID")
+                              .format(datetime),
                           style: const TextStyle(
                             color: Colors.black38,
                             fontSize: 12.0,

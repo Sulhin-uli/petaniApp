@@ -1,58 +1,81 @@
-import 'package:petani_app/app/data/models/activity_category_model.dart';
-import 'package:petani_app/app/data/models/user_model.dart';
+// To parse this JSON data, do
+//
+//     final activity = activityFromJson(jsonString);
+
+import 'dart:convert';
+
+Activity activityFromJson(String str) => Activity.fromJson(json.decode(str));
+
+String activityToJson(Activity data) => json.encode(data.toJson());
 
 class Activity {
+  Activity({
+    this.id,
+    this.userId,
+    this.categoryActivityId,
+    this.title,
+    this.slug,
+    this.date,
+    this.desc,
+    this.createdAt,
+    this.updatedAt,
+  });
+
   int? id;
-  User? userId;
-  ActivityCategory? categoryActivityId;
+  UserId? userId;
+  dynamic categoryActivityId;
   String? title;
   String? slug;
-  String? date;
+  DateTime? date;
   String? desc;
-  String? createdAt;
-  String? updatedAt;
+  DateTime? createdAt;
+  DateTime? updatedAt;
 
-  Activity(
-      {this.id,
-      this.userId,
-      this.categoryActivityId,
-      this.title,
-      this.slug,
-      this.date,
-      this.desc,
-      this.createdAt,
-      this.updatedAt});
+  factory Activity.fromJson(Map<String, dynamic> json) => Activity(
+        id: json["id"],
+        userId: UserId.fromJson(json["user_id"]),
+        categoryActivityId: json["category_activity_id"],
+        title: json["title"],
+        slug: json["slug"],
+        date: DateTime.parse(json["date"]),
+        desc: json["desc"],
+        createdAt: DateTime.parse(json["created_at"]),
+        updatedAt: DateTime.parse(json["updated_at"]),
+      );
 
-  Activity.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    userId = json['user_id'] != null ? User?.fromJson(json['user_id']) : null;
-    categoryActivityId = json['category_activity_id'] != null
-        ? ActivityCategory?.fromJson(json['category_activity_id'])
-        : null;
-    title = json['title'];
-    slug = json['slug'];
-    date = json['date'];
-    desc = json['desc'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
-  }
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "user_id": userId!.toJson(),
+        "category_activity_id": categoryActivityId,
+        "title": title,
+        "slug": slug,
+        "date": date!.toIso8601String(),
+        "desc": desc,
+        "created_at": createdAt!.toIso8601String(),
+        "updated_at": updatedAt!.toIso8601String(),
+      };
+}
 
-  Map<String, dynamic> toJson() {
-    final data = <String, dynamic>{};
-    data['id'] = id;
-    if (userId != null) {
-      data['user_id'] = userId?.toJson();
-    }
-    data['category_activity_id'] = categoryActivityId;
-    if (categoryActivityId != null) {
-      data['category_activity_id'] = categoryActivityId?.toJson();
-    }
-    data['title'] = title;
-    data['slug'] = slug;
-    data['date'] = date;
-    data['desc'] = desc;
-    data['created_at'] = createdAt;
-    data['updated_at'] = updatedAt;
-    return data;
-  }
+class UserId {
+  UserId({
+    this.id,
+    this.name,
+    this.email,
+  });
+
+  int? id;
+  String? name;
+  String? email;
+
+  factory UserId.fromJson(Map<String, dynamic> json) => UserId(
+        id: json["id"],
+        name: json["name"],
+        email: json["email"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "name": name,
+        "email": email,
+      };
 }

@@ -27,23 +27,7 @@ class ActivityController extends GetxController {
       var result = activity.where((item) =>
           item.title!.toLowerCase().contains(enteredKeyword.toLowerCase()));
       result.map((e) {
-        final data = Activity(
-          id: e.id,
-          userId: User(
-            id: e.userId!.id,
-            name: e.userId!.name,
-          ),
-          categoryActivityId: ActivityCategory(
-            id: e.categoryActivityId!.id,
-            name: e.categoryActivityId!.name,
-          ),
-          title: e.title,
-          slug: e.slug,
-          date: e.date,
-          desc: e.desc,
-          createdAt: e.createdAt,
-          updatedAt: e.updatedAt,
-        );
+        final data = Activity.fromJson(e as Map<String, dynamic>);
         searchActivity.add(data);
       }).toList();
     }
@@ -55,25 +39,26 @@ class ActivityController extends GetxController {
     return ActivityProvider().getData(data["token"]).then((response) {
       try {
         response["data"].map((e) {
-          final data = Activity(
-            id: e["id"],
-            userId: User(
-              id: e["user_id"]["id"],
-              name: e["user_id"]["name"],
-            ),
-            categoryActivityId: ActivityCategory(
-              id: e["category_activity_id"]["id"],
-              name: e["category_activity_id"]["name"],
-              createdAt: e["category_activity_id"]["created_at"],
-              updatedAt: e["category_activity_id"]["updated_at"],
-            ),
-            title: e["title"],
-            slug: e["slug"],
-            date: e["date"],
-            desc: e["desc"],
-            createdAt: e["created_at"],
-            updatedAt: e["updated_at"],
-          );
+          // final data = Activity(
+          //   id: e["id"],
+          //   userId: User(
+          //     id: e["user_id"]["id"],
+          //     name: e["user_id"]["name"],
+          //   ),
+          //   categoryActivityId: ActivityCategory(
+          //     id: e["category_activity_id"]["id"],
+          //     name: e["category_activity_id"]["name"],
+          //     createdAt: e["category_activity_id"]["created_at"],
+          //     updatedAt: e["category_activity_id"]["updated_at"],
+          //   ),
+          //   title: e["title"],
+          //   slug: e["slug"],
+          //   date: e["date"],
+          //   desc: e["desc"],
+          //   createdAt: e["created_at"],
+          //   updatedAt: e["updated_at"],
+          // );
+          final data = Activity.fromJson(e as Map<String, dynamic>);
           activity.add(data);
         }).toList();
       } catch (e) {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:format_indonesia/format_indonesia.dart';
+import 'package:intl/intl.dart';
 import 'package:petani_app/app/modules/tandur/controllers/tandur_controller.dart';
 import 'package:petani_app/app/routes/app_pages.dart';
 
@@ -32,7 +32,7 @@ class ItemView extends GetView<TandurController> {
                     ),
               title: Text(data.farmerId.userId.name),
               subtitle: Text(
-                Waktu(datetime).yMMMMEEEEd(),
+                DateFormat("EEEE, d MMMM yyyy", "id_ID").format(datetime),
                 style: TextStyle(color: Colors.black.withOpacity(0.6)),
               ),
             ),
