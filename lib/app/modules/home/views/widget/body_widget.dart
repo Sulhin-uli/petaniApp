@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:petani_app/app/modules/home/controllers/home_controller.dart';
 import 'package:petani_app/app/modules/home/views/widget/item_menu_widget.dart';
+import 'package:petani_app/app/modules/login/controllers/login_controller.dart';
 import 'package:petani_app/app/routes/app_pages.dart';
 import 'package:petani_app/app/utils/constant.dart';
 import 'package:get/get.dart';
@@ -8,14 +9,16 @@ import 'package:get/get.dart';
 import 'header_widget.dart';
 
 class Body extends GetView<HomeController> {
+  LoginController loginController = Get.put(LoginController());
   @override
   Widget build(BuildContext context) {
+    var name = loginController.userFarmer.first.farmers!.user!.name!;
     Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Header(size: size),
+          Header(size: size, dataUserName: name),
           // SizedBox(
           //   height: 220,
           //   child: GridView.builder(

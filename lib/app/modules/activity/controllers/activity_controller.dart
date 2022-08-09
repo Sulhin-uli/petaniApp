@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:petani_app/app/data/models/activity_category_model.dart';
 import 'package:petani_app/app/data/models/activity_model.dart';
-import 'package:petani_app/app/data/models/user_model.dart';
 import 'package:petani_app/app/data/providers/activity_provider.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';

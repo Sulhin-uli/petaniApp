@@ -15,6 +15,7 @@ class TimeWeather extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         color: const Color(0xffe7e7e7),
       ),
+      // child: Text("Selamat Datang"),
       // color: Colors.white
       // child: const Card(
       //   color: Colors.white,

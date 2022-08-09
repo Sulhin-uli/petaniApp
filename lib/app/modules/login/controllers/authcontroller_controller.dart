@@ -13,18 +13,7 @@ class AuthcontrollerController extends GetxController {
 
   @override
   void onInit() {
-    autoLogin();
+    // autoLogin();
     super.onInit();
-  }
-
-  Future<void> autoLogin() async {
-    if (box.read("userData") != null) {
-      final data = box.read("userData") as Map<String, dynamic>;
-      loginController.login(data["email"], data["password"]);
-    } else {
-      Future.delayed(const Duration(milliseconds: 500), () {
-        Get.offAllNamed(Routes.LOGIN);
-      });
-    }
   }
 }

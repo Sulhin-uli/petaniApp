@@ -5,9 +5,11 @@ class Header extends StatelessWidget {
   const Header({
     Key? key,
     @required this.size,
+    @required this.dataUserName,
   }) : super(key: key);
 
   final Size? size;
+  final dataUserName;
 
   @override
   Widget build(BuildContext context) {
@@ -61,6 +63,16 @@ class Header extends StatelessWidget {
                     blurRadius: 50,
                     color: kPrimaryColor.withOpacity(0.23),
                   ),
+                ],
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    " Selamat datang, " + dataUserName.toString(),
+                    style: TextStyle(color: Colors.black.withOpacity(0.5)),
+                  ),
+                  Container(),
                 ],
               ),
             ),

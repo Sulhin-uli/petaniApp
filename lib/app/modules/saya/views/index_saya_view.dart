@@ -20,7 +20,7 @@ class IndexSayaView extends GetView<SayaController> {
   @override
   Widget build(BuildContext context) {
     final user = box.read("userData") as Map<String, dynamic>;
-    // final data = loginC.findPetani(4);
+    final data = loginC.findPetani(4);
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -34,40 +34,40 @@ class IndexSayaView extends GetView<SayaController> {
                   Center(
                     child: Stack(
                       children: <Widget>[
-                        // Obx(
-                        //   () => Container(
-                        //     margin: const EdgeInsets.all(15),
-                        //     width: 175,
-                        //     height: 175,
-                        //     child: ClipRRect(
-                        //       borderRadius: BorderRadius.circular(200),
-                        //       child: sayaController
-                        //               .selectedImagePath.value.isImageFileName
-                        //           ? Image.file(
-                        //               File(sayaController
-                        //                   .selectedImagePath.value),
-                        //               height: 150,
-                        //               width: 150,
-                        //               fit: BoxFit.cover,
-                        //             )
-                        //           : data.image == null
-                        //               ? Image.asset(
-                        //                   'assets/images/noimage.png',
-                        //                   height: 150,
-                        //                   width: 150,
-                        //                   fit: BoxFit.cover,
-                        //                 )
-                        //               : Image.network(
-                        //                   baseUrlFile +
-                        //                       "storage/profile/" +
-                        //                       data.image!,
-                        //                   height: 150,
-                        //                   width: 150,
-                        //                   fit: BoxFit.cover,
-                        //                 ),
-                        //     ),
-                        //   ),
-                        // ),
+                        Obx(
+                          () => Container(
+                            margin: const EdgeInsets.all(15),
+                            width: 175,
+                            height: 175,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(200),
+                              child: sayaController
+                                      .selectedImagePath.value.isImageFileName
+                                  ? Image.file(
+                                      File(sayaController
+                                          .selectedImagePath.value),
+                                      height: 150,
+                                      width: 150,
+                                      fit: BoxFit.cover,
+                                    )
+                                  : data.image == null
+                                      ? Image.asset(
+                                          'assets/images/noimage.png',
+                                          height: 150,
+                                          width: 150,
+                                          fit: BoxFit.cover,
+                                        )
+                                      : Image.network(
+                                          baseUrlFile +
+                                              "storage/profile/" +
+                                              data.image!,
+                                          height: 150,
+                                          width: 150,
+                                          fit: BoxFit.cover,
+                                        ),
+                            ),
+                          ),
+                        ),
                         Positioned(
                             bottom: 1,
                             right: 1,

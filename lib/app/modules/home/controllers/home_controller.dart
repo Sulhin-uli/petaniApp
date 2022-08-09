@@ -67,7 +67,7 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     getDataItemMenu();
-    loginController.getDataPetani();
+    // loginController.getDataPetani();
     super.onInit();
   }
 }
