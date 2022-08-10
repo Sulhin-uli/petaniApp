@@ -4,6 +4,7 @@ import 'package:petani_app/app/modules/activity/views/item_activity_view.dart';
 import 'package:petani_app/app/routes/app_pages.dart';
 
 import 'package:get/get.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../controllers/activity_controller.dart';
 
@@ -18,7 +19,7 @@ class SearchActivityView extends GetView<ActivityController> {
           children: [
             Text("Penacrian : ",
                 style: TextStyle(color: Colors.grey, fontSize: 12)),
-            Text(controller.seacrh.text,
+            Text(Get.arguments,
                 style: TextStyle(color: Colors.black, fontSize: 12)),
           ],
         ),
@@ -36,43 +37,66 @@ class SearchActivityView extends GetView<ActivityController> {
         elevation: 0.5,
       ),
       backgroundColor: Colors.white,
-      body: Obx(
-        () => controller.searchActivity.isEmpty
-            ? Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SvgPicture.asset(
-                      "assets/icons/empty-data.svg",
-                      height: 100,
-                      width: 100,
+      body: NotificationListener<ScrollEndNotification>(
+        onNotification: (scrollEnd) {
+          final metrics = scrollEnd.metrics;
+          if (metrics.atEdge) {
+            bool isTop = metrics.pixels == 0;
+            if (isTop) {
+              // print('At the top');
+            } else {
+              // print('At the bottom');
+              controller.addItemsSearch();
+            }
+          }
+          return true;
+        },
+        child: SmartRefresher(
+          controller: controller.refreshSearchController,
+          onRefresh: controller.onRefreshSearch,
+          onLoading: controller.onLoading,
+          header: WaterDropMaterialHeader(),
+          enablePullDown: true,
+          enablePullUp: false,
+          child: Obx(
+            () => controller.activitySearch.isEmpty
+                ? Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset(
+                          "assets/icons/empty-data.svg",
+                          height: 100,
+                          width: 100,
+                        ),
+                        Text(
+                          "Data Tidak Ada",
+                          style: TextStyle(color: Colors.grey),
+                        )
+                      ],
                     ),
-                    Text(
-                      "Data Tidak Ada",
-                      style: TextStyle(color: Colors.grey),
-                    )
-                  ],
-                ),
-              )
-            : SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.all(2),
-                  child: Column(
-                    children: [
-                      ListView.builder(
-                        itemCount: controller.searchActivity.length,
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemBuilder: (context, i) {
-                          // final product = productList[index];
-                          final data = controller.searchActivity[i];
-                          return ItemActivityView(data);
-                        },
-                      )
-                    ],
+                  )
+                : SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.all(2),
+                      child: Column(
+                        children: [
+                          ListView.builder(
+                            itemCount: controller.activitySearch.length,
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemBuilder: (context, i) {
+                              // final product = productList[index];
+                              final data = controller.activitySearch[i];
+                              return ItemActivityView(data);
+                            },
+                          )
+                        ],
+                      ),
+                    ),
                   ),
-                ),
-              ),
+          ),
+        ),
       ),
     );
   }

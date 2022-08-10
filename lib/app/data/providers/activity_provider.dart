@@ -16,15 +16,24 @@ class ActivityProvider extends GetConnect {
     return response.body;
   }
 
-  Future<dynamic> searchData(
-    String token,
-    String name,
-  ) async {
-    final response = await get(url + 'search/$name', headers: {
+  Future<dynamic> getDataSearch(int page, String title, String token) async {
+    final response = await get('$url/search/$title?page=$page', headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'Authorization': 'Bearer $token',
     });
     return response.body;
   }
+
+  // Future<dynamic> searchData(
+  //   String token,
+  //   String name,
+  // ) async {
+  //   final response = await get(url + 'search/$name', headers: {
+  //     'Content-Type': 'application/json',
+  //     'Accept': 'application/json',
+  //     'Authorization': 'Bearer $token',
+  //   });
+  //   return response.body;
+  // }
 }

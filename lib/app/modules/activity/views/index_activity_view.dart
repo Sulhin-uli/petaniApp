@@ -39,9 +39,8 @@ class IndexActivityView extends GetView<ActivityController> {
                       color: Colors.grey,
                     ),
                     onPressed: () {
-                      controller.searchActivity.clear();
                       controller.runSearch(controller.seacrh.text);
-                      Get.toNamed(Routes.SEARCH_ACTIVITY);
+                      // Get.toNamed(Routes.SEARCH_ACTIVITY);
                     },
                   ),
                 ),
