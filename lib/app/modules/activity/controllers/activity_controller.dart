@@ -101,7 +101,7 @@ class ActivityController extends GetxController {
     await Future.delayed(Duration(milliseconds: 1000));
     pageSearch.value = 1;
     getDataSearch();
-    refreshController.refreshCompleted();
+    refreshSearchController.refreshCompleted();
   }
 
   void addItemsSearch() {

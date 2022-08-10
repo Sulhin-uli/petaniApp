@@ -12,7 +12,7 @@ class DetailEducationView extends GetView<EducationController> {
   Widget build(BuildContext context) {
     final data = controller.findByid(Get.arguments);
     final path = data.file;
-    DateTime datetime = DateTime.parse(data.date!);
+    // DateTime datetime = DateTime.parse(data.date);
     final extension = p.extension(path!);
 
     return Scaffold(
@@ -70,7 +70,7 @@ class DetailEducationView extends GetView<EducationController> {
                         padding: const EdgeInsets.fromLTRB(17, 1, 17, 2),
                         child: Text(
                           DateFormat("EEEE, d MMMM yyyy", "id_ID")
-                              .format(datetime),
+                              .format(data.date!),
                           style: const TextStyle(
                             color: Colors.black38,
                             fontSize: 12.0,
