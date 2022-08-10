@@ -63,7 +63,7 @@ class SayaController extends GetxController {
     AkunPetaniProvider()
         .updateImage(body, image, data["token"])
         .then((response) {
-      print(response);
+      // print(response);
     });
   }
 
