@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:petani_app/app/modules/activity/views/item_activity_view.dart';
 import 'package:petani_app/app/routes/app_pages.dart';
 
@@ -15,7 +16,7 @@ class SearchActivityView extends GetView<ActivityController> {
         leading: const BackButton(color: Colors.black),
         title: Row(
           children: [
-            Text("Hasil : ",
+            Text("Penacrian : ",
                 style: TextStyle(color: Colors.grey, fontSize: 12)),
             Text(controller.seacrh.text,
                 style: TextStyle(color: Colors.black, fontSize: 12)),
@@ -41,10 +42,10 @@ class SearchActivityView extends GetView<ActivityController> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset(
-                      "assets/images/empty-data.jpg",
-                      height: 250,
-                      width: 250,
+                    SvgPicture.asset(
+                      "assets/icons/empty-data.svg",
+                      height: 100,
+                      width: 100,
                     ),
                     Text(
                       "Data Tidak Ada",

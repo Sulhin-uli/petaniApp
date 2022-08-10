@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:petani_app/app/modules/activity/views/item_activity_view.dart';
 import 'package:petani_app/app/routes/app_pages.dart';
 
 import 'package:get/get.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../controllers/activity_controller.dart';
 
@@ -70,30 +72,66 @@ class IndexActivityView extends GetView<ActivityController> {
         elevation: 0.5,
       ),
       backgroundColor: Colors.white,
-      body: Obx(
-        () => controller.activity.isEmpty
-            ? const Center(
-                child: CircularProgressIndicator(),
-              )
-            : SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.all(2),
-                  child: Column(
-                    children: [
-                      ListView.builder(
-                        itemCount: controller.activity.length,
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemBuilder: (context, i) {
-                          // final product = productList[index];
-                          final data = controller.activity[i];
-                          return ItemActivityView(data);
-                        },
-                      )
-                    ],
+      body: NotificationListener<ScrollEndNotification>(
+        onNotification: (scrollEnd) {
+          final metrics = scrollEnd.metrics;
+          if (metrics.atEdge) {
+            bool isTop = metrics.pixels == 0;
+            if (isTop) {
+              // print('At the top');
+            } else {
+              // print('At the bottom');
+              controller.addItems();
+            }
+          }
+          return true;
+        },
+        child: SmartRefresher(
+          controller: controller.refreshController,
+          onRefresh: controller.onRefresh,
+          onLoading: controller.onLoading,
+          header: WaterDropMaterialHeader(),
+          enablePullDown: true,
+          enablePullUp: false,
+          child: Obx(
+            () => controller.activity.isEmpty
+                ? Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset(
+                          "assets/icons/empty-data.svg",
+                          height: 100,
+                          width: 100,
+                        ),
+                        Text(
+                          "Data Tidak Ada",
+                          style: TextStyle(color: Colors.grey),
+                        )
+                      ],
+                    ),
+                  )
+                : SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.all(2),
+                      child: Column(
+                        children: [
+                          ListView.builder(
+                            itemCount: controller.activity.length,
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemBuilder: (context, i) {
+                              // final product = productList[index];
+                              final data = controller.activity[i];
+                              return ItemActivityView(data);
+                            },
+                          )
+                        ],
+                      ),
+                    ),
                   ),
-                ),
-              ),
+          ),
+        ),
       ),
     );
   }
