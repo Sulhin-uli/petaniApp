@@ -12,15 +12,15 @@ import 'package:get_storage/get_storage.dart';
 import '../controllers/saya_controller.dart';
 
 class IndexSayaView extends GetView<SayaController> {
-  final loginC = Get.find<LoginController>();
-  final homeC = Get.find<HomeController>();
-  final box = GetStorage();
+  // final loginC = Get.find<LoginController>();
+  // final homeC = Get.find<HomeController>();
   SayaController sayaController = Get.put(SayaController());
+  HomeController homeC = Get.put(HomeController());
+  LoginController loginC = Get.put(LoginController());
 
   @override
   Widget build(BuildContext context) {
-    final user = box.read("userData") as Map<String, dynamic>;
-    final data = loginC.findPetani(4);
+    final data = loginC.userFarmer.first;
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -35,68 +35,76 @@ class IndexSayaView extends GetView<SayaController> {
                     child: Stack(
                       children: <Widget>[
                         Obx(
-                          () => Container(
-                            margin: const EdgeInsets.all(15),
-                            width: 175,
-                            height: 175,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(200),
-                              child: sayaController
-                                      .selectedImagePath.value.isImageFileName
-                                  ? Image.file(
-                                      File(sayaController
-                                          .selectedImagePath.value),
-                                      height: 150,
-                                      width: 150,
-                                      fit: BoxFit.cover,
-                                    )
-                                  : data.image == null
-                                      ? Image.asset(
-                                          'assets/images/noimage.png',
-                                          height: 150,
-                                          width: 150,
-                                          fit: BoxFit.cover,
-                                        )
-                                      : Image.network(
-                                          baseUrlFile +
-                                              "storage/profile/" +
-                                              data.image!,
-                                          height: 150,
-                                          width: 150,
-                                          fit: BoxFit.cover,
-                                        ),
-                            ),
-                          ),
+                          () => loginC.userFarmer.isNotEmpty
+                              ? Container(
+                                  margin: const EdgeInsets.all(15),
+                                  width: 175,
+                                  height: 175,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(200),
+                                    child: sayaController.selectedImagePath
+                                            .value.isImageFileName
+                                        ? Image.file(
+                                            File(sayaController
+                                                .selectedImagePath.value),
+                                            height: 150,
+                                            width: 150,
+                                            fit: BoxFit.cover,
+                                          )
+                                        : data.farmers!.image!.isEmpty
+                                            ? Image.asset(
+                                                'assets/images/noimage.png',
+                                                height: 150,
+                                                width: 150,
+                                                fit: BoxFit.cover,
+                                              )
+                                            : Image.network(
+                                                baseUrlFile +
+                                                    "storage/profile/" +
+                                                    data.farmers!.image!,
+                                                height: 150,
+                                                width: 150,
+                                                fit: BoxFit.cover,
+                                              ),
+                                  ),
+                                )
+                              : Image.asset(
+                                  'assets/images/noimage.png',
+                                  height: 150,
+                                  width: 150,
+                                  fit: BoxFit.cover,
+                                ),
                         ),
                         Positioned(
-                            bottom: 1,
-                            right: 1,
-                            child: InkWell(
-                              onTap: () => sayaController.getImage(),
-                              child: Container(
-                                height: 40,
-                                width: 40,
-                                child: const Icon(
-                                  Icons.add_a_photo,
-                                  color: Colors.white,
-                                ),
-                                decoration: const BoxDecoration(
-                                    color: Colors.green,
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(20))),
+                          bottom: 1,
+                          right: 1,
+                          child: InkWell(
+                            onTap: () => sayaController.getImage(),
+                            child: Container(
+                              height: 40,
+                              width: 40,
+                              child: const Icon(
+                                Icons.add_a_photo,
+                                color: Colors.white,
                               ),
-                            ))
+                              decoration: const BoxDecoration(
+                                  color: Colors.green,
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20))),
+                            ),
+                          ),
+                        )
                       ],
                     ),
                   ),
                   const SizedBox(
                     height: 13,
                   ),
-                  // Text(
-                  //   data.userId!.name!,
-                  //   style: const TextStyle(
-                  //       fontSize: 20, fontWeight: FontWeight.bold),
-                  // ),
+                  Text(
+                    data.farmers!.user!.name!,
+                    style: const TextStyle(
+                        fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
                 ],
               ),
               const SizedBox(
@@ -160,6 +168,15 @@ class IndexSayaView extends GetView<SayaController> {
                   "Pengaturan Akun",
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
+              ),
+              ListTile(
+                onTap: () => Get.toNamed(Routes.INFORMATION_ACCOUNT),
+                leading: Icon(
+                  Icons.person,
+                  size: 20,
+                  color: Colors.blue,
+                ),
+                title: const Text('Informasi Akun'),
               ),
               ListTile(
                 onTap: () => Get.toNamed(Routes.EDIT_PROFILE),

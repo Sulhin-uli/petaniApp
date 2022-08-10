@@ -42,6 +42,7 @@ abstract class Routes {
   static const INDEX_SAYA = _Paths.INDEX_SAYA;
   static const EDIT_PROFILE = _Paths.EDIT_PROFILE;
   static const EDIT_PASSWORD = _Paths.EDIT_PASSWORD;
+  static const INFORMATION_ACCOUNT = _Paths.INFORMATION_ACCOUNT;
 }
 
 abstract class _Paths {
@@ -85,6 +86,7 @@ abstract class _Paths {
   static const INDEX_SAYA = '/index-saya';
   static const EDIT_PROFILE = '/edit-profile';
   static const EDIT_PASSWORD = '/edit-password';
+  static const INFORMATION_ACCOUNT = '/information_account';
 
   // Notifikasi
   static const INDEX_NOTIFIKASI = '/index-notifikasi';

@@ -7,16 +7,17 @@ import 'package:petani_app/app/modules/saya/views/index_saya_view.dart';
 import 'package:get/get.dart';
 
 class IndexHomeView extends GetView<HomeController> {
+  HomeController homeController = Get.put(HomeController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(),
       body: Obx(() => IndexedStack(
-            index: controller.tabIndex.value,
+            index: homeController.tabIndex.value,
             children: [
               Body(),
-              // IndexSayaView(),
-              Container(),
+              IndexSayaView(),
+              // Container(),
             ],
           )),
       bottomNavigationBar: buildBottomNavigationMenu(context, controller),

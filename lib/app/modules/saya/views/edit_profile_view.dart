@@ -7,15 +7,13 @@ import 'package:get_storage/get_storage.dart';
 
 class EditProfileView extends GetView<SayaController> {
   final loginC = Get.find<LoginController>();
-  final box = GetStorage();
 
   @override
   Widget build(BuildContext context) {
-    final user = box.read("userData") as Map<String, dynamic>;
-    final data = loginC.findPetani(user["id"]);
-    controller.city.text = data.city!;
-    controller.address.text = data.address!;
-    controller.telp.text = data.telp!.toString();
+    final data = loginC.userFarmer.first;
+    controller.city.text = data.farmers!.city!;
+    controller.address.text = data.farmers!.address!;
+    controller.telp.text = data.farmers!.telp!.toString();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -33,31 +31,31 @@ class EditProfileView extends GetView<SayaController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                "Nama Ketua",
-                style: TextStyle(
-                  color: Color(0xff919A92),
-                ),
-              ),
-              TextFormField(
-                controller: controller.chairman,
-                cursorColor: const Color(0xff16A085),
-                decoration: const InputDecoration(
-                  // helperText: 'Contoh: Label',
-                  // fillColor: Color(0xff919A92),
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(0xff919A92),
-                    ),
-                  ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(0xff16A085),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 30),
+              // const Text(
+              //   "Nama Ketua",
+              //   style: TextStyle(
+              //     color: Color(0xff919A92),
+              //   ),
+              // ),
+              // TextFormField(
+              //   controller: controller.chairman,
+              //   cursorColor: const Color(0xff16A085),
+              //   decoration: const InputDecoration(
+              //     // helperText: 'Contoh: Label',
+              //     // fillColor: Color(0xff919A92),
+              //     enabledBorder: UnderlineInputBorder(
+              //       borderSide: BorderSide(
+              //         color: Color(0xff919A92),
+              //       ),
+              //     ),
+              //     focusedBorder: UnderlineInputBorder(
+              //       borderSide: BorderSide(
+              //         color: Color(0xff16A085),
+              //       ),
+              //     ),
+              //   ),
+              // ),
+              // const SizedBox(height: 30),
               const Text(
                 "Kota/Kabupaten",
                 style: TextStyle(

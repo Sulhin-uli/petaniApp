@@ -9,6 +9,7 @@ import 'package:petani_app/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:petani_app/app/utils/constant.dart';
 
 class LoginController extends GetxController {
   final box = GetStorage();
@@ -33,18 +34,6 @@ class LoginController extends GetxController {
         errorText: 'Email tidak valid'),
     MaxLengthValidator(100, errorText: 'Maksimal 100 karakter'),
   ]);
-
-  void dialogError(String msg) {
-    Get.defaultDialog(
-      title: "Peringatan",
-      titleStyle: TextStyle(fontSize: 12),
-      content: Text(
-        msg,
-        textAlign: TextAlign.center,
-        style: TextStyle(fontSize: 12),
-      ),
-    );
-  }
 
   @override
   void onInit() {
@@ -93,7 +82,7 @@ class LoginController extends GetxController {
     try {
       LoginProvider().login(email, password).then(
         (response) {
-          print(response['data']);
+          // print(response['data']);
           if (response["status"] != 200) {
             dialogError(response['messages']);
           } else {
@@ -106,7 +95,7 @@ class LoginController extends GetxController {
               "token": response['data']['token'],
               "email": email,
               "password": password,
-              "farmer_id": response['data']['farmers']['id'],
+              "petani_id": response['data']['farmers']['id'],
             });
             // isAuth(true);
             isAuth.value = true;
@@ -128,9 +117,7 @@ class LoginController extends GetxController {
           }
         },
       );
-    } catch (e) {
-      dialogError("Login gagal");
-    }
+    } catch (e) {}
   }
 
   // void getDataPetani() async {

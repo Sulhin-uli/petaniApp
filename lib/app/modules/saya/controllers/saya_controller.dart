@@ -7,6 +7,7 @@ import 'package:petani_app/app/routes/app_pages.dart';
 import 'package:petani_app/app/utils/base_url.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:petani_app/app/utils/constant.dart';
 
 class SayaController extends GetxController {
   final box = GetStorage();
@@ -72,16 +73,16 @@ class SayaController extends GetxController {
     String telp,
   ) {
     final data = box.read("userData") as Map<String, dynamic>;
-    var item = loginController.findPetani(data["id"]);
+    var item = loginController.userFarmer.first;
     AkunPetaniProvider()
         .updateData(data["petani_id"], city, address, telp, data["token"])
         .then((_) {
-      item.city = city;
-      item.address = address;
-      item.telp = telp;
-      loginController.petani.refresh();
+      item.farmers!.city = city;
+      item.farmers!.address = address;
+      item.farmers!.telp = int.parse(telp);
+      loginController.userFarmer.refresh();
       Get.back();
-      dialog("Berhasil !", "data berhasil diubah");
+      dialogSuccess("data berhasil diubah");
     });
   }
 
@@ -93,7 +94,8 @@ class SayaController extends GetxController {
     final data = box.read("userData") as Map<String, dynamic>;
     if (passwordCurrent != '' && passwordNew != '' && passwordConfirm != '') {
       if (passwordCurrent != data["password"]) {
-        dialogNoBack("Terjadi Kesalahan !", "Password saat ini salah");
+        dialogError("Password saat ini salah");
+        // dialogNoBack("Terjadi Kesalahan !", "Password saat ini salah");
       } else {
         if (passwordNew == passwordConfirm) {
           final data = box.read("userData") as Map<String, dynamic>;
@@ -109,14 +111,16 @@ class SayaController extends GetxController {
               "petani_id": data["petani_id"],
             });
             Get.back();
-            dialog("Berhasil !", "data berhasil diubah");
+            dialogSuccess("data berhasil diubah");
           });
         } else {
-          dialogNoBack("Terjadi Kesalahan !", "Konfirmasi password tidak sama");
+          // dialogNoBack("Terjadi Kesalahan !", "Konfirmasi password tidak sama");
+          dialogError("Konfirmasi password tidak sama");
         }
       }
     } else {
-      dialogNoBack("Terjadi Kesalahan", "Semua Input Harus Diisi");
+      // dialogNoBack("Terjadi Kesalahan", "Semua Input Harus Diisi");
+      dialogError("Semua Input Harus Diisi");
     }
   }
 
@@ -133,6 +137,7 @@ class SayaController extends GetxController {
           TextButton(
             onPressed: () {
               Navigator.pop(context, 'Ya');
+              loginController.userFarmer.clear();
               box.erase();
               Get.offAndToNamed(Routes.LOGIN);
             },

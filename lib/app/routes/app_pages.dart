@@ -21,6 +21,7 @@ import 'package:petani_app/app/modules/saya/bindings/saya_binding.dart';
 import 'package:petani_app/app/modules/saya/views/edit_password_view.dart';
 import 'package:petani_app/app/modules/saya/views/edit_profile_view.dart';
 import 'package:petani_app/app/modules/saya/views/index_saya_view.dart';
+import 'package:petani_app/app/modules/saya/views/information_account.dart';
 import 'package:petani_app/app/modules/tandur/bindings/tandur_binding.dart';
 import 'package:petani_app/app/modules/tandur/views/add_harvest_date_view.dart';
 import 'package:petani_app/app/modules/tandur/views/add_tandur_view.dart';
@@ -173,6 +174,11 @@ class AppPages {
     GetPage(
       name: _Paths.EDIT_PASSWORD,
       page: () => EditPasswordView(),
+      binding: SayaBinding(),
+    ),
+    GetPage(
+      name: _Paths.INFORMATION_ACCOUNT,
+      page: () => InformationAccountView(),
       binding: SayaBinding(),
     ),
 
