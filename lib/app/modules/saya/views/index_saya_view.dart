@@ -31,77 +31,132 @@ class IndexSayaView extends GetView<SayaController> {
             children: [
               Column(
                 children: [
-                  // Obx(
-                  //   () => loginC.userFarmer.first.farmers!.image == null
-                  //       ? Text("Null")
-                  //       : Text("Ada"),
-                  // ),
-
-                  Center(
-                    child: Stack(
-                      children: <Widget>[
-                        Obx(
-                          () => loginC.userFarmer.first.farmers!.image != null
-                              ? Container(
+                  Obx(
+                    () => sayaController.selectedImagePath.value.isImageFileName
+                        ? Center(
+                            child: Stack(
+                              children: <Widget>[
+                                Container(
                                   margin: const EdgeInsets.all(15),
                                   width: 175,
                                   height: 175,
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(200),
-                                    child: sayaController.selectedImagePath
-                                            .value.isImageFileName
-                                        ? Image.file(
-                                            File(sayaController
-                                                .selectedImagePath.value),
-                                            height: 150,
-                                            width: 150,
-                                            fit: BoxFit.cover,
-                                          )
-                                        : data.farmers!.image!.isEmpty
-                                            ? Image.asset(
-                                                'assets/images/noimage.png',
-                                                height: 150,
-                                                width: 150,
-                                                fit: BoxFit.cover,
-                                              )
-                                            : Image.network(
-                                                baseUrlFile +
-                                                    "storage/profile/" +
-                                                    data.farmers!.image!,
-                                                height: 150,
-                                                width: 150,
-                                                fit: BoxFit.cover,
-                                              ),
+                                    child: Image.file(
+                                      File(sayaController
+                                          .selectedImagePath.value),
+                                      height: 150,
+                                      width: 150,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                                Positioned(
+                                  bottom: 1,
+                                  right: 1,
+                                  child: InkWell(
+                                    onTap: () => sayaController.getImage(),
+                                    child: Container(
+                                      height: 40,
+                                      width: 40,
+                                      child: const Icon(
+                                        Icons.add_a_photo,
+                                        color: Colors.white,
+                                      ),
+                                      decoration: const BoxDecoration(
+                                          color: Colors.green,
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(20))),
+                                    ),
                                   ),
                                 )
-                              : Image.asset(
-                                  'assets/images/noimage.png',
-                                  height: 150,
-                                  width: 150,
-                                  fit: BoxFit.cover,
+                              ],
+                            ),
+                          )
+                        : Container(),
+                  ),
+                  Obx(
+                    () => loginC.userFarmer.first.farmers!.image != null
+                        ? Center(
+                            child: Stack(
+                              children: <Widget>[
+                                Container(
+                                  margin: const EdgeInsets.all(15),
+                                  width: 175,
+                                  height: 175,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(200),
+                                    child: Image.network(
+                                      baseUrlFile +
+                                          "storage/profile/" +
+                                          data.farmers!.image!,
+                                      height: 150,
+                                      width: 150,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
                                 ),
-                        ),
-                        Positioned(
-                          bottom: 1,
-                          right: 1,
-                          child: InkWell(
-                            onTap: () => sayaController.getImage(),
-                            child: Container(
-                              height: 40,
-                              width: 40,
-                              child: const Icon(
-                                Icons.add_a_photo,
-                                color: Colors.white,
-                              ),
-                              decoration: const BoxDecoration(
-                                  color: Colors.green,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(20))),
+                                Positioned(
+                                  bottom: 1,
+                                  right: 1,
+                                  child: InkWell(
+                                    onTap: () => sayaController.getImage(),
+                                    child: Container(
+                                      height: 40,
+                                      width: 40,
+                                      child: const Icon(
+                                        Icons.add_a_photo,
+                                        color: Colors.white,
+                                      ),
+                                      decoration: const BoxDecoration(
+                                          color: Colors.green,
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(20))),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          )
+                        : Center(
+                            child: Stack(
+                              children: <Widget>[
+                                Container(
+                                  margin: const EdgeInsets.all(15),
+                                  width: 175,
+                                  height: 175,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(200),
+                                    child: Image.asset(
+                                      'assets/images/noimage.png',
+                                      height: 150,
+                                      width: 150,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                                Positioned(
+                                  bottom: 1,
+                                  right: 1,
+                                  child: InkWell(
+                                    onTap: () => sayaController.getImage(),
+                                    child: Container(
+                                      height: 40,
+                                      width: 40,
+                                      child: const Icon(
+                                        Icons.add_a_photo,
+                                        color: Colors.white,
+                                      ),
+                                      decoration: const BoxDecoration(
+                                          color: Colors.green,
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(20))),
+                                    ),
+                                  ),
+                                )
+                              ],
                             ),
                           ),
-                        )
-                      ],
-                    ),
                   ),
                   const SizedBox(
                     height: 13,
