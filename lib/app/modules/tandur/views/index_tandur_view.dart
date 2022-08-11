@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:petani_app/app/modules/tandur/views/item_view.dart';
 
 import 'package:get/get.dart';
@@ -19,29 +20,40 @@ class IndexTandurView extends GetView<TandurController> {
           style: TextStyle(color: Colors.black, fontSize: 16),
         ),
         actions: [
-          Obx(() => controller.isMark.isTrue
-              ? Row(
-                  children: [
-                    IconButton(
-                      color: Colors.grey,
-                      icon: Icon(Icons.delete),
-                      onPressed: () {
-                        controller.deleteMultiple(context, "tandur");
-                      },
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        controller.isMark(false);
-                      },
-                      child: Text(
-                        "batal",
-                        style: TextStyle(color: Colors.grey),
-                      ),
-                    ),
-                  ],
-                )
-              : Container()),
+          TextButton(
+              onPressed: () {
+                controller.runFieldPage();
+                // Get.toNamed(Routes.ADD_TANDUR);
+              },
+              child: const Text(
+                "Tambah Tandur",
+                style: TextStyle(color: Color(0xff16A085), fontSize: 16),
+              ))
         ],
+        // actions: [
+        //   Obx(() => controller.isMark.isTrue
+        //       ? Row(
+        //           children: [
+        //             IconButton(
+        //               color: Colors.grey,
+        //               icon: Icon(Icons.delete),
+        //               onPressed: () {
+        //                 controller.deleteMultiple(context, "tandur");
+        //               },
+        //             ),
+        //             TextButton(
+        //               onPressed: () {
+        //                 controller.isMark(false);
+        //               },
+        //               child: Text(
+        //                 "batal",
+        //                 style: TextStyle(color: Colors.grey),
+        //               ),
+        //             ),
+        //           ],
+        //         )
+        //       : Container()),
+        // ],
         elevation: 0.5,
       ),
       body: NotificationListener<ScrollEndNotification>(
@@ -61,60 +73,56 @@ class IndexTandurView extends GetView<TandurController> {
         child: SmartRefresher(
           controller: controller.refreshPlantController,
           onRefresh: controller.onRefresPlant,
+          onLoading: controller.onLoad,
           header: WaterDropMaterialHeader(),
           enablePullDown: true,
           enablePullUp: false,
-          child: Obx(
-            () {
-              if (controller.isLoading.isTrue) {
-                return Center(child: CircularProgressIndicator());
-              } else if (controller.isLoading.isFalse) {
-                return SingleChildScrollView(
-                  child: Padding(
-                    padding: const EdgeInsets.all(2),
-                    child: Column(
-                      children: [
-                        ListView.builder(
-                          itemCount: controller.plantRecap.length,
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemBuilder: (context, index) {
-                            final data = controller.plantRecap[index];
-                            return ItemView(data);
-                          },
-                        )
-                      ],
-                    ),
-                  ),
-                );
-              } else
-                return Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        "assets/images/empty-data.jpg",
-                        height: 250,
-                        width: 250,
+          child: Obx(() => controller.isLoading.isTrue
+              ? Center(child: CircularProgressIndicator())
+              : controller.plantRecap.isNotEmpty
+                  ? SingleChildScrollView(
+                      child: Padding(
+                        padding: const EdgeInsets.all(2),
+                        child: Column(
+                          children: [
+                            ListView.builder(
+                              itemCount: controller.plantRecap.length,
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemBuilder: (context, index) {
+                                final data = controller.plantRecap[index];
+                                return ItemView(data);
+                              },
+                            )
+                          ],
+                        ),
                       ),
-                      Text(
-                        "Data Tidak Ada",
-                        style: TextStyle(color: Colors.grey),
-                      )
-                    ],
-                  ),
-                );
-            },
-          ),
+                    )
+                  : Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SvgPicture.asset(
+                            "assets/icons/empty-data.svg",
+                            height: 100,
+                            width: 100,
+                          ),
+                          Text(
+                            "Data Tidak Ada",
+                            style: TextStyle(color: Colors.grey),
+                          )
+                        ],
+                      ),
+                    )),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: const Color(0xff16A085),
-        foregroundColor: Colors.white,
-        // mini: true,
-        onPressed: () => Get.toNamed(Routes.ADD_TANDUR),
-        child: const Icon(Icons.add),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   backgroundColor: const Color(0xff16A085),
+      //   foregroundColor: Colors.white,
+      //   // mini: true,
+      //   onPressed: () => Get.toNamed(Routes.ADD_TANDUR),
+      //   child: const Icon(Icons.add),
+      // ),
     );
   }
 }

@@ -18,6 +18,19 @@ class PlantProvider extends GetConnect {
     return response.body;
   }
 
+  Future<dynamic> getField(
+    int id,
+    int page,
+    String token,
+  ) async {
+    final response = await get("$url/field/id/$id?page=$page", headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $token',
+    });
+    return response.body;
+  }
+
   ////////////////// old //////////////////////////////
 
   Future<dynamic> getData(

@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:petani_app/app/data/models/farmer_model.dart';
+import 'package:petani_app/app/data/models/field_model.dart';
 import 'package:petani_app/app/data/models/plant_model.dart';
 import 'package:petani_app/app/data/models/plant_recap_model.dart';
 import 'package:petani_app/app/data/models/poktan_model.dart';
 import 'package:petani_app/app/data/models/user_model.dart';
 import 'package:petani_app/app/data/providers/plant_provider.dart';
+import 'package:petani_app/app/routes/app_pages.dart';
 import 'package:petani_app/app/utils/base_url.dart';
 import 'package:petani_app/app/utils/constant.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -30,6 +32,7 @@ class TandurController extends GetxController {
   @override
   void onInit() {
     getPlantRecap();
+    // getField();
     // getDataByid();
     // getDataTandur();
     // getDataPanen();
@@ -43,6 +46,7 @@ class TandurController extends GetxController {
   }
 
 //////////////////// new //////////////////////////////
+///// tandur
   var plantRecap = List<PlantRecap>.empty().obs;
   var pagePlant = 1.obs;
   RefreshController refreshPlantController =
@@ -82,6 +86,55 @@ class TandurController extends GetxController {
 
   void addItemPlant() {
     getPlantRecap();
+  }
+
+  // field
+  var field = List<Field>.empty().obs;
+  var pageField = 1.obs;
+  RefreshController refreshFieldController =
+      RefreshController(initialRefresh: false);
+
+  void getField() {
+    final data = box.read("userData") as Map<String, dynamic>;
+    try {
+      isLoading(true);
+      try {
+        PlantProvider()
+            .getField(data["petani_id"], pageField.value, data["token"])
+            .then((response) {
+          if (response["data"].length != 0) {
+            response["data"].map((e) {
+              final data = Field.fromJson(e as Map<String, dynamic>);
+              field.add(data);
+            }).toList();
+            pageField.value = pageField.value + 1;
+          } else {}
+        });
+      } catch (e) {
+        dialogError(e.toString());
+      }
+    } finally {
+      isLoading(false);
+    }
+  }
+
+  void onRefresField() async {
+    field.clear();
+    await Future.delayed(Duration(milliseconds: 1000));
+    pageField.value = 1;
+    getField();
+    refreshFieldController.refreshCompleted();
+  }
+
+  void onLoad() async {}
+
+  void addItemField() async {
+    getField();
+  }
+
+  void runFieldPage() async {
+    getField();
+    Get.toNamed(Routes.ADD_TANDUR);
   }
 
 //////////////////// old //////////////////////////////
