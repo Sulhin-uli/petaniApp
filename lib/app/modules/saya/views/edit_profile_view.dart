@@ -11,9 +11,9 @@ class EditProfileView extends GetView<SayaController> {
   @override
   Widget build(BuildContext context) {
     final data = loginC.userFarmer.first;
-    controller.city.text = data.farmers!.city!;
-    controller.address.text = data.farmers!.address!;
-    controller.telp.text = data.farmers!.telp!.toString();
+    // controller.city.text = data.farmers!.city!;
+    // controller.address.text = data.farmers!.address!;
+    // controller.telp.text = data.farmers!.telp!.toString();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,

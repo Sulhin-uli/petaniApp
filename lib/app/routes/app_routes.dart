@@ -6,6 +6,7 @@ abstract class Routes {
   static const HOME = _Paths.HOME;
   static const LOGIN = _Paths.LOGIN;
   static const CHECK_AUTH = _Paths.CHECK_AUTH;
+  static const FORGET_PASSWORD = _Paths.FORGET_PASSWORD;
 
   // Edukasi
   static const INDEX_EDUCATION = _Paths.INDEX_EDUCATION;
@@ -50,6 +51,7 @@ abstract class _Paths {
   static const HOME = '/home';
   static const LOGIN = '/login';
   static const CHECK_AUTH = '/check_auth';
+  static const FORGET_PASSWORD = '/forget-password';
 
   // edukasi
   static const INDEX_EDUCATION = '/index-education';

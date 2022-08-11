@@ -31,11 +31,17 @@ class IndexSayaView extends GetView<SayaController> {
             children: [
               Column(
                 children: [
+                  // Obx(
+                  //   () => loginC.userFarmer.first.farmers!.image == null
+                  //       ? Text("Null")
+                  //       : Text("Ada"),
+                  // ),
+
                   Center(
                     child: Stack(
                       children: <Widget>[
                         Obx(
-                          () => loginC.userFarmer.isNotEmpty
+                          () => loginC.userFarmer.first.farmers!.image != null
                               ? Container(
                                   margin: const EdgeInsets.all(15),
                                   width: 175,
@@ -178,15 +184,15 @@ class IndexSayaView extends GetView<SayaController> {
                 ),
                 title: const Text('Informasi Akun'),
               ),
-              ListTile(
-                onTap: () => Get.toNamed(Routes.EDIT_PROFILE),
-                leading: Image.asset(
-                  "assets/icons/edit-akun.png",
-                  width: 20,
-                  height: 20,
-                ),
-                title: const Text('Ubah Akun'),
-              ),
+              // ListTile(
+              //   onTap: () => Get.toNamed(Routes.EDIT_PROFILE),
+              //   leading: Image.asset(
+              //     "assets/icons/edit-akun.png",
+              //     width: 20,
+              //     height: 20,
+              //   ),
+              //   title: const Text('Ubah Akun'),
+              // ),
               ListTile(
                 onTap: () => Get.toNamed(Routes.EDIT_PASSWORD),
                 leading: Image.asset(

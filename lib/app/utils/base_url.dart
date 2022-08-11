@@ -4,26 +4,29 @@ import 'package:get/get.dart';
 const baseUrl = "http://192.168.43.123:8000/api/";
 const baseUrlFile = "http://192.168.43.123:8000/";
 
-// dialog
 void dialog(String title, String msg) {
   Get.defaultDialog(
+    titleStyle: TextStyle(fontSize: 12),
     title: title,
     content: Text(
       msg,
       textAlign: TextAlign.center,
+      style: TextStyle(fontSize: 12),
     ),
   );
-  Future.delayed(const Duration(seconds: 3), () {
-    Get.back();
-  });
+  // Future.delayed(const Duration(seconds: 5), () {
+  //   Get.back();
+  // });
 }
 
 void dialogNoBack(String title, String msg) {
   Get.defaultDialog(
     title: title,
+    titleStyle: TextStyle(fontSize: 12),
     content: Text(
       msg,
       textAlign: TextAlign.center,
+      style: TextStyle(fontSize: 12),
     ),
   );
 }

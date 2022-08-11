@@ -82,7 +82,6 @@ class LoginController extends GetxController {
     try {
       LoginProvider().login(email, password).then(
         (response) {
-          // print(response['data']);
           if (response["status"] != 200) {
             dialogError(response['messages']);
           } else {

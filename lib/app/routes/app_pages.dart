@@ -7,6 +7,8 @@ import 'package:petani_app/app/modules/education/bindings/education_binding.dart
 import 'package:petani_app/app/modules/education/views/detail_education_view.dart';
 import 'package:petani_app/app/modules/education/views/index_education_view.dart';
 import 'package:petani_app/app/modules/education/views/search_education_view.dart';
+import 'package:petani_app/app/modules/forget_password/bindings/forget_password_binding.dart';
+import 'package:petani_app/app/modules/forget_password/views/forget_password_view.dart';
 import 'package:petani_app/app/modules/history_plant/views/detail_history_plant_view.dart';
 import 'package:petani_app/app/modules/history_plant/views/history_plant_view.dart';
 import 'package:petani_app/app/modules/home/views/index_home_view.dart';
@@ -54,6 +56,12 @@ class AppPages {
       name: _Paths.CHECK_AUTH,
       page: () => CheckAuthView(),
       binding: LoginBinding(),
+    ),
+
+    GetPage(
+      name: _Paths.FORGET_PASSWORD,
+      page: () => ForgetPasswordView(),
+      binding: ForgetPasswordBinding(),
     ),
 
     // Edukasi

@@ -77,9 +77,9 @@ class SayaController extends GetxController {
     AkunPetaniProvider()
         .updateData(data["petani_id"], city, address, telp, data["token"])
         .then((_) {
-      item.farmers!.city = city;
-      item.farmers!.address = address;
-      item.farmers!.telp = int.parse(telp);
+      // item.farmers!.city = city;
+      // item.farmers!.address = address;
+      // item.farmers!.telp = int.parse(telp);
       loginController.userFarmer.refresh();
       Get.back();
       dialogSuccess("data berhasil diubah");

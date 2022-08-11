@@ -131,25 +131,25 @@ class Body extends GetView<HomeController> {
               ],
             ),
           ),
-          SizedBox(
-            height: 20,
-          ),
-          SizedBox(
-            height: 120,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: [
-                const SizedBox(
-                  width: 20,
-                ),
-                InkWell(
-                  onTap: () => Get.toNamed(Routes.HISTORY_PLANT),
-                  child: menuVertical("Riwayat Penanaman",
-                      const Color(0xff16A085), "history-penanaman.png"),
-                ),
-              ],
-            ),
-          ),
+          // SizedBox(
+          //   height: 20,
+          // ),
+          // SizedBox(
+          //   height: 120,
+          //   child: ListView(
+          //     scrollDirection: Axis.horizontal,
+          //     children: [
+          //       const SizedBox(
+          //         width: 20,
+          //       ),
+          //       InkWell(
+          //         onTap: () => Get.toNamed(Routes.HISTORY_PLANT),
+          //         child: menuVertical("Riwayat Penanaman",
+          //             const Color(0xff16A085), "history-penanaman.png"),
+          //       ),
+          //     ],
+          //   ),
+          // ),
           // const SizedBox(
           //   height: 30,
           // ),

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:petani_app/app/routes/app_pages.dart';
 
 import '../controllers/login_controller.dart';
 
@@ -98,34 +99,21 @@ class LoginView extends GetView<LoginController> {
                   ),
                 ),
                 const SizedBox(height: 30),
-                // Container(
-                //   margin: const EdgeInsets.only(bottom: 15),
-                //   alignment: Alignment.topRight,
-                //   child: TextButton(
-                //     onPressed: () {},
-                //     child: const Text(
-                //       "Lupa Kata Sandi?",
-                //       style: TextStyle(
-                //         color: Color(0xff16A085),
-                //       ),
-                //     ),
-                //   ),
-                // ),
-                // Center(
-                //   child: SizedBox(
-                //     height: 46, //height of button
-                //     width: 300,
-                //     child: ElevatedButton(
-                //       style: ElevatedButton.styleFrom(
-                //         primary: const Color(0xff16A085), // background
-                //       ),
-                //       onPressed: () => loginController.login(
-                //           loginController.email.text,
-                //           loginController.password.text),
-                //       child: const Text('Masuk'),
-                //     ),
-                //   ),
-                // ),
+                Container(
+                  margin: const EdgeInsets.only(bottom: 15),
+                  alignment: Alignment.topRight,
+                  child: TextButton(
+                    onPressed: () {
+                      Get.toNamed(Routes.FORGET_PASSWORD);
+                    },
+                    child: const Text(
+                      "Lupa Kata Sandi?",
+                      style: TextStyle(
+                        color: Color(0xff16A085),
+                      ),
+                    ),
+                  ),
+                ),
                 Center(
                   child: SizedBox(
                     height: 46, //height of button

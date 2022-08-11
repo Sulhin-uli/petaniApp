@@ -35,10 +35,15 @@ class Farmers {
   Farmers({
     this.id,
     this.userId,
+    this.gapoktanId,
     this.poktanId,
-    this.city,
-    this.address,
-    this.telp,
+    this.provinceId,
+    this.cityId,
+    this.districtId,
+    this.villageId,
+    this.street,
+    this.number,
+    this.phone,
     this.image,
     this.isActive,
     this.createdAt,
@@ -49,11 +54,16 @@ class Farmers {
 
   int? id;
   int? userId;
+  int? gapoktanId;
   int? poktanId;
-  String? city;
-  String? address;
-  int? telp;
-  String? image;
+  dynamic provinceId;
+  dynamic cityId;
+  dynamic districtId;
+  dynamic villageId;
+  dynamic street;
+  dynamic number;
+  dynamic phone;
+  dynamic image;
   int? isActive;
   DateTime? createdAt;
   DateTime? updatedAt;
@@ -63,10 +73,15 @@ class Farmers {
   factory Farmers.fromJson(Map<String, dynamic> json) => Farmers(
         id: json["id"],
         userId: json["user_id"],
+        gapoktanId: json["gapoktan_id"],
         poktanId: json["poktan_id"],
-        city: json["city"],
-        address: json["address"],
-        telp: json["telp"],
+        provinceId: json["province_id"],
+        cityId: json["city_id"],
+        districtId: json["district_id"],
+        villageId: json["village_id"],
+        street: json["street"],
+        number: json["number"],
+        phone: json["phone"],
         image: json["image"],
         isActive: json["is_active"],
         createdAt: DateTime.parse(json["created_at"]),
@@ -78,10 +93,15 @@ class Farmers {
   Map<String, dynamic> toJson() => {
         "id": id,
         "user_id": userId,
+        "gapoktan_id": gapoktanId,
         "poktan_id": poktanId,
-        "city": city,
-        "address": address,
-        "telp": telp,
+        "province_id": provinceId,
+        "city_id": cityId,
+        "district_id": districtId,
+        "village_id": villageId,
+        "street": street,
+        "number": number,
+        "phone": phone,
         "image": image,
         "is_active": isActive,
         "created_at": createdAt!.toIso8601String(),
@@ -102,7 +122,6 @@ class User {
     this.fcmToken,
     this.createdAt,
     this.updatedAt,
-    this.isEmailVerified,
     this.roles,
   });
 
@@ -110,12 +129,11 @@ class User {
   String? name;
   String? email;
   dynamic emailVerifiedAt;
-  String? token;
-  DateTime? tokenExpire;
+  dynamic token;
+  dynamic tokenExpire;
   dynamic fcmToken;
   DateTime? createdAt;
   DateTime? updatedAt;
-  int? isEmailVerified;
   List<Role>? roles;
 
   factory User.fromJson(Map<String, dynamic> json) => User(
@@ -124,11 +142,10 @@ class User {
         email: json["email"],
         emailVerifiedAt: json["email_verified_at"],
         token: json["token"],
-        tokenExpire: DateTime.parse(json["token_expire"]),
+        tokenExpire: json["token_expire"],
         fcmToken: json["fcm_token"],
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
-        isEmailVerified: json["is_email_verified"],
         roles: List<Role>.from(json["roles"].map((x) => Role.fromJson(x))),
       );
 
@@ -138,11 +155,10 @@ class User {
         "email": email,
         "email_verified_at": emailVerifiedAt,
         "token": token,
-        "token_expire": tokenExpire!.toIso8601String(),
+        "token_expire": tokenExpire,
         "fcm_token": fcmToken,
         "created_at": createdAt!.toIso8601String(),
         "updated_at": updatedAt!.toIso8601String(),
-        "is_email_verified": isEmailVerified,
         "roles": List<dynamic>.from(roles!.map((x) => x.toJson())),
       };
 }
