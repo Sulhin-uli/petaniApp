@@ -16,6 +16,7 @@ class ItemActivityView extends GetView<ActivityController> {
       onTap: () => Get.toNamed(Routes.DETAIL_ACTIVITY, arguments: data.id),
       child: Card(
         clipBehavior: Clip.antiAlias,
+        elevation: 3,
         child: Column(
           children: [
             Container(
@@ -31,7 +32,7 @@ class ItemActivityView extends GetView<ActivityController> {
                   children: [
                     Text(
                       data.userId.name,
-                      style: const TextStyle(color: Colors.red),
+                      style: const TextStyle(color: Colors.red, fontSize: 12),
                     ),
                     const SizedBox(
                       height: 6,
@@ -39,7 +40,8 @@ class ItemActivityView extends GetView<ActivityController> {
                     Text(
                       DateFormat("EEEE, d MMMM yyyy", "id_ID")
                           .format(data.date!),
-                      style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                      style: TextStyle(
+                          color: Colors.black.withOpacity(0.6), fontSize: 12),
                     ),
                   ],
                 ),

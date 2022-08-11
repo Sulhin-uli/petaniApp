@@ -4,6 +4,22 @@ import 'package:petani_app/app/utils/base_url.dart';
 class PlantProvider extends GetConnect {
   String url = baseUrl + "plant";
 
+  ////////////////// new //////////////////////////////
+  Future<dynamic> getPlantRecap(
+    int id,
+    int page,
+    String token,
+  ) async {
+    final response = await get("$url/farmer/id/$id?page=$page", headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $token',
+    });
+    return response.body;
+  }
+
+  ////////////////// old //////////////////////////////
+
   Future<dynamic> getData(
     String token,
   ) async {

@@ -121,12 +121,12 @@ class Body extends GetView<HomeController> {
                 InkWell(
                   onTap: () => Get.toNamed(Routes.INDEX_TANDUR),
                   child: menuVertical(
-                      "Jadwal Tandur", const Color(0xff16A085), "tandur.png"),
+                      "Laporan Tandur", const Color(0xff16A085), "tandur.png"),
                 ),
                 InkWell(
                   onTap: () => Get.toNamed(Routes.INDEX_PANEN),
                   child: menuVertical(
-                      "Jadwal Panen", const Color(0xff16A085), "panen.png"),
+                      "Laporan Panen", const Color(0xff16A085), "panen.png"),
                 ),
               ],
             ),

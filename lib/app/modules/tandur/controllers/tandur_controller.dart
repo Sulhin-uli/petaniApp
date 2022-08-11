@@ -3,10 +3,13 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:petani_app/app/data/models/farmer_model.dart';
 import 'package:petani_app/app/data/models/plant_model.dart';
+import 'package:petani_app/app/data/models/plant_recap_model.dart';
 import 'package:petani_app/app/data/models/poktan_model.dart';
 import 'package:petani_app/app/data/models/user_model.dart';
 import 'package:petani_app/app/data/providers/plant_provider.dart';
 import 'package:petani_app/app/utils/base_url.dart';
+import 'package:petani_app/app/utils/constant.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class TandurController extends GetxController {
   final box = GetStorage();
@@ -26,10 +29,11 @@ class TandurController extends GetxController {
 
   @override
   void onInit() {
+    getPlantRecap();
     // getDataByid();
-    getDataTandur();
-    getDataPanen();
-    getData();
+    // getDataTandur();
+    // getDataPanen();
+    // getData();
     plant_tanaman = TextEditingController();
     surface_area = TextEditingController();
     address = TextEditingController();
@@ -38,6 +42,49 @@ class TandurController extends GetxController {
     super.onInit();
   }
 
+//////////////////// new //////////////////////////////
+  var plantRecap = List<PlantRecap>.empty().obs;
+  var pagePlant = 1.obs;
+  RefreshController refreshPlantController =
+      RefreshController(initialRefresh: false);
+
+  void getPlantRecap() {
+    final data = box.read("userData") as Map<String, dynamic>;
+    try {
+      isLoading(true);
+      try {
+        PlantProvider()
+            .getPlantRecap(data["id"], pagePlant.value, data["token"])
+            .then((response) {
+          if (response["data"].length != 0) {
+            response["data"].map((e) {
+              final data = PlantRecap.fromJson(e as Map<String, dynamic>);
+              plantRecap.add(data);
+            }).toList();
+            pagePlant.value = pagePlant.value + 1;
+          } else {}
+        });
+      } catch (e) {
+        dialogError(e.toString());
+      }
+    } finally {
+      isLoading(false);
+    }
+  }
+
+  void onRefresPlant() async {
+    plantRecap.clear();
+    await Future.delayed(Duration(milliseconds: 1000));
+    pagePlant.value = 1;
+    getPlantRecap();
+    refreshPlantController.refreshCompleted();
+  }
+
+  void addItemPlant() {
+    getPlantRecap();
+  }
+
+//////////////////// old //////////////////////////////
   // add data
   void postData(
     String plantTanaman,
@@ -129,36 +176,36 @@ class TandurController extends GetxController {
       final data = box.read("userData") as Map<String, dynamic>;
       return PlantProvider().getData(data["token"]).then((response) {
         try {
-          response["data"].map((e) {
-            if (e["farmer_id"]["id"] == data["petani_id"]) {
-              if (e["status"] == "tandur") {
-                final data = Plant(
-                  id: e["id"],
-                  farmerId: Farmer(
-                    id: e["farmer_id"]["id"],
-                    userId: User(
-                      id: e["farmer_id"]["user_id"]["id"],
-                      name: e["farmer_id"]["user_id"]["name"],
-                    ),
-                    city: e["farmer_id"]["city"],
-                    image: e["farmer_id"]["image"],
-                  ),
-                  poktanId: Poktan(
-                    id: e["farmer_id"]["poktan_id"]["id"],
-                  ),
-                  plantTanaman: e["plant_tanaman"],
-                  surfaceArea: e["surface_area"],
-                  address: e["address"],
-                  platingDate: e["plating_date"],
-                  harvestDate: e["harvest_date"],
-                  isMark: false,
-                  createdAt: e["created_at"],
-                  updatedAt: e["updated_at"],
-                );
-                plantTandur.add(data);
-              }
-            }
-          }).toList();
+          // response["data"].map((e) {
+          //   if (e["farmer_id"]["id"] == data["petani_id"]) {
+          //     if (e["status"] == "tandur") {
+          //       final data = Plant(
+          //         id: e["id"],
+          //         farmerId: Farmer(
+          //           id: e["farmer_id"]["id"],
+          //           userId: User(
+          //             id: e["farmer_id"]["user_id"]["id"],
+          //             name: e["farmer_id"]["user_id"]["name"],
+          //           ),
+          //           city: e["farmer_id"]["city"],
+          //           image: e["farmer_id"]["image"],
+          //         ),
+          //         poktanId: Poktan(
+          //           id: e["farmer_id"]["poktan_id"]["id"],
+          //         ),
+          //         plantTanaman: e["plant_tanaman"],
+          //         surfaceArea: e["surface_area"],
+          //         address: e["address"],
+          //         platingDate: e["plating_date"],
+          //         harvestDate: e["harvest_date"],
+          //         isMark: false,
+          //         createdAt: e["created_at"],
+          //         updatedAt: e["updated_at"],
+          //       );
+          //       plantTandur.add(data);
+          //     }
+          //   }
+          // }).toList();
         } catch (e) {
           print("Error is : " + e.toString());
         }
@@ -208,7 +255,7 @@ class TandurController extends GetxController {
     });
   }
 
-  Future getData() async {
+  Future getDataOld() async {
     final data = box.read("userData") as Map<String, dynamic>;
     return PlantProvider().getData(data["token"]).then((response) {
       try {

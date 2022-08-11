@@ -137,7 +137,7 @@ class SayaController extends GetxController {
           TextButton(
             onPressed: () {
               Navigator.pop(context, 'Ya');
-              loginController.userFarmer.clear();
+              // loginController.userFarmer.clear();
               box.erase();
               Get.offAndToNamed(Routes.LOGIN);
             },
