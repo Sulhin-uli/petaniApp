@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:petani_app/app/modules/panen/controllers/panen_controller.dart';
+import 'package:petani_app/app/modules/panen/views/item_plant_view.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-class AddPanenView extends GetView {
+class AddPanenView extends GetView<PanenController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,79 +17,98 @@ class AddPanenView extends GetView {
           'Tambah Panen',
           style: TextStyle(color: Colors.black, fontSize: 16),
         ),
+        // actions: [
+        //   Obx(() => controller.isMark.isTrue
+        //       ? Row(
+        //           children: [
+        //             IconButton(
+        //               color: Colors.grey,
+        //               icon: Icon(Icons.delete),
+        //               onPressed: () {
+        //                 controller.deleteMultiple(context, "tandur");
+        //               },
+        //             ),
+        //             TextButton(
+        //               onPressed: () {
+        //                 controller.isMark(false);
+        //               },
+        //               child: Text(
+        //                 "batal",
+        //                 style: TextStyle(color: Colors.grey),
+        //               ),
+        //             ),
+        //           ],
+        //         )
+        //       : Container()),
+        // ],
         elevation: 0.5,
       ),
-      backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 50),
-              const Text(
-                "Label",
-                style: TextStyle(
-                  color: Color(0xff919A92),
-                ),
-              ),
-              TextFormField(
-                cursorColor: const Color(0xff16A085),
-                decoration: const InputDecoration(
-                  helperText: 'Contoh: Label',
-                  // fillColor: Color(0xff919A92),
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(0xff919A92),
-                    ),
-                  ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(0xff16A085),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 30),
-              const Text(
-                "Label",
-                style: TextStyle(
-                  color: Color(0xff919A92),
-                ),
-              ),
-              TextFormField(
-                cursorColor: Colors.black,
-                decoration: const InputDecoration(
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(0xff919A92),
-                    ),
-                  ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(0xff16A085),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 30),
-              Center(
-                child: SizedBox(
-                  height: 46, //height of button
-                  width: 300,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: const Color(0xff16A085), // background
-                    ),
-                    onPressed: () {},
-                    child: const Text('Tambah'),
-                  ),
-                ),
-              )
-            ],
-          ),
+      body: NotificationListener<ScrollEndNotification>(
+        onNotification: (scrollEnd) {
+          final metrics = scrollEnd.metrics;
+          if (metrics.atEdge) {
+            bool isTop = metrics.pixels == 0;
+            if (isTop) {
+              // print('At the top');
+            } else {
+              // print('At the bottom');
+              controller.addItemPlant();
+            }
+          }
+          return true;
+        },
+        child: SmartRefresher(
+          controller: controller.refreshPlantController,
+          onRefresh: controller.onRefresPlant,
+          header: WaterDropMaterialHeader(),
+          enablePullDown: true,
+          enablePullUp: false,
+          child: Obx(() => controller.isLoading.isTrue
+              ? Center(child: CircularProgressIndicator())
+              : controller.plant.isNotEmpty
+                  ? SingleChildScrollView(
+                      child: Padding(
+                        padding: const EdgeInsets.all(2),
+                        child: Column(
+                          children: [
+                            ListView.builder(
+                              itemCount: controller.plant.length,
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemBuilder: (context, index) {
+                                final data = controller.plant[index];
+                                return ItemPlantView(data);
+                              },
+                            )
+                          ],
+                        ),
+                      ),
+                    )
+                  : Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SvgPicture.asset(
+                            "assets/icons/empty-data.svg",
+                            height: 100,
+                            width: 100,
+                          ),
+                          Text(
+                            "Data Tidak Ada",
+                            style: TextStyle(color: Colors.grey),
+                          )
+                        ],
+                      ),
+                    )),
         ),
       ),
+      // floatingActionButton: FloatingActionButton(
+      //   backgroundColor: const Color(0xff16A085),
+      //   foregroundColor: Colors.white,
+      //   // mini: true,
+      //   onPressed: () => Get.toNamed(Routes.ADD_TANDUR),
+      //   child: const Icon(Icons.add),
+      // ),
     );
   }
 }

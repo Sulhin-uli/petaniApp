@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:petani_app/app/modules/panen/controllers/panen_controller.dart';
 import 'package:petani_app/app/modules/tandur/controllers/tandur_controller.dart';
 import 'package:petani_app/app/routes/app_pages.dart';
 
 import 'package:get/get.dart';
 import 'package:petani_app/app/utils/base_url.dart';
 
-class ItemView extends GetView<TandurController> {
-  const ItemView(this.data);
+class ItemPlantView extends GetView<PanenController> {
+  const ItemPlantView(this.data);
   final data;
 
   @override
@@ -45,14 +46,28 @@ class ItemView extends GetView<TandurController> {
               ),
               const SizedBox(height: 15),
               const Text(
-                "Tanggal Panen",
+                "Tanggal Tandur",
                 style: TextStyle(color: Color(0xff919A92), fontSize: 12),
               ),
               const SizedBox(height: 5),
-              Text(
-                DateFormat("EEEE, d MMMM yyyy", "id_ID")
-                    .format(data.dateHarvest!),
-                style: TextStyle(fontSize: 15),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    DateFormat("EEEE, d MMMM yyyy", "id_ID")
+                        .format(data.datePlanting!),
+                    style: TextStyle(fontSize: 15),
+                  ),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: const Color(0xff16A085), // background
+                    ),
+                    onPressed: () {
+                      Get.toNamed(Routes.ADD_PLANT_DATE, arguments: data.id!);
+                    },
+                    child: const Text('Pilih Data'),
+                  ),
+                ],
               ),
               const SizedBox(height: 15),
             ],

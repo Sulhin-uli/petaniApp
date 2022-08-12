@@ -15,6 +15,7 @@ import 'package:petani_app/app/modules/home/views/index_home_view.dart';
 import 'package:petani_app/app/modules/login/views/check_auth_view.dart';
 import 'package:petani_app/app/modules/notifikasi/bindings/notifikasi_binding.dart';
 import 'package:petani_app/app/modules/notifikasi/views/index_notifikasi_view.dart';
+import 'package:petani_app/app/modules/panen/bindings/panen_binding.dart';
 import 'package:petani_app/app/modules/panen/views/add_panen_view.dart';
 import 'package:petani_app/app/modules/panen/views/detail_panen_view.dart';
 import 'package:petani_app/app/modules/panen/views/edit_panen_view.dart';
@@ -149,12 +150,12 @@ class AppPages {
     GetPage(
       name: _Paths.INDEX_PANEN,
       page: () => IndexPanenView(),
-      binding: TandurBinding(),
+      binding: PanenBinding(),
     ),
     GetPage(
       name: _Paths.DETAIL_PANEN,
       page: () => DetailPanenView(),
-      binding: TandurBinding(),
+      binding: PanenBinding(),
     ),
     GetPage(
       name: _Paths.ADD_PANEN,
@@ -164,7 +165,7 @@ class AppPages {
     GetPage(
       name: _Paths.EDIT_PANEN,
       page: () => EditPanenView(),
-      binding: TandurBinding(),
+      binding: PanenBinding(),
     ),
 
     // Saya

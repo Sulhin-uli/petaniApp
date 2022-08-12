@@ -5,6 +5,7 @@ class PlantProvider extends GetConnect {
   String url = baseUrl + "plant";
 
   ////////////////// new //////////////////////////////
+  ///// Tandur
   Future<dynamic> getPlantRecap(
     int id,
     int page,
@@ -49,6 +50,51 @@ class PlantProvider extends GetConnect {
     return response.body;
   }
 
+  /// Panen
+
+  Future<dynamic> getPlantForHarvest(
+    int id,
+    int page,
+    String token,
+  ) async {
+    final response = await get("$url/harvest/plant/$id?page=$page", headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $token',
+    });
+    return response.body;
+  }
+
+  Future<dynamic> getHarvestRecap(
+    int id,
+    int page,
+    String token,
+  ) async {
+    final response = await get("$url/harvest/$id?page=$page", headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $token',
+    });
+    return response.body;
+  }
+
+  Future<dynamic> storeHarvest(
+    int farmerId,
+    int fieldId,
+    String datePlanting,
+    String token,
+  ) async {
+    final response = await post("$url/harvest/post", {
+      "farmer_id": farmerId,
+      "field_id": fieldId,
+      "date_planting": datePlanting,
+    }, headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $token',
+    });
+    return response.body;
+  }
   ////////////////// old //////////////////////////////
 
   Future<dynamic> getData(

@@ -139,8 +139,6 @@ class TandurController extends GetxController {
   }
 
   void addPlantDate(int fieldId, String platingDate) async {
-    plantRecap.clear();
-    field.clear();
     await Future.delayed(Duration(milliseconds: 1000));
     try {
       final data = box.read("userData") as Map<String, dynamic>;
@@ -151,9 +149,10 @@ class TandurController extends GetxController {
     } catch (e) {
       dialogError(e.toString());
     }
-    getPlantRecap();
-    getField();
+    onRefresField();
+    onRefresPlant();
     Get.back();
+    dialogSuccess("Data Berhasil Ditambahkan");
   }
 
 //////////////////// old //////////////////////////////

@@ -16,10 +16,16 @@ void dialogError(String msg) {
   Get.defaultDialog(
     title: "Peringatan",
     titleStyle: TextStyle(fontSize: 12),
-    content: Text(
-      msg,
-      textAlign: TextAlign.center,
-      style: TextStyle(fontSize: 12),
+    content: Column(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        Text(
+          msg,
+          textAlign: TextAlign.center,
+          style: TextStyle(fontSize: 12),
+        ),
+        TextButton(onPressed: () => Get.back(), child: Text("Tutup"))
+      ],
     ),
   );
 }
@@ -28,10 +34,16 @@ void dialogSuccess(String msg) {
   Get.defaultDialog(
     title: "Info",
     titleStyle: TextStyle(fontSize: 12),
-    content: Text(
-      msg,
-      textAlign: TextAlign.center,
-      style: TextStyle(fontSize: 12),
+    content: Column(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        Text(
+          msg,
+          textAlign: TextAlign.center,
+          style: TextStyle(fontSize: 12),
+        ),
+        TextButton(onPressed: () => Get.back(), child: Text("Tutup"))
+      ],
     ),
   );
 }
