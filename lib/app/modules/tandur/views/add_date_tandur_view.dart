@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -66,36 +68,36 @@ class AddDateTandurView extends GetView<TandurController> {
                 ),
               ),
               const SizedBox(height: 30),
-              // Center(
-              //   child: SizedBox(
-              //     height: 46, //height of button
-              //     width: 300,
-              //     child: ElevatedButton(
-              //       style: ElevatedButton.styleFrom(
-              //         primary: const Color(0xff16A085), // background
-              //       ),
-              //       onPressed: () {},
-              //       child: const Text('Simpan'),
-              //     ),
-              //   ),
-              // )
-              Row(
-                children: [
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.grey, // background
-                    ),
-                    onPressed: () {},
-                    child: const Text('Kembali'),
-                  ),
-                  ElevatedButton(
+              Center(
+                child: SizedBox(
+                  height: 46, //height of button
+                  width: 300,
+                  child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       primary: const Color(0xff16A085), // background
                     ),
-                    onPressed: () {},
-                    child: const Text('Simpan'),
+                    onPressed: () {
+                      // if (controller.formGlobalKey.currentState!.validate()) {
+                      controller.isLoading(true);
+                      Timer(const Duration(seconds: 3), () {
+                        try {
+                          // loginController.login(
+                          //     controller.email.text, controller.password.text);
+                          controller.addPlantDate(
+                              Get.arguments, controller.plating_date.text);
+                        } finally {
+                          controller.isLoading(false);
+                        }
+                      });
+                      // }
+                    },
+                    child: Obx(
+                      () => controller.isLoading.isTrue
+                          ? const CircularProgressIndicator()
+                          : const Text('Simpan'),
+                    ),
                   ),
-                ],
+                ),
               )
             ],
           ),

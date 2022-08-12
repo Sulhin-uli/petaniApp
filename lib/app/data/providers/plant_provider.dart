@@ -31,6 +31,24 @@ class PlantProvider extends GetConnect {
     return response.body;
   }
 
+  Future<dynamic> storePlant(
+    int farmerId,
+    int fieldId,
+    String datePlanting,
+    String token,
+  ) async {
+    final response = await post("$url/plant/post", {
+      "farmer_id": farmerId,
+      "field_id": fieldId,
+      "date_planting": datePlanting,
+    }, headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $token',
+    });
+    return response.body;
+  }
+
   ////////////////// old //////////////////////////////
 
   Future<dynamic> getData(

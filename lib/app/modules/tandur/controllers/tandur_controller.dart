@@ -60,6 +60,7 @@ class TandurController extends GetxController {
         PlantProvider()
             .getPlantRecap(data["id"], pagePlant.value, data["token"])
             .then((response) {
+          // print(response);
           if (response["data"].length != 0) {
             response["data"].map((e) {
               final data = PlantRecap.fromJson(e as Map<String, dynamic>);
@@ -135,6 +136,24 @@ class TandurController extends GetxController {
   void runFieldPage() async {
     getField();
     Get.toNamed(Routes.ADD_TANDUR);
+  }
+
+  void addPlantDate(int fieldId, String platingDate) async {
+    plantRecap.clear();
+    field.clear();
+    await Future.delayed(Duration(milliseconds: 1000));
+    try {
+      final data = box.read("userData") as Map<String, dynamic>;
+
+      PlantProvider()
+          .storePlant(data["petani_id"], fieldId, platingDate, data["token"])
+          .then((response) {});
+    } catch (e) {
+      dialogError(e.toString());
+    }
+    getPlantRecap();
+    getField();
+    Get.back();
   }
 
 //////////////////// old //////////////////////////////

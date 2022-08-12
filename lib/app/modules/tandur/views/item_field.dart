@@ -61,7 +61,7 @@ class ItemFieldView extends GetView<TandurController> {
                       primary: const Color(0xff16A085), // background
                     ),
                     onPressed: () {
-                      Get.toNamed(Routes.ADD_PLANT_DATE);
+                      Get.toNamed(Routes.ADD_PLANT_DATE, arguments: data.id!);
                     },
                     child: const Text('Pilih Data'),
                   ),
