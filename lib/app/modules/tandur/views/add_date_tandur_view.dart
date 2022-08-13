@@ -5,10 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:petani_app/app/modules/tandur/controllers/tandur_controller.dart';
+import 'package:petani_app/app/utils/constant.dart';
 
 class AddDateTandurView extends GetView<TandurController> {
   @override
   Widget build(BuildContext context) {
+    DateTime? dateSelect;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -39,7 +41,7 @@ class AddDateTandurView extends GetView<TandurController> {
                       initialDate: DateTime.now(),
                       firstDate: DateTime(2000),
                       lastDate: DateTime(2101));
-
+                  dateSelect = pickedDate;
                   if (pickedDate != null) {
                     String formattedDate =
                         DateFormat('yyyy-MM-dd').format(pickedDate);
@@ -83,9 +85,35 @@ class AddDateTandurView extends GetView<TandurController> {
                         try {
                           // loginController.login(
                           //     controller.email.text, controller.password.text);
-                          controller.addPlantDate(
-                              Get.arguments, controller.plating_date.text);
+                          // controller.addPlantDate(
+                          //     Get.arguments, controller.plating_date.text);
+                          DateTime dateTimeNow = DateTime.now();
+
+                          String dateNow =
+                              DateFormat('yyyy-MM-dd').format(DateTime.now());
+                          if (dateSelect == null) {
+                            dialogError("Tanggal tidak boleh kosong");
+                          } else {
+                            bool isValidDate =
+                                dateTimeNow.isBefore(dateSelect!);
+
+                            if (isValidDate) {
+                              controller.addPlantDate(
+                                  Get.arguments, controller.plating_date.text);
+                            } else if (dateNow ==
+                                controller.plating_date.text) {
+                              controller.addPlantDate(
+                                  Get.arguments, controller.plating_date.text);
+                            } else {
+                              dialogError(
+                                  "Tanggal yang dipilih tidak boleh mundur dari tanggal sekarang");
+                            }
+                          }
+
+                          // print(dateNow == controller.plating_date.text);
+
                         } finally {
+                          controller.plating_date.clear();
                           controller.isLoading(false);
                         }
                       });
