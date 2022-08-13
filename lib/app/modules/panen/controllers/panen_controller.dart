@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:petani_app/app/data/models/harvest_recap_model.dart';
@@ -18,6 +19,10 @@ class PanenController extends GetxController {
   }
 
   final box = GetStorage();
+  final formGlobalKey = GlobalKey<FormState>();
+  final statusValidator = MultiValidator([
+    RequiredValidator(errorText: 'kolom tidak boleh kosong'),
+  ]);
 
   /// Harvest
   var harvestRecap = List<HarvestRecap>.empty().obs;

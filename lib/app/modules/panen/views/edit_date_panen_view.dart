@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:petani_app/app/modules/panen/controllers/panen_controller.dart';
 import 'package:petani_app/app/modules/tandur/controllers/tandur_controller.dart';
+import 'package:petani_app/app/utils/constant.dart';
 
 class EditHarvestDateView extends GetView<PanenController> {
   @override
@@ -17,6 +18,7 @@ class EditHarvestDateView extends GetView<PanenController> {
     controller.harvestDate.text = formattedDate;
     // status
     controller.status.text = data.status!;
+    DateTime? dateSelect = data.dateHarvest!;
 
     return Scaffold(
       appBar: AppBar(
@@ -48,7 +50,7 @@ class EditHarvestDateView extends GetView<PanenController> {
                       initialDate: DateTime.now(),
                       firstDate: DateTime(2000),
                       lastDate: DateTime(2101));
-
+                  dateSelect = pickedDate;
                   if (pickedDate != null) {
                     String formattedDate =
                         DateFormat('yyyy-MM-dd').format(pickedDate);
@@ -138,13 +140,37 @@ class EditHarvestDateView extends GetView<PanenController> {
                         try {
                           // loginController.login(
                           //     controller.email.text, controller.password.text);
-                          controller.updateHarvestDate(
-                            data.id!,
-                            data.plantingId!,
-                            data.fieldId!,
-                            controller.harvestDate.text,
-                            controller.status.text,
-                          );
+                          DateTime dateTimeNow = DateTime.now();
+
+                          String dateNow =
+                              DateFormat('yyyy-MM-dd').format(DateTime.now());
+                          if (dateSelect == null) {
+                            dialogError("Tanggal tidak boleh kosong");
+                          } else {
+                            bool isValidDate =
+                                dateTimeNow.isBefore(dateSelect!);
+
+                            if (isValidDate) {
+                              controller.updateHarvestDate(
+                                data.id!,
+                                data.plantingId!,
+                                data.fieldId!,
+                                controller.harvestDate.text,
+                                controller.status.text,
+                              );
+                            } else if (dateNow == controller.harvestDate.text) {
+                              controller.updateHarvestDate(
+                                data.id!,
+                                data.plantingId!,
+                                data.fieldId!,
+                                controller.harvestDate.text,
+                                controller.status.text,
+                              );
+                            } else {
+                              dialogError(
+                                  "Tanggal yang dipilih tidak boleh mundur dari tanggal sekarang");
+                            }
+                          }
                         } finally {
                           controller.isLoading(false);
                         }
