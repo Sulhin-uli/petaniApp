@@ -24,7 +24,12 @@ void dialogError(String msg) {
           textAlign: TextAlign.center,
           style: TextStyle(fontSize: 12),
         ),
-        TextButton(onPressed: () => Get.back(), child: Text("Tutup"))
+        TextButton(
+            onPressed: () => Get.back(),
+            child: Text(
+              "Tutup",
+              style: TextStyle(fontSize: 12),
+            ))
       ],
     ),
   );
@@ -42,7 +47,12 @@ void dialogSuccess(String msg) {
           textAlign: TextAlign.center,
           style: TextStyle(fontSize: 12),
         ),
-        TextButton(onPressed: () => Get.back(), child: Text("Tutup"))
+        TextButton(
+            onPressed: () => Get.back(),
+            child: Text(
+              "Tutup",
+              style: TextStyle(fontSize: 12),
+            ))
       ],
     ),
   );

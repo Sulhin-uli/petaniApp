@@ -66,6 +66,8 @@ class ActivityController extends GetxController {
   void runSearch(String searchType) {
     if (searchType == "") {
       dialogError("Kolom tidak boleh kosong");
+    } else if (searchType.length > 15) {
+      dialogError("Maksimal 15 karakter");
     } else {
       activitySearch.clear();
       pageSearch.value = 1;

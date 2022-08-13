@@ -23,17 +23,17 @@ class SearchActivityView extends GetView<ActivityController> {
                 style: TextStyle(color: Colors.black, fontSize: 12)),
           ],
         ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              Get.back();
-            },
-            icon: Icon(
-              Icons.cancel,
-              color: Colors.grey,
-            ),
-          ),
-        ],
+        // actions: [
+        //   IconButton(
+        //     onPressed: () {
+        //       Get.back();
+        //     },
+        //     icon: Icon(
+        //       Icons.cancel,
+        //       color: Colors.grey,
+        //     ),
+        //   ),
+        // ],
         elevation: 0.5,
       ),
       backgroundColor: Colors.white,

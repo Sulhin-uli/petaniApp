@@ -56,14 +56,27 @@ class IndexEducationView extends GetView<EducationController> {
                       Icons.search,
                       color: Colors.grey,
                     ))
-                : IconButton(
-                    onPressed: () {
-                      controller.isSearch(false);
-                    },
-                    icon: Icon(
-                      Icons.cancel,
-                      color: Colors.grey,
-                    ),
+                : Row(
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          controller.seacrh.clear();
+                        },
+                        icon: Icon(
+                          Icons.close_sharp,
+                          color: Colors.grey,
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          controller.isSearch(false);
+                        },
+                        icon: Icon(
+                          Icons.refresh,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ],
                   ),
           )
         ],
