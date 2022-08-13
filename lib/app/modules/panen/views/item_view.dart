@@ -12,69 +12,51 @@ class ItemView extends GetView<TandurController> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onLongPress: () {
-        controller.isMark(true);
-      },
-      onTap: () => Get.toNamed(Routes.DETAIL_PANEN, arguments: data!.id),
+    return Container(
       child: Card(
-        clipBehavior: Clip.antiAlias,
-        child: Column(
-          children: [
-            ListTile(
-              leading: (data.farmerId!.image == null)
-                  ? CircleAvatar(
-                      backgroundImage: AssetImage("assets/images/noimage.png"),
-                    )
-                  : CircleAvatar(
-                      backgroundImage: NetworkImage(
-                        baseUrlFile + "storage/profile/" + data.farmerId!.image,
-                      ),
-                    ),
-              title: Text(data.farmerId.userId.name),
-              subtitle: Text(
+        elevation: 3,
+        child: Container(
+          padding: EdgeInsets.all(16),
+          width: double.infinity,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                "Nama Petani",
+                style: TextStyle(color: Color(0xff919A92), fontSize: 12),
+              ),
+              const SizedBox(height: 5),
+              Text(
+                data.farmerName!,
+                style: TextStyle(fontSize: 15),
+              ),
+              const SizedBox(height: 15),
+              const Text(
+                "Lahan",
+                style: TextStyle(color: Color(0xff919A92), fontSize: 12),
+              ),
+              const SizedBox(height: 5),
+              Text(
+                data.fieldCategoryName! +
+                    " (" +
+                    data.fieldCategoryDetails! +
+                    ")",
+                style: TextStyle(fontSize: 15),
+              ),
+              const SizedBox(height: 15),
+              const Text(
+                "Tanggal Panen",
+                style: TextStyle(color: Color(0xff919A92), fontSize: 12),
+              ),
+              const SizedBox(height: 5),
+              Text(
                 DateFormat("EEEE, d MMMM yyyy", "id_ID")
-                    .format(DateTime.tryParse(data.platingDate)!),
-                style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                    .format(data.dateHarvest!),
+                style: TextStyle(fontSize: 15),
               ),
-              trailing: Obx(
-                () => controller.isMark.value == true
-                    ? Checkbox(
-                        value: data.isMark!,
-                        onChanged: (e) {
-                          data.isMark = e;
-                          controller.plantPanen.refresh();
-                          if (data.isMark == true) {
-                            controller.itemId.add(data.id);
-                          } else if (data.isMark == false) {
-                            controller.itemId.remove(data.id);
-                          }
-                        })
-                    : Wrap(
-                        spacing: 1, // space between two icons
-                        children: [
-                          InkWell(
-                            onTap: () => Get.toNamed(Routes.EDIT_PANEN,
-                                arguments: data.id),
-                            child: const Icon(
-                              Icons.edit,
-                              size: 20,
-                            ),
-                          ),
-                          const SizedBox(width: 5),
-                          InkWell(
-                            onTap: () => controller.dialogDelete(
-                                context, data.id, "tandur"),
-                            child: const Icon(
-                              Icons.delete,
-                              size: 20,
-                            ),
-                          )
-                        ],
-                      ),
-              ),
-            ),
-          ],
+              const SizedBox(height: 15),
+            ],
+          ),
         ),
       ),
     );

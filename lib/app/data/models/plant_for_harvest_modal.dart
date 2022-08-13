@@ -14,6 +14,7 @@ class PlantForHarvest {
   PlantForHarvest({
     this.id,
     this.farmerName,
+    this.fieldId,
     this.fieldCategoryName,
     this.fieldCategoryDetails,
     this.datePlanting,
@@ -25,6 +26,7 @@ class PlantForHarvest {
 
   int? id;
   String? farmerName;
+  int? fieldId;
   String? fieldCategoryName;
   String? fieldCategoryDetails;
   DateTime? datePlanting;
@@ -37,6 +39,7 @@ class PlantForHarvest {
       PlantForHarvest(
         id: json["id"],
         farmerName: json["farmer_name"],
+        fieldId: json["field_id"],
         fieldCategoryName: json["field_category_name"],
         fieldCategoryDetails: json["field_category_details"],
         datePlanting: DateTime.parse(json["date_planting"]),
@@ -49,6 +52,7 @@ class PlantForHarvest {
   Map<String, dynamic> toJson() => {
         "id": id,
         "farmer_name": farmerName,
+        "field_id": fieldId,
         "field_category_name": fieldCategoryName,
         "field_category_details": fieldCategoryDetails,
         "date_planting": datePlanting!.toIso8601String(),

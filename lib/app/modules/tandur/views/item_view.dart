@@ -45,13 +45,13 @@ class ItemView extends GetView<TandurController> {
               ),
               const SizedBox(height: 15),
               const Text(
-                "Tanggal Panen",
+                "Tanggal Tandur",
                 style: TextStyle(color: Color(0xff919A92), fontSize: 12),
               ),
               const SizedBox(height: 5),
               Text(
                 DateFormat("EEEE, d MMMM yyyy", "id_ID")
-                    .format(data.dateHarvest!),
+                    .format(data.datePlanting!),
                 style: TextStyle(fontSize: 15),
               ),
               const SizedBox(height: 15),

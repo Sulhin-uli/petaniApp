@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:petani_app/app/modules/panen/controllers/panen_controller.dart';
-import 'package:petani_app/app/modules/tandur/views/item_view.dart';
+import 'package:petani_app/app/modules/panen/views/item_view.dart';
 
 import 'package:get/get.dart';
 import 'package:petani_app/app/routes/app_pages.dart';

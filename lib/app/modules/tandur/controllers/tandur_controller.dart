@@ -37,11 +37,10 @@ class TandurController extends GetxController {
     // getDataTandur();
     // getDataPanen();
     // getData();
-    plant_tanaman = TextEditingController();
-    surface_area = TextEditingController();
-    address = TextEditingController();
+    // plant_tanaman = TextEditingController();
+    // surface_area = TextEditingController();
+    // address = TextEditingController();
     plating_date = TextEditingController();
-    harvest_date = TextEditingController();
     super.onInit();
   }
 

@@ -80,14 +80,18 @@ class PlantProvider extends GetConnect {
 
   Future<dynamic> storeHarvest(
     int farmerId,
+    int plantId,
     int fieldId,
-    String datePlanting,
+    String status,
+    String dateHarvest,
     String token,
   ) async {
     final response = await post("$url/harvest/post", {
       "farmer_id": farmerId,
       "field_id": fieldId,
-      "date_planting": datePlanting,
+      "plant_id": plantId,
+      "status": status,
+      "date_harvest": dateHarvest,
     }, headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',

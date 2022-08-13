@@ -63,7 +63,8 @@ class ItemPlantView extends GetView<PanenController> {
                       primary: const Color(0xff16A085), // background
                     ),
                     onPressed: () {
-                      Get.toNamed(Routes.ADD_PLANT_DATE, arguments: data.id!);
+                      Get.toNamed(Routes.ADD_HARVEST_DATE,
+                          arguments: [data.id!, data.fieldId]);
                     },
                     child: const Text('Pilih Data'),
                   ),

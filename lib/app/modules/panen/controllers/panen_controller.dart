@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:petani_app/app/data/models/harvest_recap_model.dart';
@@ -10,6 +11,8 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 class PanenController extends GetxController {
   @override
   void onInit() {
+    harvestDate = TextEditingController();
+    status = TextEditingController();
     getHarvestRecap();
     super.onInit();
   }
@@ -107,5 +110,30 @@ class PanenController extends GetxController {
     getPlantDataForHarvest();
 
     Get.toNamed(Routes.ADD_PANEN);
+  }
+
+  // add date panen
+  late TextEditingController harvestDate;
+  late TextEditingController status;
+
+  void addHarvestDate(
+      int plantId, int fieldId, String harvestDate, String status) async {
+    await Future.delayed(Duration(milliseconds: 1000));
+    try {
+      final data = box.read("userData") as Map<String, dynamic>;
+
+      PlantProvider()
+          .storeHarvest(data["petani_id"], plantId, fieldId, status,
+              harvestDate, data["token"])
+          .then((response) {
+        print(response);
+      });
+    } catch (e) {
+      dialogError(e.toString());
+    }
+    onRefreshHarvest();
+    onRefresPlant();
+    Get.back();
+    dialogSuccess("Data Berhasil Ditambahkan");
   }
 }
