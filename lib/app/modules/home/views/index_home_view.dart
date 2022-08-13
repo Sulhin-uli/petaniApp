@@ -64,11 +64,15 @@ class IndexHomeView extends GetView<HomeController> {
               BottomNavigationBarItem(
                 icon: Container(
                   margin: const EdgeInsets.only(bottom: 7),
-                  child: Image.asset(
-                    "assets/icons/home.png",
-                    width: 20,
-                    height: 20,
+                  child: const Icon(
+                    Icons.home,
+                    size: 20.0,
                   ),
+                  // child: Image.asset(
+                  //   "assets/icons/home.png",
+                  //   width: 20,
+                  //   height: 20,
+                  // ),
                 ),
                 label: 'Home',
                 backgroundColor: Colors.white,
@@ -76,11 +80,15 @@ class IndexHomeView extends GetView<HomeController> {
               BottomNavigationBarItem(
                 icon: Container(
                   margin: const EdgeInsets.only(bottom: 7),
-                  child: Image.asset(
-                    "assets/icons/saya.png",
-                    width: 20,
-                    height: 20,
+                  child: const Icon(
+                    Icons.person,
+                    size: 20.0,
                   ),
+                  // child: Image.asset(
+                  //   "assets/icons/saya.png",
+                  //   width: 20,
+                  //   height: 20,
+                  // ),
                 ),
                 label: 'Saya',
                 backgroundColor: Colors.white,

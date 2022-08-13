@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:petani_app/app/modules/education/controllers/education_controller.dart';
 import 'package:petani_app/app/routes/app_pages.dart';
 import 'package:petani_app/app/utils/base_url.dart';
@@ -47,7 +48,9 @@ class _ItemViewState extends State<ItemView> {
           Get.toNamed(Routes.DETAIL_EDUCATION, arguments: widget.data.id),
       child: Card(
         clipBehavior: Clip.antiAlias,
+        elevation: 3,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
               child: Hero(
@@ -81,19 +84,45 @@ class _ItemViewState extends State<ItemView> {
               ),
             ),
             const SizedBox(
-              height: 10,
+              height: 17,
             ),
             Container(
-              margin: const EdgeInsets.fromLTRB(8, 0, 8, 8),
-              child: Text(
-                widget.data.title,
-                style: TextStyle(
-                  color: Colors.black.withOpacity(0.6),
-                ),
-                maxLines: 3,
-                overflow: TextOverflow.ellipsis,
+              margin: EdgeInsets.all(8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Divider(
+                    color: Color(0xff919A92),
+                  ),
+                  Text(
+                    widget.data.title,
+                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  Text(
+                    DateFormat("EEEE, d MMMM yyyy", "id_ID")
+                        .format(widget.data.createdAt),
+                    style: TextStyle(
+                        color: Colors.black.withOpacity(0.6), fontSize: 12),
+                  ),
+                ],
               ),
-            ),
+            )
+            // Container(
+            //   margin: const EdgeInsets.fromLTRB(8, 0, 8, 8),
+            //   child: Text(
+            //     widget.data.title,
+            //     style: TextStyle(
+            //       color: Colors.black.withOpacity(0.6),
+            //     ),
+            //     maxLines: 3,
+            //     overflow: TextOverflow.ellipsis,
+            //   ),
+            // ),
           ],
         ),
       ),

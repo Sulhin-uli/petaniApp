@@ -76,24 +76,19 @@ class SearchEducationView extends GetView<EducationController> {
                   )
                 : SingleChildScrollView(
                     child: Padding(
-                      padding: const EdgeInsets.all(16),
-                      child: Column(
-                        children: [
-                          GridView.builder(
-                            gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 2,
-                                    childAspectRatio: 1 / 1.2),
-                            itemCount: controller.educationSearch.length,
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemBuilder: (context, i) {
-                              // final product = productList[index];
-                              final data = controller.educationSearch[i];
-                              return ItemView(data);
-                            },
-                          )
-                        ],
+                      padding: const EdgeInsets.all(16.0),
+                      child: GridView.builder(
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2, childAspectRatio: 1 / 1.2),
+                        itemCount: controller.educationSearch.length,
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (context, i) {
+                          // final product = productList[index];
+                          final data = controller.educationSearch[i];
+                          return ItemView(data);
+                        },
                       ),
                     ),
                   ),

@@ -111,22 +111,15 @@ class IndexActivityView extends GetView<ActivityController> {
                     ),
                   )
                 : SingleChildScrollView(
-                    child: Padding(
-                      padding: const EdgeInsets.all(2),
-                      child: Column(
-                        children: [
-                          ListView.builder(
-                            itemCount: controller.activity.length,
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemBuilder: (context, i) {
-                              // final product = productList[index];
-                              final data = controller.activity[i];
-                              return ItemActivityView(data);
-                            },
-                          )
-                        ],
-                      ),
+                    child: ListView.builder(
+                      itemCount: controller.activity.length,
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemBuilder: (context, i) {
+                        // final product = productList[index];
+                        final data = controller.activity[i];
+                        return ItemActivityView(data);
+                      },
                     ),
                   ),
           ),
