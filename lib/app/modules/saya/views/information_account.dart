@@ -45,15 +45,15 @@ class InformationAccountView extends GetView<SayaController> {
                     style: TextStyle(fontSize: 15),
                   ),
                   const SizedBox(height: 30),
-                  // const Text(
-                  //   "Kota/Kabupaten",
-                  //   style: TextStyle(color: Color(0xff919A92), fontSize: 12),
-                  // ),
-                  // const SizedBox(height: 5),
-                  // Text(
-                  //   data.farmers!.city!,
-                  //   style: TextStyle(fontSize: 15),
-                  // ),
+                  const Text(
+                    "E-mail",
+                    style: TextStyle(color: Color(0xff919A92), fontSize: 12),
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    data.farmers!.user!.email!,
+                    style: TextStyle(fontSize: 15),
+                  ),
                   // const SizedBox(height: 30),
                   // const Text(
                   //   "Alamat",
@@ -64,17 +64,19 @@ class InformationAccountView extends GetView<SayaController> {
                   //   data.farmers!.address!,
                   //   style: TextStyle(fontSize: 15),
                   // ),
-                  // const SizedBox(height: 30),
-                  // const Text(
-                  //   "Telepon",
-                  //   style: TextStyle(color: Color(0xff919A92), fontSize: 12),
-                  // ),
-                  // const SizedBox(height: 5),
-                  // Text(
-                  //   data.farmers!.telp.toString(),
-                  //   style: TextStyle(fontSize: 15),
-                  // ),
-                  // const SizedBox(height: 30),
+                  const SizedBox(height: 30),
+                  const Text(
+                    "Telepon",
+                    style: TextStyle(color: Color(0xff919A92), fontSize: 12),
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    data.farmers!.phone != null
+                        ? data.farmers!.phone.toString()
+                        : "-",
+                    style: TextStyle(fontSize: 15),
+                  ),
+                  const SizedBox(height: 30),
                 ],
               ),
             ),

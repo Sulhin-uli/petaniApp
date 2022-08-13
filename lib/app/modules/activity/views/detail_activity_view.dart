@@ -22,46 +22,64 @@ class DetailActivityView extends GetView<ActivityController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Center(
-                child: Text(
-                  data.title!,
-                  style: const TextStyle(fontSize: 16),
-                ),
-              ),
-              const SizedBox(
-                height: 5,
-              ),
               Text(
-                data.desc!,
-                textAlign: TextAlign.justify,
-                style: TextStyle(
-                  fontSize: 14.0,
-                  height: 1.5,
-                  color: Colors.black.withOpacity(0.5),
-                ),
+                data.title!,
+                textAlign: TextAlign.left,
+                style:
+                    const TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
               ),
               const SizedBox(
-                height: 5,
-              ),
-              Text(
-                "Kegiatan dilaksanakan pada " +
-                    DateFormat("EEEE, d MMMM yyyy", "id_ID").format(datetime),
-                style: TextStyle(color: Colors.black.withOpacity(0.6)),
-              ),
-              const SizedBox(
-                height: 5,
+                height: 10,
               ),
               Row(
                 children: [
                   Text(
                     "Dibuat oleh ",
-                    style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                    style: TextStyle(
+                      // color: Colors.black.withOpacity(0.6),
+                      fontSize: 12.0,
+                    ),
                   ),
                   Text(
                     data.userId!.name!,
-                    style: const TextStyle(color: Colors.red),
+                    style: const TextStyle(
+                      color: Colors.red,
+                      fontSize: 12.0,
+                    ),
                   ),
                 ],
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              const Divider(
+                color: Color(0xff919A92),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Text(
+                data.desc!,
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  fontSize: 12.0,
+                  height: 2.0,
+                  // color: Colors.black.withOpacity(0.5),
+                ),
+              ),
+              const SizedBox(
+                height: 9,
+              ),
+              Text(
+                // "Kegiatan dilaksanakan pada " +
+                DateFormat("EEEE, d MMMM yyyy", "id_ID").format(datetime),
+                style: TextStyle(
+                  // color: Colors.black.withOpacity(0.6),
+                  fontSize: 12.0,
+                ),
+              ),
+              const SizedBox(
+                height: 5,
               ),
             ],
           ),

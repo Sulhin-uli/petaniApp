@@ -20,31 +20,43 @@ class ItemActivityView extends GetView<ActivityController> {
         child: Column(
           children: [
             Container(
-              margin: const EdgeInsets.all(16),
               child: ListTile(
-                title: Container(
-                    margin: const EdgeInsets.only(
-                      bottom: 6,
-                    ),
-                    child: Text(data.title)),
-                subtitle: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      data.userId.name,
-                      style: const TextStyle(color: Colors.red, fontSize: 12),
-                    ),
-                    const SizedBox(
-                      height: 6,
-                    ),
-                    Text(
-                      DateFormat("EEEE, d MMMM yyyy", "id_ID")
-                          .format(data.date!),
-                      style: TextStyle(
-                          color: Colors.black.withOpacity(0.6), fontSize: 12),
-                    ),
-                  ],
+                title: Text(
+                  data.title,
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                 ),
+                // title: Container(
+                //     margin: const EdgeInsets.only(
+                //       bottom: 6,
+                //     ),
+                //     child: Text(
+                //       data.title,
+                //       style:
+                //           TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                //     )),
+                subtitle: Text(
+                  DateFormat("EEEE, d MMMM yyyy", "id_ID").format(data.date!),
+                  style: TextStyle(
+                      color: Colors.black.withOpacity(0.6), fontSize: 12),
+                ),
+                // subtitle: Column(
+                //   crossAxisAlignment: CrossAxisAlignment.start,
+                //   children: [
+                //     Text(
+                //       data.userId.name,
+                //       style: const TextStyle(color: Colors.red, fontSize: 12),
+                //     ),
+                //     const SizedBox(
+                //       height: 6,
+                //     ),
+                //     Text(
+                //       DateFormat("EEEE, d MMMM yyyy", "id_ID")
+                //           .format(data.date!),
+                //       style: TextStyle(
+                //           color: Colors.black.withOpacity(0.6), fontSize: 12),
+                //     ),
+                //   ],
+                // ),
               ),
             ),
           ],
