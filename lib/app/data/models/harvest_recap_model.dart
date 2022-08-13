@@ -20,6 +20,8 @@ class HarvestRecap {
     this.createdAt,
     this.updatedAt,
     this.name,
+    this.plantingId,
+    this.fieldId,
   });
 
   int? id;
@@ -31,6 +33,8 @@ class HarvestRecap {
   DateTime? createdAt;
   DateTime? updatedAt;
   int? name;
+  int? plantingId;
+  int? fieldId;
 
   factory HarvestRecap.fromJson(Map<String, dynamic> json) => HarvestRecap(
         id: json["id"],
@@ -42,6 +46,8 @@ class HarvestRecap {
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
         name: json["name"],
+        plantingId: json["planting_id"],
+        fieldId: json["field_id"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -54,5 +60,7 @@ class HarvestRecap {
         "created_at": createdAt!.toIso8601String(),
         "updated_at": updatedAt!.toIso8601String(),
         "name": name,
+        "planting_id": plantingId,
+        "field_id": fieldId,
       };
 }

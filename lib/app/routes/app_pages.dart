@@ -18,6 +18,7 @@ import 'package:petani_app/app/modules/notifikasi/views/index_notifikasi_view.da
 import 'package:petani_app/app/modules/panen/bindings/panen_binding.dart';
 import 'package:petani_app/app/modules/panen/views/add_panen_view.dart';
 import 'package:petani_app/app/modules/panen/views/detail_panen_view.dart';
+import 'package:petani_app/app/modules/panen/views/edit_date_panen_view.dart';
 import 'package:petani_app/app/modules/panen/views/edit_panen_view.dart';
 import 'package:petani_app/app/modules/panen/views/index_panen_view.dart';
 import 'package:petani_app/app/modules/saya/bindings/saya_binding.dart';
@@ -164,7 +165,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.EDIT_PANEN,
-      page: () => EditPanenView(),
+      page: () => EditHarvestDateView(),
       binding: PanenBinding(),
     ),
 

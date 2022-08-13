@@ -24,6 +24,10 @@ class PanenController extends GetxController {
   var pageHarvest = 1.obs;
   RefreshController refreshHarvestController =
       RefreshController(initialRefresh: false);
+  // cari berdasarka id
+  HarvestRecap findById(int id) {
+    return harvestRecap.firstWhere((element) => element.id == id);
+  }
 
   void getHarvestRecap() {
     final data = box.read("userData") as Map<String, dynamic>;
@@ -124,6 +128,27 @@ class PanenController extends GetxController {
 
       PlantProvider()
           .storeHarvest(data["petani_id"], plantId, fieldId, status,
+              harvestDate, data["token"])
+          .then((response) {
+        print(response);
+      });
+    } catch (e) {
+      dialogError(e.toString());
+    }
+    onRefreshHarvest();
+    onRefresPlant();
+    Get.back();
+    dialogSuccess("Data Berhasil Ditambahkan");
+  }
+
+  void updateHarvestDate(int id, int plantId, int fieldId, String harvestDate,
+      String status) async {
+    await Future.delayed(Duration(milliseconds: 1000));
+    try {
+      final data = box.read("userData") as Map<String, dynamic>;
+
+      PlantProvider()
+          .updateHarvest(id, data["petani_id"], plantId, fieldId, status,
               harvestDate, data["token"])
           .then((response) {
         print(response);

@@ -99,6 +99,30 @@ class PlantProvider extends GetConnect {
     });
     return response.body;
   }
+
+  Future<dynamic> updateHarvest(
+    int id,
+    int farmerId,
+    int plantId,
+    int fieldId,
+    String status,
+    String dateHarvest,
+    String token,
+  ) async {
+    final response = await post("$url/harvest/update", {
+      "id": id,
+      "farmer_id": farmerId,
+      "field_id": fieldId,
+      "plant_id": plantId,
+      "status": status,
+      "date_harvest": dateHarvest,
+    }, headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $token',
+    });
+    return response.body;
+  }
   ////////////////// old //////////////////////////////
 
   Future<dynamic> getData(
