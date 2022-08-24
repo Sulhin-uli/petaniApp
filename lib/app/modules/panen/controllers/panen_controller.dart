@@ -127,23 +127,27 @@ class PanenController extends GetxController {
 
   void addHarvestDate(
       int plantId, int fieldId, String harvestDate, String status) async {
-    await Future.delayed(Duration(milliseconds: 1000));
-    try {
-      final data = box.read("userData") as Map<String, dynamic>;
+    if (harvestDate != '') {
+      await Future.delayed(Duration(milliseconds: 1000));
+      try {
+        final data = box.read("userData") as Map<String, dynamic>;
 
-      PlantProvider()
-          .storeHarvest(data["petani_id"], plantId, fieldId, status,
-              harvestDate, data["token"])
-          .then((response) {
-        print(response);
-      });
-    } catch (e) {
-      dialogError(e.toString());
+        PlantProvider()
+            .storeHarvest(data["petani_id"], plantId, fieldId, status,
+                harvestDate, data["token"])
+            .then((response) {
+          print(response);
+        });
+      } catch (e) {
+        dialogError(e.toString());
+      }
+      onRefreshHarvest();
+      onRefresPlant();
+      Get.back();
+      dialogSuccess("Data Berhasil Ditambahkan");
+    } else {
+      dialogError("Tanggal Belum Diisi");
     }
-    onRefreshHarvest();
-    onRefresPlant();
-    Get.back();
-    dialogSuccess("Data Berhasil Ditambahkan");
   }
 
   void updateHarvestDate(int id, int plantId, int fieldId, String harvestDate,

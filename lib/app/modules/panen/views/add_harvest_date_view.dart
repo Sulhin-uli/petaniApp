@@ -139,34 +139,39 @@ class AddHarvestDateView extends GetView<PanenController> {
                             try {
                               // loginController.login(
                               //     controller.email.text, controller.password.text);
-                              DateTime dateTimeNow = DateTime.now();
+                              controller.addHarvestDate(
+                                  Get.arguments[0],
+                                  Get.arguments[1],
+                                  controller.harvestDate.text,
+                                  controller.status.text);
+                              // DateTime dateTimeNow = DateTime.now();
 
-                              String dateNow = DateFormat('yyyy-MM-dd')
-                                  .format(DateTime.now());
-                              if (dateSelect == null) {
-                                dialogError("Tanggal tidak boleh kosong");
-                              } else {
-                                bool isValidDate =
-                                    dateTimeNow.isBefore(dateSelect!);
+                              // String dateNow = DateFormat('yyyy-MM-dd')
+                              //     .format(DateTime.now());
+                              // if (dateSelect == null) {
+                              //   dialogError("Tanggal tidak boleh kosong");
+                              // } else {
+                              //   bool isValidDate =
+                              //       dateTimeNow.isBefore(dateSelect!);
 
-                                if (isValidDate) {
-                                  controller.addHarvestDate(
-                                      Get.arguments[0],
-                                      Get.arguments[1],
-                                      controller.harvestDate.text,
-                                      controller.status.text);
-                                } else if (dateNow ==
-                                    controller.harvestDate.text) {
-                                  controller.addHarvestDate(
-                                      Get.arguments[0],
-                                      Get.arguments[1],
-                                      controller.harvestDate.text,
-                                      controller.status.text);
-                                } else {
-                                  dialogError(
-                                      "Tanggal yang dipilih tidak boleh mundur dari tanggal sekarang");
-                                }
-                              }
+                              //   if (isValidDate) {
+                              //     controller.addHarvestDate(
+                              //         Get.arguments[0],
+                              //         Get.arguments[1],
+                              //         controller.harvestDate.text,
+                              //         controller.status.text);
+                              //   } else if (dateNow ==
+                              //       controller.harvestDate.text) {
+                              //     controller.addHarvestDate(
+                              //         Get.arguments[0],
+                              //         Get.arguments[1],
+                              //         controller.harvestDate.text,
+                              //         controller.status.text);
+                              //   } else {
+                              //     dialogError(
+                              //         "Tanggal yang dipilih tidak boleh mundur dari tanggal sekarang");
+                              //   }
+                              // }
                             } finally {
                               controller.isLoading(false);
                               controller.harvestDate.clear();

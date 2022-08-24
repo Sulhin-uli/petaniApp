@@ -138,20 +138,24 @@ class TandurController extends GetxController {
   }
 
   void addPlantDate(int fieldId, String platingDate) async {
-    await Future.delayed(Duration(milliseconds: 1000));
-    try {
-      final data = box.read("userData") as Map<String, dynamic>;
+    if (platingDate != '') {
+      await Future.delayed(Duration(milliseconds: 1000));
+      try {
+        final data = box.read("userData") as Map<String, dynamic>;
 
-      PlantProvider()
-          .storePlant(data["petani_id"], fieldId, platingDate, data["token"])
-          .then((response) {});
-    } catch (e) {
-      dialogError(e.toString());
+        PlantProvider()
+            .storePlant(data["petani_id"], fieldId, platingDate, data["token"])
+            .then((response) {});
+      } catch (e) {
+        dialogError(e.toString());
+      }
+      onRefresField();
+      onRefresPlant();
+      Get.back();
+      dialogSuccess("Data Berhasil Ditambahkan");
+    } else {
+      dialogError("Tanggal Belum Diisi");
     }
-    onRefresField();
-    onRefresPlant();
-    Get.back();
-    dialogSuccess("Data Berhasil Ditambahkan");
   }
 
 //////////////////// old //////////////////////////////
