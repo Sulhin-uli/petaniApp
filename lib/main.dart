@@ -1,3 +1,5 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -27,8 +29,8 @@ import 'app/routes/app_pages.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp();
-  // FirebaseMessaging.instance.getInitialMessage();
+  await Firebase.initializeApp();
+  FirebaseMessaging.instance.getInitialMessage();
   await GetStorage.init();
   await initializeDateFormatting('id_ID', null).then((_) => runApp(MyApp()));
 }

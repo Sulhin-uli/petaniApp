@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:petani_app/app/data/models/farmer_model.dart';
 import 'package:petani_app/app/data/models/poktan_model.dart';
@@ -41,6 +42,24 @@ class LoginController extends GetxController {
     autoLogin();
     email = TextEditingController();
     password = TextEditingController();
+  }
+
+  void subscribe() async {
+    print("dijalankan");
+    final data = box.read("userData") as Map<String, dynamic>;
+    // var topic = "topic_user_id_" + data["id"].toString();
+    var topic = "petani";
+    print(topic);
+    await FirebaseMessaging.instance.subscribeToTopic(topic);
+  }
+
+  void unSubscribe() async {
+    print("dijalankan");
+    final data = box.read("userData") as Map<String, dynamic>;
+    // var topic = "topic_user_id_" + data["id"].toString();
+    var topic = "petani";
+    print(topic);
+    await FirebaseMessaging.instance.unsubscribeFromTopic(topic);
   }
 
   Future<void> autoLogin() async {
@@ -100,6 +119,7 @@ class LoginController extends GetxController {
             isAuth.value = true;
             box.write('isAuth', true);
             Get.offAllNamed(Routes.HOME);
+            subscribe();
             Get.defaultDialog(
               title: "Info",
               titleStyle: TextStyle(fontSize: 12),
